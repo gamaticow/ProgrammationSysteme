@@ -9,8 +9,6 @@ namespace EasySave.Model
         public override void ExecuteBackup()
         {
 
-            string destFile;
-
             if (!System.IO.Directory.Exists(targetDirectory))
             {
                 System.IO.Directory.CreateDirectory(targetDirectory);
@@ -30,8 +28,8 @@ namespace EasySave.Model
                 foreach (string s in files)
                 {
                     // Use static Path methods to extract only the file name from the path.
-                    name = System.IO.Path.GetFileName(s);
-                    destFile = System.IO.Path.Combine(targetDirectory, name);
+                    string fileName = System.IO.Path.GetFileName(s);
+                    string destFile = System.IO.Path.Combine(targetDirectory, fileName);
                     System.IO.File.Copy(s, destFile, true);
                 }
             }
