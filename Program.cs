@@ -1,4 +1,5 @@
 ﻿using System;
+using EasySave.Model;
 
 namespace EasySave
 {
@@ -6,7 +7,37 @@ namespace EasySave
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+        }
+
+        private Program()
+        {
+
+        }
+
+        public void ReadDataFile()
+        {
+
+        }
+
+        public void WriteDataFile()
+        {
+
+        }
+
+        public void OpenMainController()
+        {
+
+        }
+
+        public void OpenBackupController(BackupWork backupWork)
+        {
+
+        }
+
+        public void SetLanguage(LanguageType languageType)
+        {
+
         }
     }
 }
