@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace EasySave.Model
 {
@@ -29,8 +30,22 @@ namespace EasySave.Model
                 {
                     // Use static Path methods to extract only the file name from the path.
                     string fileName = System.IO.Path.GetFileName(s);
-                    string destFile = System.IO.Path.Combine(targetDirectory, fileName);
-                    System.IO.File.Copy(s, destFile, true);
+                    FileInfo sourceFile = new FileInfo(Path.Combine(sourceDirectory, fileName));
+                    FileInfo destFile = new FileInfo(Path.Combine(targetDirectory, fileName));
+                    String destFilestr = System.IO.Path.Combine(targetDirectory, fileName);
+                    if (destFile.Exists)
+                    {
+
+                        if (sourceFile.LastWriteTime > destFile.LastWriteTime)
+                        {
+                            // now you can safely overwrite it
+                            sourceFile.CopyTo(destFile.FullName, true);
+                        }
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(s, destFilestr, true);
+                    }
                 }
             }
             else
