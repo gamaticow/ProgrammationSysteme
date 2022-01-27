@@ -6,10 +6,9 @@ namespace EasySave.Controller
 {
     class Controller
     {
-
         public string Translate(string key)
         {
-            return null;
+            return Program.instance.language.Translate(key);
         }
 
     }
