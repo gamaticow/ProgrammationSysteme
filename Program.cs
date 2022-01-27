@@ -5,9 +5,12 @@ namespace EasySave
 {
     class Program
     {
+        public static Program instance;
+        public Language language { get; private set; }
+
         static void Main(string[] args)
         {
-
+            instance = new Program();
         }
 
         private Program()
@@ -37,7 +40,7 @@ namespace EasySave
 
         public void SetLanguage(LanguageType languageType)
         {
-
+            language = new Language(languageType);
         }
     }
 }
