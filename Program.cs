@@ -1,5 +1,6 @@
 ﻿using System;
 using EasySave.Model;
+using System.IO;
 
 namespace EasySave
 {
@@ -7,16 +8,17 @@ namespace EasySave
     {
         public static Program instance;
         public Language language { get; private set; }
-
         static void Main(string[] args)
         {
             instance = new Program();
-
             LogObserver logObserver = new LogObserver();
-            BackupWork b = new FullBackupWork();
-            b.name = "salut";
-            b.Subscribe(logObserver);
-            b.Log(@"C:\source\test.txt", @"D:\target\test.txt", 310, 3.810);
+            
+            BackupWork n = new DifferentialBackupWork();
+            n.name = "Travail de sauvegarde 1";
+            n.sourceDirectory = @"C:\Users\rasor\OneDrive\Documents\test";
+            n.targetDirectory = @"C:\Users\rasor\OneDrive\Documents\test2\test";
+
+            n.ExecuteBackup();
         }
 
         private Program()
@@ -43,7 +45,6 @@ namespace EasySave
         {
 
         }
-
         public void SetLanguage(LanguageType languageType)
         {
             language = new Language(languageType);
