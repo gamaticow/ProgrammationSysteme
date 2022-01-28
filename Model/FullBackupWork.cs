@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace EasySave.Model
 {
@@ -8,7 +9,10 @@ namespace EasySave.Model
     {
         public override void ExecuteBackup()
         {
-            throw new NotImplementedException();
+            DirectoryInfo source = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo target = new DirectoryInfo(targetDirectory);
+
+            ExecuteBackup(source, target);
         }
     }
 }
