@@ -11,10 +11,9 @@ namespace EasySave
         static void Main(string[] args)
         {
             instance = new Program();
-            DifferentialBackupWork n = new DifferentialBackupWork();
+            BackupWork n = new DifferentialBackupWork();
             n.sourceDirectory = @"C:\Users\rasor\OneDrive\Documents\test";
             n.targetDirectory = @"C:\Users\rasor\OneDrive\Documents\test2\test";
-            n.backupType = BackupType.FULL;
 
             n.ExecuteBackup();
         }

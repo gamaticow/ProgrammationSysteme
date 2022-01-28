@@ -7,6 +7,12 @@ namespace EasySave.Model
 {
     class FullBackupWork : BackupWork
     {
+
+        public FullBackupWork()
+        {
+            backupType = BackupType.FULL;
+        }
+
         public override void ExecuteBackup()
         {
             DirectoryInfo source = new DirectoryInfo(sourceDirectory);

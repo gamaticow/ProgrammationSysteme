@@ -11,7 +11,7 @@ namespace EasySave.Model
         public String name;
         public String sourceDirectory;
         public String targetDirectory;
-        public BackupType backupType;
+        public BackupType backupType { get; protected set; }
         public abstract void ExecuteBackup();
         protected void ExecuteBackup(DirectoryInfo source, DirectoryInfo target)
         {

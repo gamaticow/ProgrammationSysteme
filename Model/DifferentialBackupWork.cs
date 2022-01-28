@@ -7,6 +7,12 @@ namespace EasySave.Model
 {
     class DifferentialBackupWork : BackupWork
     {
+
+        public DifferentialBackupWork()
+        {
+            backupType = BackupType.DIFFERENTIAL;
+        }
+
         public override void ExecuteBackup()
         {
             DirectoryInfo source = new DirectoryInfo(sourceDirectory);
