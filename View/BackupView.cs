@@ -12,7 +12,9 @@ namespace EasySave.View
         private BackupWork backupWork;
 
         public BackupView(BackupController controller, BackupWork backupWork) : base(controller)
-        { }
+        {
+            this.backupWork = backupWork;
+        }
 
         public string RenderBackupWork()
         {
@@ -21,10 +23,11 @@ namespace EasySave.View
             Console.WriteLine($"2. {controller.Translate("backupview_edit_backup")}");
             Console.WriteLine($"3. {controller.Translate("backupview_delete_backup")}");
             Console.WriteLine($"4. {controller.Translate("backupview_back")}");
+            RenderChoseAction();
             return Console.ReadLine();
         }
 
-        public string RenderRenameBackupWork(BackupWork backupWork)
+        public string RenderRenameBackupWork()
         {
             Console.Write(controller.Translate("backupview_rename"));
             return Console.ReadLine();

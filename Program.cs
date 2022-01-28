@@ -47,7 +47,7 @@ namespace EasySave
 
         public void OpenBackupController(BackupWork backupWork)
         {
-            //new BackupController(backupWork).BackupWorkInformation();
+            new BackupController(backupWork).BackupWorkInformation();
         }
 
         public void SetLanguage(LanguageType languageType)

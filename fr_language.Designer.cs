@@ -178,7 +178,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Saisissez le type de sauvegarde (complet, différentiel) : .
+        ///   Recherche une chaîne localisée semblable à Saisissez le type de sauvegarde (complet / différentiel) : .
         /// </summary>
         internal static string mainview_create_backup_type {
             get {

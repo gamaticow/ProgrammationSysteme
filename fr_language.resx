@@ -157,7 +157,7 @@
     <value>Saisissez le répertoire cible : </value>
   </data>
   <data name="mainview_create_backup_type" xml:space="preserve">
-    <value>Saisissez le type de sauvegarde (complet, différentiel) : </value>
+    <value>Saisissez le type de sauvegarde (complet / différentiel) : </value>
   </data>
   <data name="mainview_create_backup_work" xml:space="preserve">
     <value>Créer un travail de sauvegarde</value>
