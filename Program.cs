@@ -11,6 +11,12 @@ namespace EasySave
         static void Main(string[] args)
         {
             instance = new Program();
+
+            LogObserver logObserver = new LogObserver();
+            BackupWork b = new FullBackupWork();
+            b.name = "salut";
+            b.Subscribe(logObserver);
+            b.Log(@"C:\source\test.txt", @"D:\target\test.txt", 310, 3.810);
         }
 
         private Program()
