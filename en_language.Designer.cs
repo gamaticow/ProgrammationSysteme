@@ -88,7 +88,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Execute the save.
+        ///   Recherche une chaîne localisée semblable à Execute the backup.
         /// </summary>
         internal static string backupview_execute_backup {
             get {
@@ -142,7 +142,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Backup work.
+        ///   Recherche une chaîne localisée semblable à Backup works.
         /// </summary>
         internal static string mainview_backupworks {
             get {
@@ -160,7 +160,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Enter the source repesitory : .
+        ///   Recherche une chaîne localisée semblable à Enter the source repository : .
         /// </summary>
         internal static string mainview_create_backup_source {
             get {
@@ -169,7 +169,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Enter the target repesitory : .
+        ///   Recherche une chaîne localisée semblable à Enter the target repository : .
         /// </summary>
         internal static string mainview_create_backup_target {
             get {
@@ -178,7 +178,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Enter the backup type (FullDifferential) : .
+        ///   Recherche une chaîne localisée semblable à Enter the backup type (Full / Differential) : .
         /// </summary>
         internal static string mainview_create_backup_type {
             get {
