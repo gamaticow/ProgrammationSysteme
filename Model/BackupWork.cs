@@ -23,7 +23,7 @@ namespace EasySave.Model
 
             foreach (BackupFile file in files)
             {
-
+                file.source.CopyTo(file.target.FullName, true);
             }
         }
         private void GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
@@ -50,25 +50,27 @@ namespace EasySave.Model
                     // Use static Path methods to extract only the file name from the path.
                     string fileName = System.IO.Path.GetFileName(s);
                     FileInfo sourceFile = new FileInfo(Path.Combine(source.ToString(), fileName));
-                    FileInfo destFile = new FileInfo(Path.Combine(target.ToString(), fileName));
-                    string destFilestr = System.IO.Path.Combine(target.ToString(), fileName);
+                    FileInfo targetFile = new FileInfo(Path.Combine(target.ToString(), fileName));
 
-                    if (destFile.Exists)
+                    if (targetFile.Exists)
                     {
-                        if (sourceFile.LastWriteTime > destFile.LastWriteTime && backupType == BackupType.DIFFERENTIAL)
+                        if (sourceFile.LastWriteTime > targetFile.LastWriteTime && backupType == BackupType.DIFFERENTIAL)
                         {
                             // now you can safely overwrite it
-                            sourceFile.CopyTo(destFile.FullName, true);
+                            //sourceFile.CopyTo(targetFile.FullName, true);
+                            files.Add(new BackupFile(sourceFile, targetFile));
                         }
                         else if (backupType == BackupType.FULL)
                         {
-                            sourceFile.CopyTo(destFile.FullName, true);
-                        }
+                            //sourceFile.CopyTo(targetFile.FullName, true);
+                            files.Add(new BackupFile(sourceFile, targetFile));
+                            }
                     }
                     else
                     {
-                        System.IO.File.Copy(s, destFilestr, true);
-                    }
+                        //System.IO.File.Copy(s, targetFile.Name, true);
+                        files.Add(new BackupFile(sourceFile, targetFile));
+                        }
                 }
                 foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
                 {
@@ -135,17 +137,12 @@ namespace EasySave.Model
 
     internal class BackupFile
     {
-        public string source { get; private set; }
-        public string target { get; private set; }
-        public string name { get; private set; }
-        public int size { get; private set; }
-
-        public BackupFile(string source, string target, string name, int size)
+        public FileInfo source { get; private set; }
+        public FileInfo target { get; private set; }
+        public BackupFile(FileInfo source, FileInfo target)
         {
             this.source = source;
             this.target = target;
-            this.name = name;
-            this.size = size;
         }
     }
 }
