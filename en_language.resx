@@ -117,4 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="backupview_back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="backupview_delete_backup" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="backupview_edit_backup" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="backupview_execute_backup" xml:space="preserve">
+    <value>Execute the save</value>
+  </data>
+  <data name="backupview_rename" xml:space="preserve">
+    <value>New backup work name : </value>
+  </data>
+  <data name="backupview_selected_backup" xml:space="preserve">
+    <value>Backup work selected : </value>
+  </data>
+  <data name="chose_action" xml:space="preserve">
+    <value>Choose an action : </value>
+  </data>
+  <data name="error_impossible_action" xml:space="preserve">
+    <value>Impossible Action</value>
+  </data>
+  <data name="mainview_back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="mainview_backupworks" xml:space="preserve">
+    <value>Backup work</value>
+  </data>
+  <data name="mainview_create_backup_name" xml:space="preserve">
+    <value>Enter the backup work name : </value>
+  </data>
+  <data name="mainview_create_backup_source" xml:space="preserve">
+    <value>Enter the source repesitory : </value>
+  </data>
+  <data name="mainview_create_backup_target" xml:space="preserve">
+    <value>Enter the target repesitory : </value>
+  </data>
+  <data name="mainview_create_backup_type" xml:space="preserve">
+    <value>Enter the backup type (FullDifferential) : </value>
+  </data>
+  <data name="mainview_create_backup_work" xml:space="preserve">
+    <value>Create a backup work</value>
+  </data>
+  <data name="mainview_execute_all_backup_works" xml:space="preserve">
+    <value>Execute all backup works</value>
+  </data>
+  <data name="mainview_language_changed" xml:space="preserve">
+    <value>Language defined in English</value>
+  </data>
+  <data name="mainview_language_configuration" xml:space="preserve">
+    <value>Language configuration</value>
+  </data>
+  <data name="mainview_language_en" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="mainview_language_fr" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="mainview_quit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
 </root>
