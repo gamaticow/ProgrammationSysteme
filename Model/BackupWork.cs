@@ -2,31 +2,46 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Threading;
 
 
 namespace EasySave.Model
 {
-    abstract class BackupWork : IObservable<BackupLog>
+    abstract class BackupWork : IObservable<BackupLog>, IObservable<BackupState>
     {
         private List<IObserver<BackupLog>> logObservers = new List<IObserver<BackupLog>>();
+        private List<IObserver<BackupState>> stateObservers = new List<IObserver<BackupState>>();
 
-        public String name;
-        public String sourceDirectory;
-        public String targetDirectory;
+        public string name { get; set; }
+        public string sourceDirectory { get; private set; }
+        public string targetDirectory { get; private set; }
         public BackupType backupType { get; protected set; }
+
+        public BackupWork(string name, string sourceDirectory, string targetDirectory)
+        {
+            this.name = name;
+            this.sourceDirectory = sourceDirectory;
+            this.targetDirectory = targetDirectory;
+        }
+
         public abstract void ExecuteBackup();
 
         protected void ExecuteBackup(DirectoryInfo source, DirectoryInfo target)
         {
             List<BackupFile> files = new List<BackupFile>();
             long totalFileSize = GetFiles(files, source, target);
+            int nbFilesLeftToDo = files.Count;
 
             foreach (BackupFile file in files)
             {
+                UpdateState(file.source.FullName, file.target.FullName, "ACTIVE", files.Count, totalFileSize, nbFilesLeftToDo);
                 long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                 file.source.CopyTo(file.target.FullName, true);
                 Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start);
+                nbFilesLeftToDo--;
+                Thread.Sleep(10000);
             }
+            UpdateState("", "", "END", 0, 0, 0);
         }
         private long GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
         {
@@ -104,7 +119,7 @@ namespace EasySave.Model
             }         
         }
 
-        public void Log(string sourceFile, string targetFile, long fileSize, long transfertTime)
+        protected void Log(string sourceFile, string targetFile, long fileSize, long transfertTime)
         {
             BackupLog log = new BackupLog(name, sourceFile, targetFile, fileSize, transfertTime, DateTime.Now.ToString("G"));
             foreach(IObserver<BackupLog> observer in logObservers)
@@ -112,6 +127,21 @@ namespace EasySave.Model
                 observer.OnNext(log);
             }
         }
+
+        protected void UpdateState(string sourceFilePath, string targetFilePath, string backupState, int totalFilesToCopy, long totalFilesSize, int nbFilesLeftToDo)
+        {
+            BackupState state = new BackupState(name, sourceFilePath, targetFilePath, backupState, totalFilesToCopy, totalFilesSize, nbFilesLeftToDo, totalFilesToCopy > 0 ? Convert.ToInt32((totalFilesToCopy - nbFilesLeftToDo) * 100.0 / totalFilesToCopy) : 0);
+            foreach (IObserver<BackupState> observer in stateObservers)
+            {
+                observer.OnNext(state);
+            }
+        }
+
+        public void Save()
+        {
+
+        }
+
         public IDisposable Subscribe(IObserver<BackupLog> observer)
         {
             if (!logObservers.Contains(observer))
@@ -119,6 +149,16 @@ namespace EasySave.Model
                 logObservers.Add(observer);
             }
             return new Unsubscriber<BackupLog>(logObservers, observer);
+        }
+
+        public IDisposable Subscribe(IObserver<BackupState> observer)
+        {
+            if (!stateObservers.Contains(observer))
+            {
+                stateObservers.Add(observer);
+                UpdateState("", "", "END", 0, 0, 0);
+            }
+            return new Unsubscriber<BackupState>(stateObservers, observer);
         }
     }
 

@@ -21,7 +21,7 @@ namespace EasySave.Model
             string filePath = GetFilePath();
             if(!File.Exists(filePath))
             {
-                File.Create(GetFilePath()).Close();
+                File.Create(filePath).Close();
             }
             else
             {
@@ -37,7 +37,7 @@ namespace EasySave.Model
 
         private string GetFilePath()
         {
-            return $@"log_{DateTime.Now.ToString("dd-MM-yyyy")}.log";
+            return $@"log_{DateTime.Now.ToString("dd-MM-yyyy")}.json";
         }
     }
 }
