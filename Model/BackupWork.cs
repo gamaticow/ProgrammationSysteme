@@ -23,7 +23,9 @@ namespace EasySave.Model
 
             foreach (BackupFile file in files)
             {
+                long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                 file.source.CopyTo(file.target.FullName, true);
+                Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start);
             }
         }
         private void GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
@@ -99,7 +101,7 @@ namespace EasySave.Model
             }
         }
 
-        public void Log(string sourceFile, string targetFile, int fileSize, double transfertTime)
+        public void Log(string sourceFile, string targetFile, long fileSize, long transfertTime)
         {
             BackupLog log = new BackupLog(name, sourceFile, targetFile, fileSize, transfertTime, DateTime.Now.ToString("G"));
             foreach(IObserver<BackupLog> observer in logObservers)
