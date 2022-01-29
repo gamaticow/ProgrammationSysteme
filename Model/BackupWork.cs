@@ -19,7 +19,7 @@ namespace EasySave.Model
         protected void ExecuteBackup(DirectoryInfo source, DirectoryInfo target)
         {
             List<BackupFile> files = new List<BackupFile>();
-            GetFiles(files, source, target);
+            long totalFileSize = GetFiles(files, source, target);
 
             foreach (BackupFile file in files)
             {
@@ -28,7 +28,7 @@ namespace EasySave.Model
                 Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start);
             }
         }
-        private void GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
+        private long GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
         {
             if (!System.IO.Directory.Exists(targetDirectory))
             {
@@ -45,6 +45,7 @@ namespace EasySave.Model
             {
                 string[] sourcefiles = System.IO.Directory.GetFiles(source.ToString());
                 string[] targetfiles = System.IO.Directory.GetFiles(target.ToString());
+                long totalFileSize = 0;
 
                 // Copy the files and overwrite destination files if they already exist. 
                 foreach (string s in sourcefiles)
@@ -59,26 +60,26 @@ namespace EasySave.Model
                         if (sourceFile.LastWriteTime > targetFile.LastWriteTime && backupType == BackupType.DIFFERENTIAL)
                         {
                             // now you can safely overwrite it
-                            //sourceFile.CopyTo(targetFile.FullName, true);
+                            totalFileSize += sourceFile.Length;
                             files.Add(new BackupFile(sourceFile, targetFile));
                         }
                         else if (backupType == BackupType.FULL)
                         {
-                            //sourceFile.CopyTo(targetFile.FullName, true);
+                            totalFileSize += sourceFile.Length;
                             files.Add(new BackupFile(sourceFile, targetFile));
-                            }
+                        }
                     }
                     else
                     {
-                        //System.IO.File.Copy(s, targetFile.Name, true);
+                        totalFileSize += sourceFile.Length;
                         files.Add(new BackupFile(sourceFile, targetFile));
-                        }
+                    }
                 }
                 foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
                 {
                     DirectoryInfo nextTargetSubDir =
                     target.CreateSubdirectory(diSourceSubDir.Name);
-                    ExecuteBackup(diSourceSubDir, nextTargetSubDir);
+                    totalFileSize += GetFiles(files, diSourceSubDir, nextTargetSubDir);
                 }
                 if (backupType == BackupType.FULL)
                 {
@@ -94,11 +95,13 @@ namespace EasySave.Model
                         }
                     }
                 }
+                return totalFileSize;
             }
             else
             {
+                return -1;
                 Console.WriteLine("Source path does not exist!");
-            }
+            }         
         }
 
         public void Log(string sourceFile, string targetFile, long fileSize, long transfertTime)
