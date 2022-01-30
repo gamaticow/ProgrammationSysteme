@@ -141,8 +141,17 @@
   <data name="backupview_rename" xml:space="preserve">
     <value>Nouveau nom du travail de sauvegarde : </value>
   </data>
-  <data name="backupview_selected_backup" xml:space="preserve">
+  <data name="backupview_selected_backup_name" xml:space="preserve">
     <value>Travail de sauvegarde sélectionné : </value>
+  </data>
+  <data name="backupview_selected_backup_source" xml:space="preserve">
+    <value>Source : </value>
+  </data>
+  <data name="backupview_selected_backup_target" xml:space="preserve">
+    <value>Destination : </value>
+  </data>
+  <data name="backupview_selected_backup_type" xml:space="preserve">
+    <value>Type : </value>
   </data>
   <data name="backup_deleted" xml:space="preserve">
     <value>Travail de sauvegarde supprimé</value>
@@ -155,6 +164,9 @@
   </data>
   <data name="chose_action" xml:space="preserve">
     <value>Choisissez une action : </value>
+  </data>
+  <data name="DIFFERENTIAL" xml:space="preserve">
+    <value>Différentiel</value>
   </data>
   <data name="error_backup" xml:space="preserve">
     <value>Erreur lors de la sauvegarde</value>
@@ -170,6 +182,9 @@
   </data>
   <data name="error_unknown_type" xml:space="preserve">
     <value>Type de travail de sauvegarde inconnu</value>
+  </data>
+  <data name="FULL" xml:space="preserve">
+    <value>Complet</value>
   </data>
   <data name="mainview_back" xml:space="preserve">
     <value>Retour</value>
