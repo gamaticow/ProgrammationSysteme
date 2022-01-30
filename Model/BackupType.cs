@@ -4,7 +4,9 @@ using System.Text;
 
 namespace EasySave.Model
 {
-    class StatusObserver
+    enum BackupType
     {
+        FULL,
+        DIFFERENTIAL
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using EasySave.Model;
 using EasySave.Controller;
+using System.IO;
 using System.Collections.Generic;
 
 namespace EasySave
@@ -9,7 +10,7 @@ namespace EasySave
     {
         public static Program instance;
         public Language language { get; private set; }
-        public List<BackupWork> backupWorks;
+        public List<BackupWork> backupWorks { get; private set; }
 
         static void Main(string[] args)
         {
@@ -32,12 +33,28 @@ namespace EasySave
 
         public void ReadDataFile()
         {
-            language = new Language(LanguageType.FRENCH);
+            LanguageType languageType = LanguageType.ENGLISH;
+            backupWorks = new List<BackupWork>();
+            if(File.Exists("EasySave.json"))
+            {
+                EasySaveConfig save = EasySaveConfig.fromJson(File.ReadAllText("EasySave.json"));
+                languageType = save.language;
+                backupWorks = save.GetBackupWorks();
+            }
+            language = new Language(languageType);
         }
 
         public void WriteDataFile()
         {
+            BackupWork n = new DifferentialBackupWork("Travail de sauvegarde 1", @"C:\Users\coren\Desktop\CESI\Programmation système\Projet\source", @"C:\Users\coren\Desktop\CESI\Programmation système\Projet\target");
+            BackupWork b = new FullBackupWork("Travail de sauvegarde 2", "", "");
 
+            EasySaveConfig save = new EasySaveConfig();
+            save.language = LanguageType.ENGLISH;
+            save.AddBackup(n);
+            save.AddBackup(b);
+
+            File.WriteAllText("EasySave.json", save.ToJson());
         }
 
         public void OpenMainController()
@@ -49,7 +66,6 @@ namespace EasySave
         {
             new BackupController(backupWork).BackupWorkInformation();
         }
-
         public void SetLanguage(LanguageType languageType)
         {
             language = new Language(languageType);
