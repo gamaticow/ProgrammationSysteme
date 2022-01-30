@@ -18,7 +18,10 @@ namespace EasySave.View
 
         public string RenderBackupWork()
         {
-            Console.WriteLine($"{controller.Translate("backupview_selected_backup")}{backupWork.name}");
+            Console.WriteLine($"{controller.Translate("backupview_selected_backup_name")}{backupWork.name}");
+            Console.WriteLine($"{controller.Translate("backupview_selected_backup_source")}{backupWork.sourceDirectory}");
+            Console.WriteLine($"{controller.Translate("backupview_selected_backup_target")}{backupWork.targetDirectory}");
+            Console.WriteLine($"{controller.Translate("backupview_selected_backup_type")}{controller.Translate(backupWork.backupType.ToString())}");
             Console.WriteLine($"1. {controller.Translate("backupview_execute_backup")}");
             Console.WriteLine($"2. {controller.Translate("backupview_edit_backup")}");
             Console.WriteLine($"3. {controller.Translate("backupview_delete_backup")}");

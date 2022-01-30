@@ -17,6 +17,7 @@ namespace EasySave.Controller
             view = new BackupView(this, backupWork);
         }
 
+        // Controller for backup work information
         public void BackupWorkInformation()
         {
             bool exit = false;
@@ -54,6 +55,7 @@ namespace EasySave.Controller
             } while (!exit);
         }
 
+        // Controller for rename backup work
         private void EditBackupWork()
         {
             string name = view.RenderRenameBackupWork();

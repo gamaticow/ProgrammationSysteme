@@ -16,6 +16,7 @@ namespace EasySave.Controller
             this.view = new MainView(this);
         }
 
+        // Controller fo main menu
         public void Main()
         {
             bool exit = false;
@@ -40,6 +41,7 @@ namespace EasySave.Controller
             } while (!exit);
         }
 
+        // Controller for backup list
         private void BackupWorkList()
         {
             bool exit = false;
@@ -54,10 +56,12 @@ namespace EasySave.Controller
                     {
                         Program.instance.OpenBackupController(backupWorks[output - 1]);
                     }
+                    // If the number of backup works >= 1 : User can execute backup
                     else if (backupWorks.Length > 0 && output == backupWorks.Length + 1)
                     {
                         ExecuteSequentialBackup();
                     }
+                    // If number of backup works < 5 : User can create backupwork
                     else if (backupWorks.Length < 5 && output == backupWorks.Length + (backupWorks.Length > 0 ? 2 : 1))
                     {
                         CreateBackupWork();
@@ -78,6 +82,7 @@ namespace EasySave.Controller
             } while (!exit);
         }
 
+        // Controller for language configuration
         private void LanguageConfiguration()
         {
             bool exit = true;
@@ -104,6 +109,7 @@ namespace EasySave.Controller
             } while (!exit);
         }
 
+        // Controller for create backup work
         private void CreateBackupWork()
         {
             string[] output = view.RenderCreateBackupWork();
@@ -125,6 +131,7 @@ namespace EasySave.Controller
             }
         }
 
+        // Execute all backup works
         private void ExecuteSequentialBackup()
         {
             foreach (BackupWork backupWork in backupWorks)

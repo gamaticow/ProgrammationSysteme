@@ -162,9 +162,36 @@ namespace EasySave {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Travail de sauvegarde sélectionné : .
         /// </summary>
-        internal static string backupview_selected_backup {
+        internal static string backupview_selected_backup_name {
             get {
-                return ResourceManager.GetString("backupview_selected_backup", resourceCulture);
+                return ResourceManager.GetString("backupview_selected_backup_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Source : .
+        /// </summary>
+        internal static string backupview_selected_backup_source {
+            get {
+                return ResourceManager.GetString("backupview_selected_backup_source", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Destination : .
+        /// </summary>
+        internal static string backupview_selected_backup_target {
+            get {
+                return ResourceManager.GetString("backupview_selected_backup_target", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type : .
+        /// </summary>
+        internal static string backupview_selected_backup_type {
+            get {
+                return ResourceManager.GetString("backupview_selected_backup_type", resourceCulture);
             }
         }
         
@@ -174,6 +201,15 @@ namespace EasySave {
         internal static string chose_action {
             get {
                 return ResourceManager.GetString("chose_action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Différentiel.
+        /// </summary>
+        internal static string DIFFERENTIAL {
+            get {
+                return ResourceManager.GetString("DIFFERENTIAL", resourceCulture);
             }
         }
         
@@ -219,6 +255,15 @@ namespace EasySave {
         internal static string error_unknown_type {
             get {
                 return ResourceManager.GetString("error_unknown_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Complet.
+        /// </summary>
+        internal static string FULL {
+            get {
+                return ResourceManager.GetString("FULL", resourceCulture);
             }
         }
         
