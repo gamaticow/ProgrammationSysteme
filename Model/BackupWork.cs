@@ -64,7 +64,14 @@ namespace EasySave.Model
         {
             if (!System.IO.Directory.Exists(targetDirectory))
             {
-                System.IO.Directory.CreateDirectory(targetDirectory);
+                try
+                {
+                    System.IO.Directory.CreateDirectory(targetDirectory);
+                }
+                catch (DirectoryNotFoundException e)
+                {
+                    return -1;
+                }
             }
 
             // To copy all the files in one directory to another directory. 
