@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="backuptype_differential" xml:space="preserve">
+    <value>differential</value>
+  </data>
+  <data name="backuptype_full" xml:space="preserve">
+    <value>full</value>
+  </data>
   <data name="backupview_back" xml:space="preserve">
     <value>Back</value>
+  </data>
+  <data name="backupview_backup_created" xml:space="preserve">
+    <value>Backup work created</value>
   </data>
   <data name="backupview_delete_backup" xml:space="preserve">
     <value>Delete</value>
@@ -138,8 +147,17 @@
   <data name="chose_action" xml:space="preserve">
     <value>Choose an action : </value>
   </data>
+  <data name="error_fields_empty" xml:space="preserve">
+    <value>Not all fields have been filled</value>
+  </data>
   <data name="error_impossible_action" xml:space="preserve">
     <value>Impossible Action</value>
+  </data>
+  <data name="error_name_already_used" xml:space="preserve">
+    <value>Backup name already used</value>
+  </data>
+  <data name="error_unknown_type" xml:space="preserve">
+    <value>Unknwown backup type</value>
   </data>
   <data name="mainview_back" xml:space="preserve">
     <value>Back</value>
@@ -157,7 +175,7 @@
     <value>Enter the target repository : </value>
   </data>
   <data name="mainview_create_backup_type" xml:space="preserve">
-    <value>Enter the backup type (Full / Differential) : </value>
+    <value>Enter the backup type (full / differential) : </value>
   </data>
   <data name="mainview_create_backup_work" xml:space="preserve">
     <value>Create a backup work</value>

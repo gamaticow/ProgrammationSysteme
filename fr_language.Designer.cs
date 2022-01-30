@@ -61,11 +61,38 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à différentiel.
+        /// </summary>
+        internal static string backuptype_differential {
+            get {
+                return ResourceManager.GetString("backuptype_differential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à complet.
+        /// </summary>
+        internal static string backuptype_full {
+            get {
+                return ResourceManager.GetString("backuptype_full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Retour.
         /// </summary>
         internal static string backupview_back {
             get {
                 return ResourceManager.GetString("backupview_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Travail de sauvegarde créé.
+        /// </summary>
+        internal static string backupview_backup_created {
+            get {
+                return ResourceManager.GetString("backupview_backup_created", resourceCulture);
             }
         }
         
@@ -124,11 +151,38 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tous les champs n&apos;ont pas été remplies.
+        /// </summary>
+        internal static string error_fields_empty {
+            get {
+                return ResourceManager.GetString("error_fields_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Action impossible.
         /// </summary>
         internal static string error_impossible_action {
             get {
                 return ResourceManager.GetString("error_impossible_action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom déjà utilisé.
+        /// </summary>
+        internal static string error_name_already_used {
+            get {
+                return ResourceManager.GetString("error_name_already_used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type de travail de sauvegarde inconnu.
+        /// </summary>
+        internal static string error_unknown_type {
+            get {
+                return ResourceManager.GetString("error_unknown_type", resourceCulture);
             }
         }
         

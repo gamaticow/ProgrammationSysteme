@@ -61,11 +61,38 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à differential.
+        /// </summary>
+        internal static string backuptype_differential {
+            get {
+                return ResourceManager.GetString("backuptype_differential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à full.
+        /// </summary>
+        internal static string backuptype_full {
+            get {
+                return ResourceManager.GetString("backuptype_full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Back.
         /// </summary>
         internal static string backupview_back {
             get {
                 return ResourceManager.GetString("backupview_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Backup work created.
+        /// </summary>
+        internal static string backupview_backup_created {
+            get {
+                return ResourceManager.GetString("backupview_backup_created", resourceCulture);
             }
         }
         
@@ -124,11 +151,38 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Not all fields have been filled.
+        /// </summary>
+        internal static string error_fields_empty {
+            get {
+                return ResourceManager.GetString("error_fields_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Impossible Action.
         /// </summary>
         internal static string error_impossible_action {
             get {
                 return ResourceManager.GetString("error_impossible_action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Backup name already used.
+        /// </summary>
+        internal static string error_name_already_used {
+            get {
+                return ResourceManager.GetString("error_name_already_used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unknwown backup type.
+        /// </summary>
+        internal static string error_unknown_type {
+            get {
+                return ResourceManager.GetString("error_unknown_type", resourceCulture);
             }
         }
         
@@ -178,7 +232,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Enter the backup type (Full / Differential) : .
+        ///   Recherche une chaîne localisée semblable à Enter the backup type (full / differential) : .
         /// </summary>
         internal static string mainview_create_backup_type {
             get {

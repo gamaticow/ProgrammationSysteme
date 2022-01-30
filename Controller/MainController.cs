@@ -54,15 +54,15 @@ namespace EasySave.Controller
                     {
                         Program.instance.OpenBackupController(backupWorks[output - 1]);
                     }
-                    else if (output == backupWorks.Length + 1)
+                    else if (backupWorks.Length > 0 && output == backupWorks.Length + 1)
                     {
                         // Execute all backups
                     }
-                    else if (output == backupWorks.Length + 2)
+                    else if (output == backupWorks.Length + (backupWorks.Length > 0 ? 2 : 1))
                     {
-                        view.RenderCreateBackupWork();
+                        CreateBackupWork();
                     }
-                    else if (output == backupWorks.Length + 3)
+                    else if (output == backupWorks.Length + (backupWorks.Length > 0 && backupWorks.Length < 5 ? 3 : 2))
                     {
                         exit = true;
                     } 
@@ -106,7 +106,23 @@ namespace EasySave.Controller
 
         private void CreateBackupWork()
         {
-            view.RenderCreateBackupWork();
+            string[] output = view.RenderCreateBackupWork();
+            int result = Program.instance.CreateBackupWork(output[0], output[1], output[2], output[3]);
+            switch(result)
+            {
+                case 0:
+                    view.RenderSucess("backupview_backup_created");
+                    break;
+                case 1:
+                    view.RenderError("error_unknown_type");
+                    break;
+                case 2:
+                    view.RenderError("error_name_already_used");
+                    break;
+                case 3:
+                    view.RenderError("error_fields_empty");
+                    break;
+            }
         }
 
         private void ExecuteSequentialBackup()

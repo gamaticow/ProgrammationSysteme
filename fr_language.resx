@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="backuptype_differential" xml:space="preserve">
+    <value>différentiel</value>
+  </data>
+  <data name="backuptype_full" xml:space="preserve">
+    <value>complet</value>
+  </data>
   <data name="backupview_back" xml:space="preserve">
     <value>Retour</value>
+  </data>
+  <data name="backupview_backup_created" xml:space="preserve">
+    <value>Travail de sauvegarde créé</value>
   </data>
   <data name="backupview_delete_backup" xml:space="preserve">
     <value>Supprimer</value>
@@ -138,8 +147,17 @@
   <data name="chose_action" xml:space="preserve">
     <value>Choisissez une action : </value>
   </data>
+  <data name="error_fields_empty" xml:space="preserve">
+    <value>Tous les champs n'ont pas été remplies</value>
+  </data>
   <data name="error_impossible_action" xml:space="preserve">
     <value>Action impossible</value>
+  </data>
+  <data name="error_name_already_used" xml:space="preserve">
+    <value>Nom déjà utilisé</value>
+  </data>
+  <data name="error_unknown_type" xml:space="preserve">
+    <value>Type de travail de sauvegarde inconnu</value>
   </data>
   <data name="mainview_back" xml:space="preserve">
     <value>Retour</value>

@@ -22,6 +22,13 @@ namespace EasySave.View
             Console.ResetColor();
         }
 
+        public void RenderSucess(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(controller.Translate(message));
+            Console.ResetColor();
+        }
+
         protected void RenderChoseAction()
         {
             Console.Write(controller.Translate("chose_action"));
