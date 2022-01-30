@@ -8,11 +8,12 @@ namespace EasySave.Model
 {
     abstract class BackupWork : IObservable<BackupLog>, IObservable<BackupState>, IObservable<string>
     {
+
         private List<IObserver<BackupLog>> logObservers = new List<IObserver<BackupLog>>();
         private List<IObserver<BackupState>> stateObservers = new List<IObserver<BackupState>>();
         private List<IObserver<string>> saveObservers = new List<IObserver<string>>();
 
-        private string _name;
+        private string _name;      
         public string name
         {
             get
@@ -41,22 +42,31 @@ namespace EasySave.Model
         protected bool ExecuteBackup(DirectoryInfo source, DirectoryInfo target)
         {
             List<BackupFile> files = new List<BackupFile>();
+            // Execute GetFiles() and get the total file size that will be write in the state JSON file
             long totalFileSize = GetFiles(files, source, target);
             if(totalFileSize < 0)
             {
                 return false;
             }
 
+            // Get the current file size that will be write in the state JSON file
             int nbFilesLeftToDo = files.Count;
 
+            // Loop on each file we need to save 
             foreach (BackupFile file in files)
             {
+                // Edit the state JSON file with the informations we have on the save progression
                 UpdateState(file.source.FullName, file.target.FullName, "ACTIVE", files.Count, totalFileSize, nbFilesLeftToDo);
                 long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+                // Copy the file into the target repository
                 file.source.CopyTo(file.target.FullName, true);
+
+                // Edit the log JSON file
                 Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start);
                 nbFilesLeftToDo--;
             }
+            // When we have copy all the files, edit the state JSON file to "END"
             UpdateState("", "", "END", 0, 0, 0);
             return true;
         }
@@ -76,10 +86,7 @@ namespace EasySave.Model
 
             // To copy all the files in one directory to another directory. 
             // Get the files in the source folder. (To recursively iterate through 
-            // all subfolders under the current directory, see 
-            // "How to: Iterate Through a Directory Tree.")
-            // Note: Check for target path was performed previously 
-            //       in this code example. 
+            // all subfolders under the current directory)
             if (System.IO.Directory.Exists(sourceDirectory))
             {
                 string[] sourcefiles = System.IO.Directory.GetFiles(source.ToString());
@@ -96,24 +103,31 @@ namespace EasySave.Model
 
                     if (targetFile.Exists)
                     {
+                        // Condition : if the file has been modified in the source folder and that we execute a DIFFERENTIAL backup
                         if (sourceFile.LastWriteTime > targetFile.LastWriteTime && backupType == BackupType.DIFFERENTIAL)
                         {
-                            // now you can safely overwrite it
+                            // Count the total files size
                             totalFileSize += sourceFile.Length;
+                            // Add the current file to the list "files"
                             files.Add(new BackupFile(sourceFile, targetFile));
                         }
                         else if (backupType == BackupType.FULL)
                         {
+                            // Count the total files size
                             totalFileSize += sourceFile.Length;
+                            // Add the current file to the list "files"
                             files.Add(new BackupFile(sourceFile, targetFile));
                         }
                     }
                     else
                     {
+                        // Count the total files size
                         totalFileSize += sourceFile.Length;
+                        // Add the current file to the list "files"
                         files.Add(new BackupFile(sourceFile, targetFile));
                     }
                 }
+                // if there are folders in the current folders then we create them
                 foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
                 {
                     DirectoryInfo nextTargetSubDir =
@@ -130,6 +144,7 @@ namespace EasySave.Model
 
                         if (!sourceFile.Exists)
                         {
+                            // Delete the files in the target repository if they've been delete in the source repository and that we have executed a FULL backup work
                             File.Delete(t);
                         }
                     }
@@ -139,10 +154,10 @@ namespace EasySave.Model
             else
             {
                 return -1;
-                Console.WriteLine("Source path does not exist!");
             }         
         }
 
+        // Method to add logs via observer
         protected void Log(string sourceFile, string targetFile, long fileSize, long transfertTime)
         {
             BackupLog log = new BackupLog(name, sourceFile, targetFile, fileSize, transfertTime, DateTime.Now.ToString("G"));
@@ -152,6 +167,7 @@ namespace EasySave.Model
             }
         }
 
+        // Method to update states via observer
         protected void UpdateState(string sourceFilePath, string targetFilePath, string backupState, int totalFilesToCopy, long totalFilesSize, int nbFilesLeftToDo)
         {
             BackupState state = new BackupState(name, sourceFilePath, targetFilePath, backupState, totalFilesToCopy, totalFilesSize, nbFilesLeftToDo, totalFilesToCopy > 0 ? Convert.ToInt32((totalFilesToCopy - nbFilesLeftToDo) * 100.0 / totalFilesToCopy) : 0);
@@ -161,6 +177,7 @@ namespace EasySave.Model
             }
         }
 
+        // Save the configuration in the config JSON file via observer
         public void Save()
         {
             foreach (IObserver<string> observer in saveObservers)

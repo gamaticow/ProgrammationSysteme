@@ -31,6 +31,7 @@ namespace EasySave
             saveObserver = new SaveBackupObserver();
         }
 
+        // Method that read the configuration JSON file and import all the objects in it 
         public void ReadDataFile()
         {
             LanguageType languageType = LanguageType.ENGLISH;
@@ -44,6 +45,7 @@ namespace EasySave
             language = new Language(languageType);
         }
 
+        // Wite the new backup in the configuration JSON file
         public void WriteDataFile()
         {
             EasySaveConfig save = new EasySaveConfig();
