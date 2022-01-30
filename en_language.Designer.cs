@@ -61,6 +61,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Backup work deleted.
+        /// </summary>
+        internal static string backup_deleted {
+            get {
+                return ResourceManager.GetString("backup_deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Execution of.
         /// </summary>
         internal static string backup_execution {
@@ -165,6 +174,15 @@ namespace EasySave {
         internal static string chose_action {
             get {
                 return ResourceManager.GetString("chose_action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error during backup.
+        /// </summary>
+        internal static string error_backup {
+            get {
+                return ResourceManager.GetString("error_backup", resourceCulture);
             }
         }
         

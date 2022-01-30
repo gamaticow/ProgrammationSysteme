@@ -144,6 +144,9 @@
   <data name="backupview_selected_backup" xml:space="preserve">
     <value>Travail de sauvegarde sélectionné : </value>
   </data>
+  <data name="backup_deleted" xml:space="preserve">
+    <value>Travail de sauvegarde supprimé</value>
+  </data>
   <data name="backup_execution" xml:space="preserve">
     <value>Exécution de </value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="chose_action" xml:space="preserve">
     <value>Choisissez une action : </value>
+  </data>
+  <data name="error_backup" xml:space="preserve">
+    <value>Erreur lors de la sauvegarde</value>
   </data>
   <data name="error_fields_empty" xml:space="preserve">
     <value>Tous les champs n'ont pas été remplies</value>

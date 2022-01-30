@@ -4,7 +4,17 @@ using System.Text;
 
 namespace EasySave.Model
 {
-    class SaveBackupObserver
+    class SaveBackupObserver : IObserver<string>
     {
+        public void OnCompleted()
+        { }
+
+        public void OnError(Exception error)
+        { }
+
+        public void OnNext(string value)
+        {
+            Program.instance.WriteDataFile();
+        }
     }
 }

@@ -12,6 +12,10 @@ namespace EasySave
         public Language language { get; private set; }
         public List<BackupWork> backupWorks { get; private set; }
 
+        public LogObserver logObserver { get; private set; }
+        public StateObserver stateObserver { get; private set; }
+        public SaveBackupObserver saveObserver { get; private set; }
+
         static void Main(string[] args)
         {
             instance = new Program();
@@ -22,6 +26,9 @@ namespace EasySave
         private Program()
         {
             // This class is a singleton
+            logObserver = new LogObserver();
+            stateObserver = new StateObserver();
+            saveObserver = new SaveBackupObserver();
         }
 
         public void ReadDataFile()
@@ -86,11 +93,19 @@ namespace EasySave
 
             if(language.Translate("backuptype_full").ToLower().Equals(type.ToLower()))
             {
-                backupWorks.Add(new FullBackupWork(name, sourceDirectory, targetDirectory));
+                BackupWork backupWork = new FullBackupWork(name, sourceDirectory, targetDirectory);
+                backupWork.Subscribe(logObserver);
+                backupWork.Subscribe(stateObserver);
+                backupWork.Subscribe(saveObserver);
+                backupWorks.Add(backupWork);
             }
             else if(language.Translate("backuptype_differential").ToLower().Equals(type.ToLower()))
             {
-                backupWorks.Add(new DifferentialBackupWork(name, sourceDirectory, targetDirectory));
+                BackupWork backupWork = new DifferentialBackupWork(name, sourceDirectory, targetDirectory);
+                backupWork.Subscribe(logObserver);
+                backupWork.Subscribe(stateObserver);
+                backupWork.Subscribe(saveObserver);
+                backupWorks.Add(backupWork);
             }
             else
             {
@@ -110,6 +125,12 @@ namespace EasySave
                 }
             }
             return false;
+        }
+
+        public void DeleteBackup(BackupWork backupWork)
+        {
+            backupWorks.Remove(backupWork);
+            WriteDataFile();
         }
     }
 }

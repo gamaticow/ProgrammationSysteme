@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Threading;
 
 
 namespace EasySave.Model
 {
-    abstract class BackupWork : IObservable<BackupLog>, IObservable<BackupState>
+    abstract class BackupWork : IObservable<BackupLog>, IObservable<BackupState>, IObservable<string>
     {
         private List<IObserver<BackupLog>> logObservers = new List<IObserver<BackupLog>>();
         private List<IObserver<BackupState>> stateObservers = new List<IObserver<BackupState>>();
+        private List<IObserver<string>> saveObservers = new List<IObserver<string>>();
 
-        public string name { get; set; }
+        private string _name;
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                Save();
+            }
+        }
         public string sourceDirectory { get; private set; }
         public string targetDirectory { get; private set; }
         public BackupType backupType { get; protected set; }
@@ -24,12 +36,17 @@ namespace EasySave.Model
             this.targetDirectory = targetDirectory;
         }
 
-        public abstract void ExecuteBackup();
+        public abstract bool ExecuteBackup();
 
-        protected void ExecuteBackup(DirectoryInfo source, DirectoryInfo target)
+        protected bool ExecuteBackup(DirectoryInfo source, DirectoryInfo target)
         {
             List<BackupFile> files = new List<BackupFile>();
             long totalFileSize = GetFiles(files, source, target);
+            if(totalFileSize < 0)
+            {
+                return false;
+            }
+
             int nbFilesLeftToDo = files.Count;
 
             foreach (BackupFile file in files)
@@ -41,6 +58,7 @@ namespace EasySave.Model
                 nbFilesLeftToDo--;
             }
             UpdateState("", "", "END", 0, 0, 0);
+            return true;
         }
         private long GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
         {
@@ -138,7 +156,10 @@ namespace EasySave.Model
 
         public void Save()
         {
-
+            foreach (IObserver<string> observer in saveObservers)
+            {
+                observer.OnNext("");
+            }
         }
 
         public IDisposable Subscribe(IObserver<BackupLog> observer)
@@ -158,6 +179,15 @@ namespace EasySave.Model
                 UpdateState("", "", "END", 0, 0, 0);
             }
             return new Unsubscriber<BackupState>(stateObservers, observer);
+        }
+
+        public IDisposable Subscribe(IObserver<string> observer)
+        {
+            if (!saveObservers.Contains(observer))
+            {
+                saveObservers.Add(observer);
+            }
+            return new Unsubscriber<string>(saveObservers, observer);
         }
     }
 

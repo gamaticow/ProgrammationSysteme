@@ -27,14 +27,22 @@ namespace EasySave.Controller
                 {
                     case "1":
                         view.RenderExecution(backupWork.name);
-                        backupWork.ExecuteBackup();
-                        view.RenderSucess("backup_execution_finished");
+                        if(backupWork.ExecuteBackup())
+                        {
+                            view.RenderSucess("backup_execution_finished");
+                        }
+                        else
+                        {
+                            view.RenderError("error_backup");
+                        }
                         break;
                     case "2":
                         EditBackupWork();
                         break;
                     case "3":
-                        // Delete backup
+                        Program.instance.DeleteBackup(backupWork);
+                        view.RenderError("backup_deleted");
+                        exit = true;
                         break;
                     case "4":
                         exit = true;
