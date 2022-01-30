@@ -8,10 +8,12 @@ namespace EasySave.Model
     class Language
     {
 
+        public LanguageType languageType { get; private set; }
         private ResourceManager resourceManager;
 
         public Language(LanguageType languageType)
         {
+            this.languageType = languageType;
             if(languageType == LanguageType.ENGLISH)
             {
                 resourceManager = en_language.ResourceManager;

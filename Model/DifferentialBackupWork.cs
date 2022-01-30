@@ -13,12 +13,12 @@ namespace EasySave.Model
             backupType = BackupType.DIFFERENTIAL;
         }
 
-        public override void ExecuteBackup()
+        public override bool ExecuteBackup()
         {
             DirectoryInfo source = new DirectoryInfo(sourceDirectory);
             DirectoryInfo target = new DirectoryInfo(targetDirectory);
 
-            ExecuteBackup(source, target);
+            return ExecuteBackup(source, target);
 
         }
     }
