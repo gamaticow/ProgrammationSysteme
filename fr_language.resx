@@ -144,6 +144,12 @@
   <data name="backupview_selected_backup" xml:space="preserve">
     <value>Travail de sauvegarde sélectionné : </value>
   </data>
+  <data name="backup_execution" xml:space="preserve">
+    <value>Exécution de </value>
+  </data>
+  <data name="backup_execution_finished" xml:space="preserve">
+    <value>Sauvegarde terminé</value>
+  </data>
   <data name="chose_action" xml:space="preserve">
     <value>Choisissez une action : </value>
   </data>

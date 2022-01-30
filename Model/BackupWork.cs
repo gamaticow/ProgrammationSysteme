@@ -39,7 +39,6 @@ namespace EasySave.Model
                 file.source.CopyTo(file.target.FullName, true);
                 Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start);
                 nbFilesLeftToDo--;
-                Thread.Sleep(10000);
             }
             UpdateState("", "", "END", 0, 0, 0);
         }

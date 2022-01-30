@@ -15,6 +15,11 @@ namespace EasySave.View
             this.controller = controller;
         }
 
+        public void RenderExecution(string name)
+        {
+            Console.WriteLine($"{controller.Translate("backup_execution")} {name}");
+        }
+
         public void RenderError(string error)
         {
             Console.ForegroundColor = ConsoleColor.Red;

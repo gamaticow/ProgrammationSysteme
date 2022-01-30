@@ -19,12 +19,44 @@ namespace EasySave.Controller
 
         public void BackupWorkInformation()
         {
-            view.RenderBackupWork();
+            bool exit = false;
+            do
+            {
+                string result = view.RenderBackupWork();
+                switch (result)
+                {
+                    case "1":
+                        view.RenderExecution(backupWork.name);
+                        backupWork.ExecuteBackup();
+                        view.RenderSucess("backup_execution_finished");
+                        break;
+                    case "2":
+                        EditBackupWork();
+                        break;
+                    case "3":
+                        // Delete backup
+                        break;
+                    case "4":
+                        exit = true;
+                        break;
+                    default:
+                        view.RenderError("error_impossible_action");
+                        break;
+                }
+            } while (!exit);
         }
 
         private void EditBackupWork()
         {
-            view.RenderRenameBackupWork();
+            string name = view.RenderRenameBackupWork();
+            if (Program.instance.BackupNameExists(name))
+            {
+                view.RenderError("error_name_already_used");
+            }
+            else
+            {
+                backupWork.name = name;
+            }
         }
 
     }

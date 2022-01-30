@@ -56,7 +56,7 @@ namespace EasySave.Controller
                     }
                     else if (backupWorks.Length > 0 && output == backupWorks.Length + 1)
                     {
-                        // Execute all backups
+                        ExecuteSequentialBackup();
                     }
                     else if (output == backupWorks.Length + (backupWorks.Length > 0 ? 2 : 1))
                     {
@@ -127,7 +127,12 @@ namespace EasySave.Controller
 
         private void ExecuteSequentialBackup()
         {
-
+            foreach (BackupWork backupWork in backupWorks)
+            {
+                view.RenderExecution(backupWork.name);
+                backupWork.ExecuteBackup();
+                view.RenderSucess("backup_execution_finished");
+            }
         }
 
     }

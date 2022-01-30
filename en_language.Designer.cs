@@ -61,6 +61,24 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Execution of.
+        /// </summary>
+        internal static string backup_execution {
+            get {
+                return ResourceManager.GetString("backup_execution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Backup completed.
+        /// </summary>
+        internal static string backup_execution_finished {
+            get {
+                return ResourceManager.GetString("backup_execution_finished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à differential.
         /// </summary>
         internal static string backuptype_differential {
