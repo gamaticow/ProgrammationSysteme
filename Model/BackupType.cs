@@ -7,6 +7,6 @@ namespace EasySave.Model
     enum BackupType
     {
         FULL,
-        DIFFERENTIAL,
+        DIFFERENTIAL
     }
 }
