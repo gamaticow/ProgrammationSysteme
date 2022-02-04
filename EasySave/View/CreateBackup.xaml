@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="EasySave.View.CreateBackup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySave.View"
+        mc:Ignorable="d" Width="800" Height="450">
+    <Grid>
+        <TextBox HorizontalAlignment="Center" Margin="0,67,0,0" Text="{Binding name}" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,119,0,0" Text="{Binding sourceDirectory}" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,170,0,0" Text="{Binding targetDirectory}" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,225,0,0" Text="{Binding backupType}" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="444,281,0,0" VerticalAlignment="Top" Command="{Binding CreateBackupCommand}"/>
+
+    </Grid>
+</UserControl>

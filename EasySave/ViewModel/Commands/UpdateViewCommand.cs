@@ -33,6 +33,18 @@ namespace EasySave.ViewModel.Commands
             {
                 viewModel.SelectedViewModel = new LanguageViewModel();
             }
+            else if (parameter.ToString() == "CreateBackup")
+            {
+                viewModel.SelectedViewModel = new CreateBackupViewModel();
+            }
+            else if (parameter.ToString() == "InfoBackup")
+            {
+                if(viewModel.GetType() == typeof(MenuViewModel))
+                {
+                    MenuViewModel menu = (MenuViewModel)viewModel;
+                    viewModel.SelectedViewModel = new InfoBackupViewModel(menu.Selected);
+                }
+            }
         }
     }
 }
