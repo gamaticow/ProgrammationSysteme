@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using EasySave.ViewModel;
 
-namespace EasySave
+namespace EasySave.View
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour Menu.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Menu : UserControl
     {
-        public MainWindow()
+        public Menu()
         {
             InitializeComponent();
-
-            DataContext = MainViewModel.Instance;
         }
     }
 }

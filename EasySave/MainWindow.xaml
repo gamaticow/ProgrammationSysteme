@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave"
+        xmlns:views="clr-namespace:EasySave.View"
+        xmlns:viewmodels="clr-namespace:EasySave.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="EasySave" Height="450" Width="800">
     <Grid>
-
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
+                <views:Menu />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:LanguageViewModel}">
+                <views:Language />
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl Content="{Binding SelectedViewModel}" />
     </Grid>
 </Window>

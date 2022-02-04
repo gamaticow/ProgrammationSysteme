@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,18 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using EasySave.ViewModel;
 
-namespace EasySave
+namespace EasySave.View
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour Language.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Language : UserControl
     {
-        public MainWindow()
+        public Language()
         {
             InitializeComponent();
 
-            DataContext = MainViewModel.Instance;
+            DataContext = new LanguageViewModel();
         }
     }
 }
