@@ -117,112 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="backuptype_differential" xml:space="preserve">
-    <value>différentiel</value>
-  </data>
-  <data name="backuptype_full" xml:space="preserve">
-    <value>complet</value>
-  </data>
-  <data name="backupview_back" xml:space="preserve">
-    <value>Retour</value>
-  </data>
-  <data name="backupview_backup_created" xml:space="preserve">
-    <value>Travail de sauvegarde créé</value>
-  </data>
-  <data name="backupview_delete_backup" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="backupview_edit_backup" xml:space="preserve">
-    <value>Modifier</value>
-  </data>
-  <data name="backupview_execute_backup" xml:space="preserve">
-    <value>Exécuter la sauvegarde</value>
-  </data>
-  <data name="backupview_rename" xml:space="preserve">
-    <value>Nouveau nom du travail de sauvegarde : </value>
-  </data>
-  <data name="backupview_selected_backup_name" xml:space="preserve">
-    <value>Travail de sauvegarde sélectionné : </value>
-  </data>
-  <data name="backupview_selected_backup_source" xml:space="preserve">
-    <value>Source : </value>
-  </data>
-  <data name="backupview_selected_backup_target" xml:space="preserve">
-    <value>Destination : </value>
-  </data>
-  <data name="backupview_selected_backup_type" xml:space="preserve">
-    <value>Type : </value>
-  </data>
-  <data name="backup_deleted" xml:space="preserve">
-    <value>Travail de sauvegarde supprimé</value>
-  </data>
-  <data name="backup_execution" xml:space="preserve">
-    <value>Exécution de </value>
-  </data>
-  <data name="backup_execution_finished" xml:space="preserve">
-    <value>Sauvegarde terminé</value>
-  </data>
-  <data name="chose_action" xml:space="preserve">
-    <value>Choisissez une action : </value>
-  </data>
-  <data name="DIFFERENTIAL" xml:space="preserve">
-    <value>Différentiel</value>
-  </data>
-  <data name="error_backup" xml:space="preserve">
-    <value>Erreur lors de la sauvegarde</value>
-  </data>
-  <data name="error_fields_empty" xml:space="preserve">
-    <value>Tous les champs n'ont pas été remplies</value>
-  </data>
-  <data name="error_impossible_action" xml:space="preserve">
-    <value>Action impossible</value>
-  </data>
-  <data name="error_name_already_used" xml:space="preserve">
-    <value>Nom déjà utilisé</value>
-  </data>
-  <data name="error_unknown_type" xml:space="preserve">
-    <value>Type de travail de sauvegarde inconnu</value>
-  </data>
-  <data name="FULL" xml:space="preserve">
-    <value>Complet</value>
-  </data>
-  <data name="mainview_back" xml:space="preserve">
-    <value>Retour</value>
-  </data>
-  <data name="mainview_backupworks" xml:space="preserve">
-    <value>Travaux de sauvegarde</value>
-  </data>
-  <data name="mainview_create_backup_name" xml:space="preserve">
-    <value>Saisissez le nom de la sauvegarde : </value>
-  </data>
-  <data name="mainview_create_backup_source" xml:space="preserve">
-    <value>Saisissez le répertoire source : </value>
-  </data>
-  <data name="mainview_create_backup_target" xml:space="preserve">
-    <value>Saisissez le répertoire cible : </value>
-  </data>
-  <data name="mainview_create_backup_type" xml:space="preserve">
-    <value>Saisissez le type de sauvegarde (complet / différentiel) : </value>
-  </data>
-  <data name="mainview_create_backup_work" xml:space="preserve">
-    <value>Créer un travail de sauvegarde</value>
-  </data>
-  <data name="mainview_execute_all_backup_works" xml:space="preserve">
-    <value>Exécuter tous les travaux de sauvegarde</value>
-  </data>
-  <data name="mainview_language_changed" xml:space="preserve">
-    <value>Langue définit en Français</value>
-  </data>
-  <data name="mainview_language_configuration" xml:space="preserve">
-    <value>Configuration de la langue</value>
-  </data>
-  <data name="mainview_language_en" xml:space="preserve">
+  <data name="ENGLISH" xml:space="preserve">
     <value>English</value>
   </data>
-  <data name="mainview_language_fr" xml:space="preserve">
+  <data name="FRENCH" xml:space="preserve">
     <value>Français</value>
   </data>
-  <data name="mainview_quit" xml:space="preserve">
-    <value>Quitter</value>
+  <data name="language_choice" xml:space="preserve">
+    <value>Choix du language :</value>
+  </data>
+  <data name="menu" xml:space="preserve">
+    <value>Menufr</value>
   </data>
 </root>

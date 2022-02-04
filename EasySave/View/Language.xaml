@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d">
-    <Grid>
-        <Label Content="Language&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,59,0,0" VerticalAlignment="Top"/>
-        <Button Content="Menu&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,284,0,0" VerticalAlignment="Top" Height="20" Command="{Binding UpdateViewCommand}" CommandParameter="Menu"/>
-    </Grid>
+    <StackPanel Height="450" Width="800">
+        <StackPanel Orientation="Horizontal">
+            <Label Height="25" Content="{Binding TLanguageChoice}" />
+            <ComboBox Height="26" Width="120" ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

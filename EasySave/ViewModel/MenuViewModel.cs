@@ -8,6 +8,8 @@ namespace EasySave.ViewModel
 {
     class MenuViewModel : BaseViewModel
     {
-        
+        public override void SetTranslation()
+        {
+        }
     }
 }

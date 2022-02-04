@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:EasySave.View"
         xmlns:viewmodels="clr-namespace:EasySave.ViewModel"
         mc:Ignorable="d"
-        Title="EasySave" Height="450" Width="800">
+        Title="EasySave" Height="475" Width="800">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
@@ -17,6 +17,7 @@
                 <views:Language />
             </DataTemplate>
         </Grid.Resources>
-        <ContentControl Content="{Binding SelectedViewModel}" />
+        <Button Content="{Binding TMenu}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="50" Command="{Binding UpdateViewCommand}" CommandParameter="Menu"/>
+        <ContentControl Content="{Binding SelectedViewModel}" Margin="0,25,0,0" />
     </Grid>
 </Window>

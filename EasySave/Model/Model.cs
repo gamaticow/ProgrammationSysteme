@@ -25,7 +25,7 @@ namespace EasySave.Model
             stateObserver = new StateObserver();
             saveObserver = new SaveBackupObserver();
 
-            WriteDataFile();
+            ReadDataFile();
         }
 
         // Method that read the configuration JSON file and import all the objects in it 

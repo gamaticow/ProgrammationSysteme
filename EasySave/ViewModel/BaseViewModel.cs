@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using EasySave.Model;
 
 namespace EasySave.ViewModel
 {
-    class BaseViewModel : INotifyPropertyChanged
+    abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -32,6 +33,14 @@ namespace EasySave.ViewModel
         public BaseViewModel()
         {
             UpdateViewCommand = new UpdateViewCommand(this);
+            SetTranslation();
+        }
+
+        public abstract void SetTranslation();
+
+        protected string Translate(string key)
+        {
+            return Model.Model.Instance.language.Translate(key);
         }
 
         protected void OnPropertyChanged(string propertyName)
