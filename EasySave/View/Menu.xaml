@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d">
-    <Grid>
+    <Grid Width="800" Height="450">
         <Label Content="Menu" HorizontalAlignment="Center" Margin="0,59,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Name}" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top"/>
-        <Button Content="Language" HorizontalAlignment="Center" Margin="0,284,0,0" VerticalAlignment="Top" Height="20" Command="{Binding UpdateViewCommand}" CommandParameter="Language"/>
+        <Button Content="Language" HorizontalAlignment="Left" Margin="707,377,0,0" VerticalAlignment="Top" Height="20" Command="{Binding UpdateViewCommand}" CommandParameter="Language"/>
+        <ListBox Margin="10,10,580,58"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Height="25" Width="48" Command="{Binding UpdateViewCommand}"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="243,47,0,0" VerticalAlignment="Top" Height="25" Width="48" Command="{Binding UpdateViewCommand}"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="243,85,0,0" VerticalAlignment="Top" Height="25" Width="48" Command="{Binding UpdateViewCommand}"/>
+        <Button Content="Execute" HorizontalAlignment="Left" Margin="243,122,0,0" VerticalAlignment="Top" Height="25" Width="48" Command="{Binding UpdateViewCommand}"/>
+        <Button Content="Sequential Execution" HorizontalAlignment="Left" Margin="243,159,0,0" VerticalAlignment="Top" Height="25" Width="117" Command="{Binding UpdateViewCommand}"/>
     </Grid>
 </UserControl>
