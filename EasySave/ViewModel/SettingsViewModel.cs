@@ -69,6 +69,20 @@ namespace EasySave.ViewModel
             }
         }
 
+        private string _tBusinessApp;
+        public string TBusinessApp
+        {
+            get
+            {
+                return _tBusinessApp;
+            }
+            set
+            {
+                _tBusinessApp = value;
+                OnPropertyChanged(nameof(TBusinessApp));
+            }
+        }
+
         private object _sLanguage;
         public object SLanguage
         {
@@ -133,6 +147,22 @@ namespace EasySave.ViewModel
 
         public DeleteEncryptedExtensionCommand DeleteEncryptedExtensionCommand { get; private set; }
 
+        public string BusinessApp
+        {
+            get
+            {
+                return Model.Model.Instance.businessApp;
+            }
+            set
+            {
+                Model.Model.Instance.businessApp = value;
+                Model.Model.Instance.WriteDataFile();
+                OnPropertyChanged(nameof(BusinessApp));
+            }
+        }
+
+        public SelectBusinessAppCommand SelectBuisnessAppExeCommand { get; private set; }
+
         public SettingsViewModel()
         {
             Languages = new ObservableCollection<object>();
@@ -148,6 +178,7 @@ namespace EasySave.ViewModel
 
             AddEncryptedExtensionCommand = new AddEncryptedExtensionCommand(this);
             DeleteEncryptedExtensionCommand = new DeleteEncryptedExtensionCommand(this);
+            SelectBuisnessAppExeCommand = new SelectBusinessAppCommand(this);
         }
 
         public override void SetTranslation()
@@ -156,6 +187,7 @@ namespace EasySave.ViewModel
             TEncryptedExtension = Translate("encrypted_extension");
             TEncryptedExtensionAdd = Translate("encrypted_extension_add");
             TEncryptedExtensionDelete = Translate("encrypted_extension_delete");
+            TBusinessApp = Translate("select_business_app");
         }
     }
 }

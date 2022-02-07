@@ -148,6 +148,9 @@
     <value>Target Directory</value>
   </data>
   <data name="language_choice" xml:space="preserve">
-    <value>Language choice :</value>
+    <value>Language choice</value>
+  </data>
+  <data name="select_business_app" xml:space="preserve">
+    <value>Business app choice</value>
   </data>
 </root>

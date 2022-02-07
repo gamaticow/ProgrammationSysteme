@@ -151,11 +151,20 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Language choice :.
+        ///   Recherche une chaîne localisée semblable à Language choice.
         /// </summary>
         internal static string language_choice {
             get {
                 return ResourceManager.GetString("language_choice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Business app choice.
+        /// </summary>
+        internal static string select_business_app {
+            get {
+                return ResourceManager.GetString("select_business_app", resourceCulture);
             }
         }
     }

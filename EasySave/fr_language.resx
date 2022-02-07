@@ -148,6 +148,9 @@
     <value>Répertoire Cible</value>
   </data>
   <data name="language_choice" xml:space="preserve">
-    <value>Choix du language :</value>
+    <value>Choix du language</value>
+  </data>
+  <data name="select_business_app" xml:space="preserve">
+    <value>Choix du logiciel métier</value>
   </data>
 </root>

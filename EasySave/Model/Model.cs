@@ -18,6 +18,7 @@ namespace EasySave.Model
         public StateObserver stateObserver { get; private set; }
         public SaveBackupObserver saveObserver { get; private set; }
         public List<string> encryptedExtensions { get; set; } = new List<string>();
+        public string businessApp { get; set; }
 
         private Model()
         {
@@ -40,6 +41,7 @@ namespace EasySave.Model
                 EasySaveConfig save = EasySaveConfig.fromJson(File.ReadAllText("EasySave.json"));
                 languageType = save.language;
                 encryptedExtensions = save.encryptedExtensions;
+                businessApp = save.businessApp;
                 backupWorks = save.GetBackupWorks();
             }
             language = new Language(languageType);
@@ -54,6 +56,7 @@ namespace EasySave.Model
                 save.AddBackup(backupWork);
             }
             save.encryptedExtensions = encryptedExtensions;
+            save.businessApp = businessApp;
             save.language = language.languageType;
             File.WriteAllText("EasySave.json", save.ToJson());
         }
