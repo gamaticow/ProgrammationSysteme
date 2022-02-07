@@ -14,7 +14,6 @@ namespace EasySave.ViewModel
         public string TLabelSourceDirectory { get; set; }
         public string TLabelTargetDirectory { get; set; }
         public string TLabelBackupType { get; set; }
-        public string TButtonCreate { get; set; }
         public string name { get; set; }
         public string sourceDirectory { get; set; }
         public string targetDirectory { get; set; }
@@ -33,7 +32,6 @@ namespace EasySave.ViewModel
             TLabelSourceDirectory = Translate("label_source_directory");
             TLabelTargetDirectory = Translate("label_target_directory");
             TLabelBackupType = Translate("label_backup_type");
-            TButtonCreate = Translate("button_create");
         }
     }
 }
