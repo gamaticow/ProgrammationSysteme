@@ -79,6 +79,60 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Supprimer.
+        /// </summary>
+        internal static string button_delete {
+            get {
+                return ResourceManager.GetString("button_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Modifier.
+        /// </summary>
+        internal static string button_edit {
+            get {
+                return ResourceManager.GetString("button_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Exécuter.
+        /// </summary>
+        internal static string button_execute {
+            get {
+                return ResourceManager.GetString("button_execute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Extension à encrypter.
+        /// </summary>
+        internal static string encrypted_extension {
+            get {
+                return ResourceManager.GetString("encrypted_extension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ajouter.
+        /// </summary>
+        internal static string encrypted_extension_add {
+            get {
+                return ResourceManager.GetString("encrypted_extension_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Supprimer.
+        /// </summary>
+        internal static string encrypted_extension_delete {
+            get {
+                return ResourceManager.GetString("encrypted_extension_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à English.
         /// </summary>
         internal static string ENGLISH {

@@ -123,6 +123,24 @@
   <data name="button_create" xml:space="preserve">
     <value>Create</value>
   </data>
+  <data name="button_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="button_edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+    <data name="button_execute" xml:space="preserve">
+    <value>Execute</value>
+    </data>
+  <data name="encrypted_extension" xml:space="preserve">
+    <value>Extension to encrypt</value>
+  </data>
+  <data name="encrypted_extension_add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="encrypted_extension_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="ENGLISH" xml:space="preserve">
     <value>English</value>
   </data>
