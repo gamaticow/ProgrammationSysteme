@@ -123,15 +123,6 @@
   <data name="button_create" xml:space="preserve">
     <value>Créer</value>
   </data>
-  <data name="button_delete" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="button_edit" xml:space="preserve">
-    <value>Modifier</value>
-  </data>
-  <data name="button_execute" xml:space="preserve">
-    <value>Exécuter</value>
-  </data>
   <data name="ENGLISH" xml:space="preserve">
     <value>English</value>
   </data>

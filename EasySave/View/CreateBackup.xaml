@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d" Width="800" Height="450">
+    <UserControl.Resources>
+        <Image x:Key="diskette" Source="../Resources/diskette.png"/>
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
             <Label HorizontalAlignment="Center" Content="{Binding TLabelBackupName}"/>
@@ -15,7 +18,7 @@
             <TextBox HorizontalAlignment="Center" Text="{Binding targetDirectory}" TextWrapping="Wrap" Width="168"/>
             <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelBackupType}"/>
             <TextBox HorizontalAlignment="Center" Text="{Binding backupType}" TextWrapping="Wrap" Width="168"/>
-            <Button Content="{Binding TButtonCreate}" Width="60" Command="{Binding CreateBackupCommand}" Margin="109,10,0,0"/>
+            <Button Content="{StaticResource diskette}" Width="25" Height="25" Command="{Binding CreateBackupCommand}" Margin="143,10,0,0"/>
         </StackPanel>
     </Grid>
 </UserControl>

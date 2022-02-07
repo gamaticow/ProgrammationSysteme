@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <None Remove="home.png" />
+    <None Remove="Resources\diskette.png" />
     <None Remove="Resources\home.png" />
+    <None Remove="Resources\play.png" />
     <None Remove="Resources\setting.png" />
+    <None Remove="Resources\trash.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,8 +44,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resources\diskette.png" />
 	  <Resource Include="Resources\home.png" />
+	  <Resource Include="Resources\play.png" />
 	  <Resource Include="Resources\setting.png" />
+	  <Resource Include="Resources\trash.png" />
 	</ItemGroup>
 
 </Project>
