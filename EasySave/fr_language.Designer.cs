@@ -106,7 +106,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Extension à encrypter.
+        ///   Recherche une chaîne localisée semblable à Extension à chiffrer.
         /// </summary>
         internal static string encrypted_extension {
             get {

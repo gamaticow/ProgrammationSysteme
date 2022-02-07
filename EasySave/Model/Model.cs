@@ -32,12 +32,14 @@ namespace EasySave.Model
         // Method that read the configuration JSON file and import all the objects in it 
         public void ReadDataFile()
         {
-            LanguageType languageType = LanguageType.ENGLISH;
             backupWorks = new List<BackupWork>();
+            encryptedExtensions = new List<string>();
+            LanguageType languageType = LanguageType.ENGLISH;
             if (File.Exists("EasySave.json"))
             {
                 EasySaveConfig save = EasySaveConfig.fromJson(File.ReadAllText("EasySave.json"));
                 languageType = save.language;
+                encryptedExtensions = save.encryptedExtensions;
                 backupWorks = save.GetBackupWorks();
             }
             language = new Language(languageType);
@@ -47,12 +49,12 @@ namespace EasySave.Model
         public void WriteDataFile()
         {
             EasySaveConfig save = new EasySaveConfig();
-            save.language = language.languageType;
             foreach (BackupWork backupWork in backupWorks)
             {
                 save.AddBackup(backupWork);
             }
-
+            save.encryptedExtensions = encryptedExtensions;
+            save.language = language.languageType;
             File.WriteAllText("EasySave.json", save.ToJson());
         }
 

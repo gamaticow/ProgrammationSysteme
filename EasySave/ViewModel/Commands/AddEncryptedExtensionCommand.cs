@@ -33,6 +33,7 @@ namespace EasySave.ViewModel.Commands
             if(!Model.Model.Instance.encryptedExtensions.Contains(extension))
             {
                 Model.Model.Instance.encryptedExtensions.Add(extension);
+                Model.Model.Instance.WriteDataFile();
                 viewModel.OnPropertyChanged(nameof(viewModel.EncryptedExtensions));
             }
 
