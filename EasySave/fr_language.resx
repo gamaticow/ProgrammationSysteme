@@ -120,18 +120,6 @@
   <data name="backuptype_full" xml:space="preserve">
     <value>complet</value>
   </data>
-  <data name="button_create" xml:space="preserve">
-    <value>Créer</value>
-  </data>
-  <data name="button_delete" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="button_edit" xml:space="preserve">
-    <value>Modifier</value>
-  </data>
-	<data name="button_execute" xml:space="preserve">
-    <value>Exécuter</value>
-    </data>
   <data name="encrypted_extension" xml:space="preserve">
     <value>Extension à encrypter</value>
   </data>

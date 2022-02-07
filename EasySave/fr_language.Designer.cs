@@ -70,42 +70,6 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Créer.
-        /// </summary>
-        internal static string button_create {
-            get {
-                return ResourceManager.GetString("button_create", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Supprimer.
-        /// </summary>
-        internal static string button_delete {
-            get {
-                return ResourceManager.GetString("button_delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Modifier.
-        /// </summary>
-        internal static string button_edit {
-            get {
-                return ResourceManager.GetString("button_edit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Exécuter.
-        /// </summary>
-        internal static string button_execute {
-            get {
-                return ResourceManager.GetString("button_execute", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Extension à encrypter.
         /// </summary>
         internal static string encrypted_extension {
