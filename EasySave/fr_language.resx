@@ -129,8 +129,17 @@
   <data name="button_edit" xml:space="preserve">
     <value>Modifier</value>
   </data>
-  <data name="button_execute" xml:space="preserve">
+	<data name="button_execute" xml:space="preserve">
     <value>Exécuter</value>
+    </data>
+  <data name="encrypted_extension" xml:space="preserve">
+    <value>Extension à encrypter</value>
+  </data>
+  <data name="encrypted_extension_add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="encrypted_extension_delete" xml:space="preserve">
+    <value>Supprimer</value>
   </data>
   <data name="ENGLISH" xml:space="preserve">
     <value>English</value>

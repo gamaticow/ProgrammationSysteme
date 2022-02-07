@@ -43,7 +43,7 @@ namespace EasySave.ViewModel
             return Model.Model.Instance.language.Translate(key);
         }
 
-        protected void OnPropertyChanged(string propertyName)
+        public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
