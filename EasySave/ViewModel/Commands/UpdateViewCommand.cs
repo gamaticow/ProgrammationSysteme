@@ -29,9 +29,9 @@ namespace EasySave.ViewModel.Commands
             {
                 viewModel.SelectedViewModel = new MenuViewModel();
             }
-            else if (parameter.ToString() == "Language")
+            else if (parameter.ToString() == "Settings")
             {
-                viewModel.SelectedViewModel = new LanguageViewModel();
+                viewModel.SelectedViewModel = new SettingsViewModel();
             }
             else if (parameter.ToString() == "CreateBackup")
             {

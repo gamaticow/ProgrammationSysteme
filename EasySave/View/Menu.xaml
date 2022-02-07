@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d">
     <Grid Width="800" Height="450">
-        <Button Content="Language" HorizontalAlignment="Left" Margin="707,377,0,0" VerticalAlignment="Top" Height="20" Command="{Binding UpdateViewCommand}" CommandParameter="Language"/>
         <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" Margin="10,10,580,58">
             <ListBox.ItemTemplate>
                 <DataTemplate>

@@ -17,6 +17,7 @@ namespace EasySave.Model
         public LogObserver logObserver { get; private set; }
         public StateObserver stateObserver { get; private set; }
         public SaveBackupObserver saveObserver { get; private set; }
+        public List<string> encryptedExtensions { get; set; } = new List<string>();
 
         private Model()
         {

@@ -23,6 +23,21 @@ namespace EasySave.ViewModel
             }
         }
 
+        private string _tSettings;
+        public string TSettings
+        {
+            get
+            {
+                return _tSettings;
+            }
+            
+            set
+            {
+                _tSettings = value;
+                OnPropertyChanged(nameof(TSettings));
+            }
+        }
+
         public static MainViewModel Instance { get; private set; } = new MainViewModel();
 
         private MainViewModel() { }
@@ -30,6 +45,7 @@ namespace EasySave.ViewModel
         public override void SetTranslation()
         {
             TMenu = Translate("menu");
+            TSettings = Translate("settings");
         }
     }
 }

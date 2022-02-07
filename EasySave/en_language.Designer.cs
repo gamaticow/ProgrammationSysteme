@@ -104,5 +104,14 @@ namespace EasySave {
                 return ResourceManager.GetString("menu", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        internal static string settings {
+            get {
+                return ResourceManager.GetString("settings", resourceCulture);
+            }
+        }
     }
 }

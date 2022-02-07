@@ -9,7 +9,7 @@ using EasySave.Model;
 
 namespace EasySave.ViewModel
 {
-    class LanguageViewModel : BaseViewModel
+    class SettingsViewModel : BaseViewModel
     {
         private string _tLanguageChoice;
         public string TLanguageChoice
@@ -45,7 +45,9 @@ namespace EasySave.ViewModel
         }
         public ObservableCollection<object> Languages { get; set; }
 
-        public LanguageViewModel()
+        public ObservableCollection<string> EncryptedExtensions { get; set; }
+
+        public SettingsViewModel()
         {
             Languages = new ObservableCollection<object>();
             foreach (LanguageType language in Enum.GetValues(typeof(LanguageType)))

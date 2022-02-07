@@ -13,8 +13,8 @@
             <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
                 <views:Menu />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:LanguageViewModel}">
-                <views:Language />
+            <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+                <views:Settings />
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:CreateBackupViewModel}">
                 <views:CreateBackup />
@@ -23,7 +23,8 @@
                 <views:InfoBackup />
             </DataTemplate>
         </Grid.Resources>
-        <Button Content="{Binding TMenu}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="50" Command="{Binding UpdateViewCommand}" CommandParameter="Menu"/>
+        <Button Content="{Binding TMenu}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Menu"/>
+        <Button Content="{Binding TSettings}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Settings"/>
         <ContentControl Content="{Binding SelectedViewModel}" Margin="0,25,0,0" />
     </Grid>
 </Window>

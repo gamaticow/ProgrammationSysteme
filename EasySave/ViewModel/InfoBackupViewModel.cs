@@ -37,7 +37,6 @@ namespace EasySave.ViewModel
 
         public override void SetTranslation()
         {
-
         }
     }
 }

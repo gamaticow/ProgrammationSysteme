@@ -18,13 +18,11 @@ namespace EasySave.View
     /// <summary>
     /// Logique d'interaction pour Language.xaml
     /// </summary>
-    public partial class Language : UserControl
+    public partial class Settings : UserControl
     {
-        public Language()
+        public Settings()
         {
             InitializeComponent();
-
-            DataContext = new LanguageViewModel();
         }
     }
 }
