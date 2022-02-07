@@ -12,7 +12,7 @@
         <TextBox HorizontalAlignment="Center" Margin="0,179,0,0" Text="{Binding backupType}" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="300,217,0,0" VerticalAlignment="Top" Width="91" Command="{Binding DeleteBackupCommand}"/>
         <Button Content="Execute" HorizontalAlignment="Left" Margin="409,217,0,0" VerticalAlignment="Top" Width="91" Command="{Binding ExecuteBackupCommand}"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="505,70,0,0" VerticalAlignment="Top" Width="60" Height="18" Command="{Binding CreateBackupCommand}"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="505,70,0,0" VerticalAlignment="Top" Width="60" Height="18" Command="{Binding EditBackupCommand}"/>
 
     </Grid>
 </UserControl>

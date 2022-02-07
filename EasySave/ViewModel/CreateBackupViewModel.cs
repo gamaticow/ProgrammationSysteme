@@ -21,5 +21,9 @@ namespace EasySave.ViewModel
         {
             CreateBackupCommand = new CreateBackupCommand(this);
         }
+
+        public override void SetTranslation()
+        {
+        }
     }
 }

@@ -61,6 +61,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à complet.
+        /// </summary>
+        internal static string backuptype_full {
+            get {
+                return ResourceManager.GetString("backuptype_full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à English.
         /// </summary>
         internal static string ENGLISH {

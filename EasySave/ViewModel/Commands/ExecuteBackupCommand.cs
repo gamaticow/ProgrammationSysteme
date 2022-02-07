@@ -25,7 +25,7 @@ namespace EasySave.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-
+            viewModel.BackupWorkSelected.ExecuteBackup();
         }
     }
 }

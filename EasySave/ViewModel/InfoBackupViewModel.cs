@@ -34,5 +34,10 @@ namespace EasySave.ViewModel
             DeleteBackupCommand = new DeleteBackupCommand(this);
             ExecuteBackupCommand = new ExecuteBackupCommand(this);
         }
+
+        public override void SetTranslation()
+        {
+
+        }
     }
 }

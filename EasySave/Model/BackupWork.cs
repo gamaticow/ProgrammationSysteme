@@ -8,7 +8,6 @@ namespace EasySave.Model
 {
     abstract class BackupWork : IObservable<BackupLog>, IObservable<BackupState>, IObservable<string>
     {
-
         private List<IObserver<BackupLog>> logObservers = new List<IObserver<BackupLog>>();
         private List<IObserver<BackupState>> stateObservers = new List<IObserver<BackupState>>();
         private List<IObserver<string>> saveObservers = new List<IObserver<string>>();
