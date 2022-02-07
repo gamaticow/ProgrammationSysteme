@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="home.png" />
+    <None Remove="Resources\home.png" />
+    <None Remove="Resources\setting.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
@@ -32,6 +38,11 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>fr_language.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\home.png" />
+	  <Resource Include="Resources\setting.png" />
 	</ItemGroup>
 
 </Project>

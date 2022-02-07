@@ -6,13 +6,27 @@
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d" Width="800" Height="450">
     <Grid>
-        <TextBox HorizontalAlignment="Center" Margin="0,70,0,0" Text="{Binding name}" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,106,0,0" Text="{Binding sourceDirectory}" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,143,0,0" Text="{Binding targetDirectory}" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,179,0,0" Text="{Binding backupType}" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="300,217,0,0" VerticalAlignment="Top" Width="91" Command="{Binding DeleteBackupCommand}"/>
-        <Button Content="Execute" HorizontalAlignment="Left" Margin="409,217,0,0" VerticalAlignment="Top" Width="91" Command="{Binding ExecuteBackupCommand}"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="505,70,0,0" VerticalAlignment="Top" Width="60" Height="18" Command="{Binding EditBackupCommand}"/>
+        <StackPanel>
+            <Label HorizontalAlignment="center" Content="{Binding TLabelBackupName}"/>
+            <StackPanel HorizontalAlignment="center" Orientation="Horizontal" Margin="65,0,0,0">
+                <TextBox Text="{Binding name}" TextWrapping="Wrap" Width="200"/>
+                <Button Content="{Binding TButtonEdit}" Width="60" Height="18" Command="{Binding EditBackupCommand}" Margin="5,0,0,0" />
+            </StackPanel>
 
+            <Label HorizontalAlignment="center" Content="{Binding TLabelSourceDirectory}" Margin="0,15,0,0"/>
+            <TextBox HorizontalAlignment="center" Text="{Binding sourceDirectory}" TextWrapping="Wrap" Width="200"/>
+            <Label HorizontalAlignment="center" Content="{Binding TLabelTargetDirectory}" Margin="0,15,0,0"/>
+            <TextBox HorizontalAlignment="center" Text="{Binding targetDirectory}" TextWrapping="Wrap" Width="200"/>
+            <Label HorizontalAlignment="center" Content="{Binding TLabelBackupType}" Margin="0,15,0,0"/>
+            <TextBox HorizontalAlignment="center" Text="{Binding backupType}" TextWrapping="Wrap" Width="200"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="center" Margin="0,10,0,0">
+                <Button Content="{Binding TButtonExecute}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="91" Command="{Binding ExecuteBackupCommand}"/>
+                <Button Content="{Binding TButtonDelete}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="91" Margin="18,0,0,0" Command="{Binding DeleteBackupCommand}"/>
+            </StackPanel>
+            
+            
+            
+        </StackPanel>
     </Grid>
 </UserControl>

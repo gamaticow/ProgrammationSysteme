@@ -120,19 +120,37 @@
   <data name="backuptype_full" xml:space="preserve">
     <value>complet</value>
   </data>
+  <data name="button_create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="button_delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="button_edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="button_execute" xml:space="preserve">
+    <value>Exécuter</value>
+  </data>
   <data name="ENGLISH" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="FRENCH" xml:space="preserve">
     <value>Français</value>
   </data>
+  <data name="label_backup_name" xml:space="preserve">
+    <value>Nom de sauvegarde</value>
+  </data>
+  <data name="label_backup_type" xml:space="preserve">
+    <value>Type de sauvegarde</value>
+  </data>
+  <data name="label_source_directory" xml:space="preserve">
+    <value>Répertoire Source</value>
+  </data>
+  <data name="label_target_directory" xml:space="preserve">
+    <value>Répertoire Cible</value>
+  </data>
   <data name="language_choice" xml:space="preserve">
     <value>Choix du language :</value>
-  </data>
-  <data name="menu" xml:space="preserve">
-    <value>Menufr</value>
-  </data>
-  <data name="settings" xml:space="preserve">
-    <value>Paramètres</value>
   </data>
 </root>

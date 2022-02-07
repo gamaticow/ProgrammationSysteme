@@ -70,6 +70,42 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create.
+        /// </summary>
+        internal static string button_create {
+            get {
+                return ResourceManager.GetString("button_create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete.
+        /// </summary>
+        internal static string button_delete {
+            get {
+                return ResourceManager.GetString("button_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit.
+        /// </summary>
+        internal static string button_edit {
+            get {
+                return ResourceManager.GetString("button_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Execute.
+        /// </summary>
+        internal static string button_execute {
+            get {
+                return ResourceManager.GetString("button_execute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à English.
         /// </summary>
         internal static string ENGLISH {
@@ -88,29 +124,47 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Backup Name.
+        /// </summary>
+        internal static string label_backup_name {
+            get {
+                return ResourceManager.GetString("label_backup_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Backup Type.
+        /// </summary>
+        internal static string label_backup_type {
+            get {
+                return ResourceManager.GetString("label_backup_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Source Directory.
+        /// </summary>
+        internal static string label_source_directory {
+            get {
+                return ResourceManager.GetString("label_source_directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Target Directory.
+        /// </summary>
+        internal static string label_target_directory {
+            get {
+                return ResourceManager.GetString("label_target_directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Language choice :.
         /// </summary>
         internal static string language_choice {
             get {
                 return ResourceManager.GetString("language_choice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à MenuEn.
-        /// </summary>
-        internal static string menu {
-            get {
-                return ResourceManager.GetString("menu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Settings.
-        /// </summary>
-        internal static string settings {
-            get {
-                return ResourceManager.GetString("settings", resourceCulture);
             }
         }
     }

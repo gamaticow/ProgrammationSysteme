@@ -6,11 +6,16 @@
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d" Width="800" Height="450">
     <Grid>
-        <TextBox HorizontalAlignment="Center" Margin="0,67,0,0" Text="{Binding name}" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,119,0,0" Text="{Binding sourceDirectory}" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,170,0,0" Text="{Binding targetDirectory}" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,225,0,0" Text="{Binding backupType}" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="444,281,0,0" VerticalAlignment="Top" Command="{Binding CreateBackupCommand}"/>
-
+        <StackPanel>
+            <Label HorizontalAlignment="Center" Content="{Binding TLabelBackupName}"/>
+            <TextBox HorizontalAlignment="Center" Text="{Binding name}" TextWrapping="Wrap" Width="168"/>
+            <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelSourceDirectory}"/>
+            <TextBox HorizontalAlignment="Center" Text="{Binding sourceDirectory}" TextWrapping="Wrap" Width="168"/>
+            <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelTargetDirectory}"/>
+            <TextBox HorizontalAlignment="Center" Text="{Binding targetDirectory}" TextWrapping="Wrap" Width="168"/>
+            <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelBackupType}"/>
+            <TextBox HorizontalAlignment="Center" Text="{Binding backupType}" TextWrapping="Wrap" Width="168"/>
+            <Button Content="{Binding TButtonCreate}" Width="60" Command="{Binding CreateBackupCommand}" Margin="109,10,0,0"/>
+        </StackPanel>
     </Grid>
 </UserControl>
