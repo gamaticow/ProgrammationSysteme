@@ -24,6 +24,7 @@ namespace EasySave.ViewModel.Commands
         protected override void Execute(object parameter)
         {
             Model.Model.Instance.encryptedExtensions.Remove(viewModel.SEncryptedExtension);
+            Model.Model.Instance.WriteDataFile();
             viewModel.OnPropertyChanged(nameof(viewModel.EncryptedExtensions));
         }
 

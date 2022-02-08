@@ -61,11 +61,11 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FULL.
+        ///   Recherche une chaîne localisée semblable à Differential.
         /// </summary>
-        internal static string backuptype_full {
+        internal static string DIFFERENTIAL {
             get {
-                return ResourceManager.GetString("backuptype_full", resourceCulture);
+                return ResourceManager.GetString("DIFFERENTIAL", resourceCulture);
             }
         }
         
@@ -124,6 +124,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Full.
+        /// </summary>
+        internal static string FULL {
+            get {
+                return ResourceManager.GetString("FULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Backup Name.
         /// </summary>
         internal static string label_backup_name {
@@ -160,11 +169,20 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Language choice :.
+        ///   Recherche une chaîne localisée semblable à Language choice.
         /// </summary>
         internal static string language_choice {
             get {
                 return ResourceManager.GetString("language_choice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Business app choice.
+        /// </summary>
+        internal static string select_business_app {
+            get {
+                return ResourceManager.GetString("select_business_app", resourceCulture);
             }
         }
     }

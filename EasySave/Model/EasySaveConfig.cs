@@ -8,6 +8,8 @@ namespace EasySave.Model
     class EasySaveConfig
     {
         public LanguageType language { get; set; }
+        public List<string> encryptedExtensions { get; set; }
+        public string businessApp { get; set; }
         public List<Dictionary<string, string>> backupWorks { get; private set; }
 
         public EasySaveConfig()

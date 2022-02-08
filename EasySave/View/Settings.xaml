@@ -21,13 +21,18 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <ListView Height ="100" Width="100" ItemsSource="{Binding EncryptedExtensions}" SelectedItem="{Binding SEncryptedExtension}" />
-                    <Button Content="{Binding TEncryptedExtensionDelete}" Height="25" VerticalAlignment="Top" Command="{Binding DeleteEncryptedExtensionCommand}" />
+                    <Button Content="{Binding TEncryptedExtensionDelete}" Height="25" VerticalAlignment="Top" Command="{Binding DeleteEncryptedExtensionCommand}" Margin="5,0,0,0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox Width="100" Height="25" Text="{Binding EncryptedExtensionTextBox, UpdateSourceTrigger=PropertyChanged}" />
-                    <Button Content="{Binding TEncryptedExtensionAdd}" Height="25" VerticalAlignment="Top" Command="{Binding AddEncryptedExtensionCommand}" />
+                    <Button Content="{Binding TEncryptedExtensionAdd}" Height="25" VerticalAlignment="Top" Command="{Binding AddEncryptedExtensionCommand}" Margin="5,0,0,0" />
                 </StackPanel>
             </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Label Content="{Binding TBusinessApp}" VerticalAlignment="Top" />
+            <TextBox Width="250" Height="25" Text="{Binding BusinessApp}" />
+            <Button Content="Open file" Height="25" Command="{Binding SelectBuisnessAppExeCommand}" Margin="5,0,0,0" />
         </StackPanel>
     </StackPanel>
 </UserControl>

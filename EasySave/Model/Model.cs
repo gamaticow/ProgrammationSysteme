@@ -18,6 +18,7 @@ namespace EasySave.Model
         public StateObserver stateObserver { get; private set; }
         public SaveBackupObserver saveObserver { get; private set; }
         public List<string> encryptedExtensions { get; set; } = new List<string>();
+        public string businessApp { get; set; }
 
         private Model()
         {
@@ -32,12 +33,15 @@ namespace EasySave.Model
         // Method that read the configuration JSON file and import all the objects in it 
         public void ReadDataFile()
         {
-            LanguageType languageType = LanguageType.ENGLISH;
             backupWorks = new List<BackupWork>();
+            encryptedExtensions = new List<string>();
+            LanguageType languageType = LanguageType.ENGLISH;
             if (File.Exists("EasySave.json"))
             {
                 EasySaveConfig save = EasySaveConfig.fromJson(File.ReadAllText("EasySave.json"));
                 languageType = save.language;
+                encryptedExtensions = save.encryptedExtensions;
+                businessApp = save.businessApp;
                 backupWorks = save.GetBackupWorks();
             }
             language = new Language(languageType);
@@ -47,12 +51,13 @@ namespace EasySave.Model
         public void WriteDataFile()
         {
             EasySaveConfig save = new EasySaveConfig();
-            save.language = language.languageType;
             foreach (BackupWork backupWork in backupWorks)
             {
                 save.AddBackup(backupWork);
             }
-
+            save.encryptedExtensions = encryptedExtensions;
+            save.businessApp = businessApp;
+            save.language = language.languageType;
             File.WriteAllText("EasySave.json", save.ToJson());
         }
 
@@ -70,9 +75,9 @@ namespace EasySave.Model
          * status = 2 => Name already used
          * status = 3 => Field(s) are empty
          */
-        public int CreateBackupWork(string name, string sourceDirectory, string targetDirectory, string type)
+        public int CreateBackupWork(string name, string sourceDirectory, string targetDirectory, BackupType type)
         {
-            if (name == null || name.Length == 0 || sourceDirectory == null || sourceDirectory.Length == 0 || targetDirectory == null || targetDirectory.Length == 0 || type == null || type.Length == 0)
+            if (name == null || name.Length == 0 || sourceDirectory == null || sourceDirectory.Length == 0 || targetDirectory == null || targetDirectory.Length == 0)
             {
                 return 3;
             }
@@ -82,7 +87,7 @@ namespace EasySave.Model
                 return 2;
             }
 
-            if (language.Translate("backuptype_full").ToLower().Equals(type.ToLower()))
+            if (type == BackupType.FULL)
             {
                 BackupWork backupWork = new FullBackupWork(name, sourceDirectory, targetDirectory);
                 backupWork.Subscribe(logObserver);
@@ -90,7 +95,7 @@ namespace EasySave.Model
                 backupWork.Subscribe(saveObserver);
                 backupWorks.Add(backupWork);
             }
-            else if (language.Translate("backuptype_differential").ToLower().Equals(type.ToLower()))
+            else if (type == BackupType.DIFFERENTIAL)
             {
                 BackupWork backupWork = new DifferentialBackupWork(name, sourceDirectory, targetDirectory);
                 backupWork.Subscribe(logObserver);

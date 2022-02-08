@@ -120,8 +120,11 @@
   <data name="backuptype_full" xml:space="preserve">
     <value>complet</value>
   </data>
+  <data name="DIFFERENTIAL" xml:space="preserve">
+    <value>Différentiel</value>
+  </data>
   <data name="encrypted_extension" xml:space="preserve">
-    <value>Extension à encrypter</value>
+    <value>Extension à chiffrer</value>
   </data>
   <data name="encrypted_extension_add" xml:space="preserve">
     <value>Ajouter</value>
@@ -138,6 +141,9 @@
   <data name="FRENCH" xml:space="preserve">
     <value>Français</value>
   </data>
+  <data name="FULL" xml:space="preserve">
+    <value>Complet</value>
+  </data>
   <data name="label_backup_name" xml:space="preserve">
     <value>Nom de sauvegarde</value>
   </data>
@@ -151,6 +157,9 @@
     <value>Répertoire Cible</value>
   </data>
   <data name="language_choice" xml:space="preserve">
-    <value>Choix du language :</value>
+    <value>Choix du language</value>
+  </data>
+  <data name="select_business_app" xml:space="preserve">
+    <value>Choix du logiciel métier</value>
   </data>
 </root>

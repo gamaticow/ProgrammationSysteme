@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="backuptype_full" xml:space="preserve">
-    <value>FULL</value>
+  <data name="DIFFERENTIAL" xml:space="preserve">
+    <value>Differential</value>
   </data>
   <data name="encrypted_extension" xml:space="preserve">
     <value>Extension to encrypt</value>
@@ -138,6 +138,9 @@
   <data name="FRENCH" xml:space="preserve">
     <value>Français</value>
   </data>
+  <data name="FULL" xml:space="preserve">
+    <value>Full</value>
+  </data>
   <data name="label_backup_name" xml:space="preserve">
     <value>Backup Name</value>
   </data>
@@ -151,6 +154,9 @@
     <value>Target Directory</value>
   </data>
   <data name="language_choice" xml:space="preserve">
-    <value>Language choice :</value>
+    <value>Language choice</value>
+  </data>
+  <data name="select_business_app" xml:space="preserve">
+    <value>Business app choice</value>
   </data>
 </root>
