@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d">
+    <UserControl.Resources>
+         <Image x:Key="folder" Source="../Resources/folder.png"/>
+    </UserControl.Resources>
+
     <StackPanel Height="450" Width="800">
         <StackPanel Orientation="Horizontal">
             <Label Content="{Binding TLanguageChoice}" />
             <ComboBox Width="120" ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <Image Height="35" Source="{Binding Name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
@@ -32,7 +36,7 @@
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
             <Label Content="{Binding TBusinessApp}" VerticalAlignment="Top" />
             <TextBox Width="250" Height="25" Text="{Binding BusinessApp}" />
-            <Button Content="Open file" Height="25" Command="{Binding SelectBuisnessAppExeCommand}" Margin="5,0,0,0" />
+            <Button Content="{StaticResource folder}" Height="25" Command="{Binding SelectBuisnessAppExeCommand}" Margin="5,0,0,0" />
         </StackPanel>
     </StackPanel>
 </UserControl>

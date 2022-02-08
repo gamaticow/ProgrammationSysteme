@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="create_backup" xml:space="preserve">
+    <value>Create a backup</value>
+  </data>
   <data name="DIFFERENTIAL" xml:space="preserve">
     <value>Differential</value>
   </data>
@@ -130,16 +133,19 @@
     <value>Delete</value>
   </data>
   <data name="ENGLISH" xml:space="preserve">
-    <value>English</value>
+    <value>pack://application:,,,/Resources/FlagEnglish.png</value>
   </data>
   <data name="flag_name" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagEnglish.png</value>
   </data>
   <data name="FRENCH" xml:space="preserve">
-    <value>Français</value>
+    <value>pack://application:,,,/Resources/FlagFrench.png</value>
   </data>
   <data name="FULL" xml:space="preserve">
     <value>Full</value>
+  </data>
+  <data name="get_info" xml:space="preserve">
+    <value>Get Informations</value>
   </data>
   <data name="label_backup_name" xml:space="preserve">
     <value>Backup Name</value>
@@ -158,5 +164,8 @@
   </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Business app choice</value>
+  </data>
+  <data name="sequential_execution" xml:space="preserve">
+    <value>Sequential Execution</value>
   </data>
 </root>

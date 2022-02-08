@@ -12,6 +12,7 @@
     <None Remove="Resources\FlagEng.bmp" />
     <None Remove="Resources\FlagEnglish.png" />
     <None Remove="Resources\FlagFrench.png" />
+    <None Remove="Resources\folder.png" />
     <None Remove="Resources\home.png" />
     <None Remove="Resources\play.png" />
     <None Remove="Resources\setting.png" />
@@ -51,6 +52,7 @@
 	  <Resource Include="Resources\diskette.png" />
 	  <Resource Include="Resources\FlagEnglish.png" />
 	  <Resource Include="Resources\FlagFrench.png" />
+	  <Resource Include="Resources\folder.png" />
 	  <Resource Include="Resources\home.png" />
 	  <Resource Include="Resources\play.png" />
 	  <Resource Include="Resources\setting.png" />

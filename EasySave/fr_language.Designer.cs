@@ -70,6 +70,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Créer une sauvegarde.
+        /// </summary>
+        internal static string create_backup {
+            get {
+                return ResourceManager.GetString("create_backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Différentiel.
         /// </summary>
         internal static string DIFFERENTIAL {
@@ -106,7 +115,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à English.
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagEnglish.png.
         /// </summary>
         internal static string ENGLISH {
             get {
@@ -124,7 +133,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Français.
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagFrench.png.
         /// </summary>
         internal static string FRENCH {
             get {
@@ -138,6 +147,15 @@ namespace EasySave {
         internal static string FULL {
             get {
                 return ResourceManager.GetString("FULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Afficher les informations.
+        /// </summary>
+        internal static string get_info {
+            get {
+                return ResourceManager.GetString("get_info", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace EasySave {
         internal static string select_business_app {
             get {
                 return ResourceManager.GetString("select_business_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Exécution séquentielle.
+        /// </summary>
+        internal static string sequential_execution {
+            get {
+                return ResourceManager.GetString("sequential_execution", resourceCulture);
             }
         }
     }

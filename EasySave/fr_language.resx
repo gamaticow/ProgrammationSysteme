@@ -120,6 +120,9 @@
   <data name="backuptype_full" xml:space="preserve">
     <value>complet</value>
   </data>
+  <data name="create_backup" xml:space="preserve">
+    <value>Créer une sauvegarde</value>
+  </data>
   <data name="DIFFERENTIAL" xml:space="preserve">
     <value>Différentiel</value>
   </data>
@@ -133,16 +136,19 @@
     <value>Supprimer</value>
   </data>
   <data name="ENGLISH" xml:space="preserve">
-    <value>English</value>
+    <value>pack://application:,,,/Resources/FlagEnglish.png</value>
   </data>
   <data name="flag_name" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagFrench.png</value>
   </data>
   <data name="FRENCH" xml:space="preserve">
-    <value>Français</value>
+    <value>pack://application:,,,/Resources/FlagFrench.png</value>
   </data>
   <data name="FULL" xml:space="preserve">
     <value>Complet</value>
+  </data>
+  <data name="get_info" xml:space="preserve">
+    <value>Afficher les informations</value>
   </data>
   <data name="label_backup_name" xml:space="preserve">
     <value>Nom de sauvegarde</value>
@@ -161,5 +167,8 @@
   </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Choix du logiciel métier</value>
+  </data>
+  <data name="sequential_execution" xml:space="preserve">
+    <value>Exécution séquentielle</value>
   </data>
 </root>

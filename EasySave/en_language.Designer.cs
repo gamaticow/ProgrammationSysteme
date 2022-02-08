@@ -61,6 +61,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create a backup.
+        /// </summary>
+        internal static string create_backup {
+            get {
+                return ResourceManager.GetString("create_backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Differential.
         /// </summary>
         internal static string DIFFERENTIAL {
@@ -97,7 +106,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à English.
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagEnglish.png.
         /// </summary>
         internal static string ENGLISH {
             get {
@@ -115,7 +124,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Français.
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagFrench.png.
         /// </summary>
         internal static string FRENCH {
             get {
@@ -129,6 +138,15 @@ namespace EasySave {
         internal static string FULL {
             get {
                 return ResourceManager.GetString("FULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Get Informations.
+        /// </summary>
+        internal static string get_info {
+            get {
+                return ResourceManager.GetString("get_info", resourceCulture);
             }
         }
         
@@ -183,6 +201,15 @@ namespace EasySave {
         internal static string select_business_app {
             get {
                 return ResourceManager.GetString("select_business_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sequential Execution.
+        /// </summary>
+        internal static string sequential_execution {
+            get {
+                return ResourceManager.GetString("sequential_execution", resourceCulture);
             }
         }
     }

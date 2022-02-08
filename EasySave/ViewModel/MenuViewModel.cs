@@ -12,6 +12,9 @@ namespace EasySave.ViewModel
     {
 
         public BackupWork Selected { get; set; }
+        public string Tcreate_backup { get; set; }
+        public string Tinfo { get; set; }
+        public string Tsequential_execution { get; set; }
         public ObservableCollection<BackupWork> BackupWorksList { get; set; }
 
         public MenuViewModel()
@@ -21,7 +24,9 @@ namespace EasySave.ViewModel
 
         public override void SetTranslation()
         {
-            
+            Tcreate_backup = Translate("create_backup");
+            Tinfo = Translate("get_info");
+            Tsequential_execution = Translate("sequential_execution");
         }
     }
 }
