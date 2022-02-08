@@ -17,7 +17,13 @@
             <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelTargetDirectory}"/>
             <TextBox HorizontalAlignment="Center" Text="{Binding targetDirectory}" TextWrapping="Wrap" Width="168"/>
             <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelBackupType}"/>
-            <TextBox HorizontalAlignment="Center" Text="{Binding backupType}" TextWrapping="Wrap" Width="168"/>
+            <ComboBox HorizontalAlignment="Center" Width="168" ItemsSource="{Binding backupTypeList}" SelectedItem="{Binding selectedType}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button Content="{StaticResource diskette}" Width="25" Height="25" Command="{Binding CreateBackupCommand}" Margin="143,10,0,0"/>
         </StackPanel>
     </Grid>

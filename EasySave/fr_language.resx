@@ -120,6 +120,9 @@
   <data name="backuptype_full" xml:space="preserve">
     <value>complet</value>
   </data>
+  <data name="DIFFERENTIAL" xml:space="preserve">
+    <value>Différentiel</value>
+  </data>
   <data name="encrypted_extension" xml:space="preserve">
     <value>Extension à chiffrer</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="FRENCH" xml:space="preserve">
     <value>Français</value>
+  </data>
+  <data name="FULL" xml:space="preserve">
+    <value>Complet</value>
   </data>
   <data name="label_backup_name" xml:space="preserve">
     <value>Nom de sauvegarde</value>

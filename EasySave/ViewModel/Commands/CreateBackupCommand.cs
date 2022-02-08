@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -26,7 +27,10 @@ namespace EasySave.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            Model.Model.Instance.CreateBackupWork(viewModel.name, viewModel.sourceDirectory, viewModel.targetDirectory, viewModel.backupType);
+            Type t = viewModel.selectedType.GetType();
+            PropertyInfo info = t.GetProperty("Type");
+            BackupType backupType = (BackupType)info.GetValue(viewModel.selectedType);
+            Model.Model.Instance.CreateBackupWork(viewModel.name, viewModel.sourceDirectory, viewModel.targetDirectory, backupType);
         }
     }
 }

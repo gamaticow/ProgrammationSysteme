@@ -61,11 +61,11 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FULL.
+        ///   Recherche une chaîne localisée semblable à Differential.
         /// </summary>
-        internal static string backuptype_full {
+        internal static string DIFFERENTIAL {
             get {
-                return ResourceManager.GetString("backuptype_full", resourceCulture);
+                return ResourceManager.GetString("DIFFERENTIAL", resourceCulture);
             }
         }
         
@@ -111,6 +111,15 @@ namespace EasySave {
         internal static string FRENCH {
             get {
                 return ResourceManager.GetString("FRENCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Full.
+        /// </summary>
+        internal static string FULL {
+            get {
+                return ResourceManager.GetString("FULL", resourceCulture);
             }
         }
         

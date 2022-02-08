@@ -75,9 +75,9 @@ namespace EasySave.Model
          * status = 2 => Name already used
          * status = 3 => Field(s) are empty
          */
-        public int CreateBackupWork(string name, string sourceDirectory, string targetDirectory, string type)
+        public int CreateBackupWork(string name, string sourceDirectory, string targetDirectory, BackupType type)
         {
-            if (name == null || name.Length == 0 || sourceDirectory == null || sourceDirectory.Length == 0 || targetDirectory == null || targetDirectory.Length == 0 || type == null || type.Length == 0)
+            if (name == null || name.Length == 0 || sourceDirectory == null || sourceDirectory.Length == 0 || targetDirectory == null || targetDirectory.Length == 0)
             {
                 return 3;
             }
@@ -87,7 +87,7 @@ namespace EasySave.Model
                 return 2;
             }
 
-            if (language.Translate("backuptype_full").ToLower().Equals(type.ToLower()))
+            if (type == BackupType.FULL)
             {
                 BackupWork backupWork = new FullBackupWork(name, sourceDirectory, targetDirectory);
                 backupWork.Subscribe(logObserver);
@@ -95,7 +95,7 @@ namespace EasySave.Model
                 backupWork.Subscribe(saveObserver);
                 backupWorks.Add(backupWork);
             }
-            else if (language.Translate("backuptype_differential").ToLower().Equals(type.ToLower()))
+            else if (type == BackupType.DIFFERENTIAL)
             {
                 BackupWork backupWork = new DifferentialBackupWork(name, sourceDirectory, targetDirectory);
                 backupWork.Subscribe(logObserver);

@@ -70,6 +70,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Différentiel.
+        /// </summary>
+        internal static string DIFFERENTIAL {
+            get {
+                return ResourceManager.GetString("DIFFERENTIAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Extension à chiffrer.
         /// </summary>
         internal static string encrypted_extension {
@@ -111,6 +120,15 @@ namespace EasySave {
         internal static string FRENCH {
             get {
                 return ResourceManager.GetString("FRENCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Complet.
+        /// </summary>
+        internal static string FULL {
+            get {
+                return ResourceManager.GetString("FULL", resourceCulture);
             }
         }
         
