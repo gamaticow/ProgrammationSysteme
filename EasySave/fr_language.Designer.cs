@@ -106,6 +106,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagFrench.png.
+        /// </summary>
+        internal static string flag_name {
+            get {
+                return ResourceManager.GetString("flag_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Français.
         /// </summary>
         internal static string FRENCH {

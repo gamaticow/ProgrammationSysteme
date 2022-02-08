@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{305EDA92-219F-4A04-964D-EC1F4ED7B0E9}"
 	ProjectSection(SolutionItems) = preProject
 		Resources\diskette.png = Resources\diskette.png
+		Resources\FlagEnglish.png = Resources\FlagEnglish.png
 		Resources\home.png = Resources\home.png
 		Resources\play.png = Resources\play.png
 		Resources\trash.png = Resources\trash.png

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave"
         xmlns:views="clr-namespace:EasySave.View"
-        xmlns:viewmodels="clr-namespace:EasySave.ViewModel"
+        xmlns:viewmodels="clr-namespace:EasySave.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
-        Title="EasySave" Height="475" Width="800">
+        Title="EasySave" Height="535" Width="800">
     <Window.Resources>
         <Image x:Key="Home" Source="Resources/home.png"/>
         <Image x:Key="Setting" Source="Resources/Setting.png"/>
@@ -30,5 +30,9 @@
         <Button Content="{StaticResource Home}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Menu"/>
         <Button Content="{StaticResource Setting}"  Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Settings"/>
         <ContentControl Content="{Binding SelectedViewModel}" Margin="0,25,0,0" />
+        <Grid Height="35" Background="LightGray" Margin="0,449,0,10">
+            <Label VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin DEMBELE Romaric RAMBIER Ewen</Label>
+            <Image HorizontalAlignment="Right" Margin="0,0,10,0" Source="{Binding Tflag_name}"/>
+        </Grid>
     </Grid>
 </Window>

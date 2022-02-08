@@ -132,6 +132,9 @@
   <data name="ENGLISH" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="flag_name" xml:space="preserve">
+    <value>pack://application:,,,/Resources/FlagEnglish.png</value>
+  </data>
   <data name="FRENCH" xml:space="preserve">
     <value>Français</value>
   </data>
