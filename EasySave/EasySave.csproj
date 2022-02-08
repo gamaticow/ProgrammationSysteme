@@ -8,15 +8,27 @@
 
   <ItemGroup>
     <None Remove="home.png" />
+    <None Remove="Resources\bob_marley_1.mp3" />
     <None Remove="Resources\diskette.png" />
     <None Remove="Resources\FlagEng.bmp" />
     <None Remove="Resources\FlagEnglish.png" />
     <None Remove="Resources\FlagFrench.png" />
     <None Remove="Resources\folder.png" />
     <None Remove="Resources\home.png" />
+    <None Remove="Resources\Petit son.mp3" />
+    <None Remove="Resources\Petit_son.mp3" />
     <None Remove="Resources\play.png" />
     <None Remove="Resources\setting.png" />
     <None Remove="Resources\trash.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\bob_marley_1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Petit_son.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
