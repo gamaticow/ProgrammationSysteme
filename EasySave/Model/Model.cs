@@ -22,6 +22,8 @@ namespace EasySave.Model
         public string businessApp { get; set; }
         public MediaPlayer mediaPlayer { get; set; }
 
+        public object Music { get; set; }
+
         private Model()
         {
             // This class is a singleton
@@ -45,6 +47,7 @@ namespace EasySave.Model
                 encryptedExtensions = save.encryptedExtensions;
                 businessApp = save.businessApp;
                 backupWorks = save.GetBackupWorks();
+                Music = save.Music;
             }
             language = new Language(languageType);
         }
@@ -60,6 +63,7 @@ namespace EasySave.Model
             save.encryptedExtensions = encryptedExtensions;
             save.businessApp = businessApp;
             save.language = language.languageType;
+            save.Music = Music;
             File.WriteAllText("EasySave.json", save.ToJson());
         }
 

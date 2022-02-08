@@ -83,6 +83,20 @@ namespace EasySave.ViewModel
             }
         }
 
+        private string _tMusicChoice;
+        public string TMusicChoice
+        {
+            get
+            {
+                return _tMusicChoice;
+            }
+            set
+            {
+                _tMusicChoice = value;
+                OnPropertyChanged(nameof(TMusicChoice));
+            }
+        }
+
         private object _sLanguage;
         public object SLanguage
         {
@@ -163,6 +177,21 @@ namespace EasySave.ViewModel
 
         public SelectBusinessAppCommand SelectBuisnessAppExeCommand { get; private set; }
 
+        private object _sMusic;
+        public object SMusic
+        {
+            get
+            {
+                return _sMusic;
+            }
+            set
+            {
+                _sMusic = value;
+                Model.Model.Instance.Music=value;
+                Model.Model.Instance.WriteDataFile();
+            }
+        }
+        public ObservableCollection<object> Playlist { get; set; }
         public SettingsViewModel()
         {
             Languages = new ObservableCollection<object>();
@@ -176,6 +205,13 @@ namespace EasySave.ViewModel
                 }
             }
 
+            Playlist = new ObservableCollection<object>();
+            object selected = new { Name = "Bob Marley - Love Is Love", Path = @"pack://siteoforigin:,,,/Resources/bob_marley_LoveIsLove.mp3" };
+            SMusic = selected;
+            Playlist.Add(selected);
+            Playlist.Add(new { Name = "Bob Marley - No Woman No Cry", Path = @"pack://siteoforigin:,,,/Resources/bob_marley_NoWomanNoCry.mp3" });
+            Playlist.Add(new { Name = "Makassy - Doucement", Path = @"pack://siteoforigin:,,,/Resources/makassy_doucement.mp3" });
+            Playlist.Add(new { Name = "Florent Pagny - Savoir Aimer", Path = @"pack://siteoforigin:,,,/Resources/florent_pagny_savoir_aimer.mp3" });
             AddEncryptedExtensionCommand = new AddEncryptedExtensionCommand(this);
             DeleteEncryptedExtensionCommand = new DeleteEncryptedExtensionCommand(this);
             SelectBuisnessAppExeCommand = new SelectBusinessAppCommand(this);
@@ -183,6 +219,7 @@ namespace EasySave.ViewModel
 
         public override void SetTranslation()
         {
+            TMusicChoice = Translate("music_choice");
             TLanguageChoice = Translate("language_choice");
             TEncryptedExtension = Translate("encrypted_extension");
             TEncryptedExtensionAdd = Translate("encrypted_extension_add");

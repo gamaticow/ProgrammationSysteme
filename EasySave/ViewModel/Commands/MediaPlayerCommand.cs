@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -19,7 +20,13 @@ namespace EasySave.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            Uri uri = new Uri(@"pack://siteoforigin:,,,/Resources/bob_marley_1.mp3");
+            if (Model.Model.Instance.mediaPlayer != null)
+            {
+                Model.Model.Instance.mediaPlayer.Stop();
+            }
+            Type t = Model.Model.Instance.Music.GetType();
+            PropertyInfo info = t.GetProperty("Path");
+            Uri uri = new Uri((string)info.GetValue(Model.Model.Instance.Music));
             Model.Model.Instance.mediaPlayer = new MediaPlayer();
             Model.Model.Instance.mediaPlayer.Open(uri);
             Model.Model.Instance.mediaPlayer.Play();
