@@ -28,7 +28,11 @@ namespace EasySave.Model
             }
             else
             {
-                output += ",\n";
+                if(type == LogType.JSON)
+                {
+                    output += ",";
+                }
+                output += "\n";
             }
 
             if(type == LogType.JSON)
@@ -46,7 +50,7 @@ namespace EasySave.Model
                 using (var writer = XmlWriter.Create(stream, settings))
                 {
                     serializer.Serialize(writer, value, emptyNamespaces);
-                    output = $"\n{stream.ToString()}";
+                    output = $"{stream.ToString()}";
                 }
             }
 
