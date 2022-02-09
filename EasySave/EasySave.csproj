@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\EasySave_Logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,14 +12,20 @@
     <None Remove="Resources\bob_marley_1.mp3" />
     <None Remove="Resources\bob_marley_LoveIsLove.mp3" />
     <None Remove="Resources\bob_marley_NoWomanNoCry.mp3" />
+    <None Remove="Resources\colonel_reyel_celui.mp3" />
     <None Remove="Resources\diskette.png" />
     <None Remove="Resources\FlagEng.bmp" />
     <None Remove="Resources\FlagEnglish.png" />
     <None Remove="Resources\FlagFrench.png" />
+    <None Remove="Resources\florent_pagny_savoir_aimer.mp3" />
     <None Remove="Resources\folder.png" />
     <None Remove="Resources\home.png" />
+    <None Remove="Resources\jack_uzi_ford_freestyle.mp3" />
+    <None Remove="Resources\jul_alors_la_zone.mp3" />
+    <None Remove="Resources\jul_on_mappelle_lovni.mp3" />
     <None Remove="Resources\makassy-doucement.mp3" />
     <None Remove="Resources\makassy_doucement.mp3" />
+    <None Remove="Resources\ninja_turtles.mp3" />
     <None Remove="Resources\Petit son.mp3" />
     <None Remove="Resources\Petit_son.mp3" />
     <None Remove="Resources\play.png" />
@@ -33,7 +40,25 @@
     <Content Include="Resources\bob_marley_NoWomanNoCry.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\colonel_reyel_celui.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\florent_pagny_savoir_aimer.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\jack_uzi_ford_freestyle.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\jul_alors_la_zone.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\jul_on_mappelle_lovni.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\makassy_doucement.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ninja_turtles.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -212,6 +212,11 @@ namespace EasySave.ViewModel
             Playlist.Add(new { Name = "Bob Marley - No Woman No Cry", Path = @"pack://siteoforigin:,,,/Resources/bob_marley_NoWomanNoCry.mp3" });
             Playlist.Add(new { Name = "Makassy - Doucement", Path = @"pack://siteoforigin:,,,/Resources/makassy_doucement.mp3" });
             Playlist.Add(new { Name = "Florent Pagny - Savoir Aimer", Path = @"pack://siteoforigin:,,,/Resources/florent_pagny_savoir_aimer.mp3" });
+            Playlist.Add(new { Name = "JUL - Alors la zone", Path = @"pack://siteoforigin:,,,/Resources/jul_alors_la_zone.mp3" });
+            Playlist.Add(new { Name = "JUL - On m'appelle l'ovni", Path = @"pack://siteoforigin:,,,/Resources/jul_on_mappelle_lovni.mp3" });
+            Playlist.Add(new { Name = "Ninja Turtles - Theme", Path = @"pack://siteoforigin:,,,/Resources/ninja_turtles.mp3" });
+            Playlist.Add(new { Name = "Colonel Reyel - Celui", Path = @"pack://siteoforigin:,,,/Resources/colonel_reyel_celui.mp3" });
+            Playlist.Add(new { Name = "Jack Uzi - Ford Freestyle", Path = @"pack://siteoforigin:,,,/Resources/jack_uzi_ford_freestyle.mp3" });
             AddEncryptedExtensionCommand = new AddEncryptedExtensionCommand(this);
             DeleteEncryptedExtensionCommand = new DeleteEncryptedExtensionCommand(this);
             SelectBuisnessAppExeCommand = new SelectBusinessAppCommand(this);

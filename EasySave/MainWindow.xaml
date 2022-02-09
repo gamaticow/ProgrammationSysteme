@@ -31,7 +31,7 @@
         <Button Content="{StaticResource Setting}"  Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Settings"/>
         <ContentControl Content="{Binding SelectedViewModel}" Margin="0,25,0,0" />
         <Grid Height="35" Background="LightGray" Margin="0,449,0,10">
-            <Label VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin DEMBELE Romaric RAMBIER Ewen</Label>
+            <Label xml:space="preserve" VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin     DEMBELE Romaric     RAMBIER Ewen</Label>
             <Button HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding MediaPlayerCommand}" BorderThickness="0" Background="LightGray">
                 <Image Source="{Binding Tflag_name}"/>
             </Button>
