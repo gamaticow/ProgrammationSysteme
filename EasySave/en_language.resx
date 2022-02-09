@@ -135,6 +135,21 @@
   <data name="ENGLISH" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagEnglish.png</value>
   </data>
+  <data name="error" xml:space="preserve">
+    <value>An error has occurred</value>
+  </data>
+  <data name="error_fields_empty" xml:space="preserve">
+    <value>Not all fields have been filled</value>
+  </data>
+  <data name="error_name_already_used" xml:space="preserve">
+    <value>Backup name already used</value>
+  </data>
+  <data name="error_title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="error_unknown_type" xml:space="preserve">
+    <value>Unknwown backup type</value>
+  </data>
   <data name="flag_name" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagEnglish.png</value>
   </data>

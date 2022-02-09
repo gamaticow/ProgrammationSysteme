@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Windows.Input;
 
 namespace EasySave.ViewModel.Commands
 {
-    class EditBackupCommand : ICommand
+    class EditBackupCommand : DelegateCommandBase
     {
         private InfoBackupViewModel viewModel;
 
@@ -18,12 +19,12 @@ namespace EasySave.ViewModel.Commands
 
         public event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter)
+        protected override bool CanExecute(object parameter)
         {
-            return true;
+            return viewModel.name != null && viewModel.name.Length > 0 && viewModel.name != viewModel.BackupWorkSelected.name;
         }
 
-        public void Execute(object parameter)
+        protected override void Execute(object parameter)
         {
             viewModel.BackupWorkSelected.name = viewModel.name;
         }

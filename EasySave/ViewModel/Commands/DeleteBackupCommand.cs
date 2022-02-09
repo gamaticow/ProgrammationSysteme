@@ -26,6 +26,7 @@ namespace EasySave.ViewModel.Commands
         public void Execute(object parameter)
         {
             Model.Model.Instance.DeleteBackup(viewModel.BackupWorkSelected);
+            viewModel.SelectedViewModel = new MenuViewModel();
         }
     }
 }
