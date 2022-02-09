@@ -12,7 +12,7 @@
     <StackPanel Height="450" Width="800">
         <StackPanel Orientation="Horizontal">
             <Label Content="{Binding TLanguageChoice}" />
-            <ComboBox Width="120" ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}">
+            <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Image Height="35" Source="{Binding Name}"/>
@@ -37,6 +37,16 @@
             <Label Content="{Binding TBusinessApp}" VerticalAlignment="Top" />
             <TextBox Width="250" Height="25" Text="{Binding BusinessApp}" />
             <Button Content="{StaticResource folder}" Height="25" Command="{Binding SelectBuisnessAppExeCommand}" Margin="5,0,0,0" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="{Binding TMusicChoice}" />
+            <ComboBox ItemsSource="{Binding Playlist}" SelectedItem="{Binding SMusic}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
     </StackPanel>
 </UserControl>

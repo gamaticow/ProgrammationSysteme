@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EasySave.ViewModel.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace EasySave.ViewModel
 {
@@ -23,8 +25,11 @@ namespace EasySave.ViewModel
                 OnPropertyChanged(nameof(Tflag_name));
             }
         }
-
-        private MainViewModel() { }
+        public ICommand MediaPlayerCommand { get; private set; }
+        private MainViewModel() 
+        {
+            MediaPlayerCommand = new MediaPlayerCommand();
+        }
 
         public override void SetTranslation()
         {

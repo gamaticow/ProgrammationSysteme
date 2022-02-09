@@ -32,7 +32,10 @@
         <ContentControl Content="{Binding SelectedViewModel}" Margin="0,25,0,0" />
         <Grid Height="35" Background="LightGray" Margin="0,449,0,10">
             <Label VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin DEMBELE Romaric RAMBIER Ewen</Label>
-            <Image HorizontalAlignment="Right" Margin="0,0,10,0" Source="{Binding Tflag_name}"/>
+            <Button HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding MediaPlayerCommand}" BorderThickness="0" Background="LightGray">
+                <Image Source="{Binding Tflag_name}"/>
+            </Button>
         </Grid>
     </Grid>
+    
 </Window>

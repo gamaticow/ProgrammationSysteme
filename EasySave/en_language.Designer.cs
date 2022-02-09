@@ -241,6 +241,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Choose your music.
+        /// </summary>
+        internal static string music_choice {
+            get {
+                return ResourceManager.GetString("music_choice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Business app choice.
         /// </summary>
         internal static string select_business_app {
