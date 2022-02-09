@@ -124,6 +124,51 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Une erreur est survenue.
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tous les champs n&apos;ont pas été remplies.
+        /// </summary>
+        internal static string error_fields_empty {
+            get {
+                return ResourceManager.GetString("error_fields_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom déjà utilisé.
+        /// </summary>
+        internal static string error_name_already_used {
+            get {
+                return ResourceManager.GetString("error_name_already_used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur.
+        /// </summary>
+        internal static string error_title {
+            get {
+                return ResourceManager.GetString("error_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type de travail de sauvegarde inconnu.
+        /// </summary>
+        internal static string error_unknown_type {
+            get {
+                return ResourceManager.GetString("error_unknown_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagFrench.png.
         /// </summary>
         internal static string flag_name {

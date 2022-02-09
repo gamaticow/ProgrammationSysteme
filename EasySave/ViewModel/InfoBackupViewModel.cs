@@ -16,12 +16,26 @@ namespace EasySave.ViewModel
         public string TLabelTargetDirectory { get; set; }
         public string TLabelBackupType { get; set; }
         public BackupWork BackupWorkSelected { get; set; }
-        public string name { get; set; }
+
+        private string _name;
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                if(EditBackupCommand != null)
+                    EditBackupCommand.RaiseCanExecuteChanged();
+            }
+        }
         public string sourceDirectory { get; set; }
         public string targetDirectory { get; set; }
         public string backupType { get; set; }
 
-        public ICommand EditBackupCommand { get; private set; }
+        public EditBackupCommand EditBackupCommand { get; private set; }
         public ICommand DeleteBackupCommand { get; private set; }
         public ICommand ExecuteBackupCommand { get; private set; }
 
