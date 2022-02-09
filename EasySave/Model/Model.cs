@@ -10,12 +10,24 @@ namespace EasySave.Model
 {
     class Model
     {
-
-        public static Model Instance { get; private set; } = new Model();
+        private static Model _instance;
+        public static Model Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    _instance = new Model();
+                    _instance.ReadDataFile();
+                }
+                return _instance;
+            }
+        }
 
         public Language language { get; private set; }
         public List<BackupWork> backupWorks { get; private set; }
         public LogObserver logObserver { get; private set; }
+        public LogType logType { get; set; } = LogType.XML;
         public StateObserver stateObserver { get; private set; }
         public SaveBackupObserver saveObserver { get; private set; }
         public List<string> encryptedExtensions { get; set; } = new List<string>();
@@ -30,8 +42,6 @@ namespace EasySave.Model
             logObserver = new LogObserver();
             stateObserver = new StateObserver();
             saveObserver = new SaveBackupObserver();
-
-            ReadDataFile();
         }
 
         // Method that read the configuration JSON file and import all the objects in it 
@@ -47,6 +57,7 @@ namespace EasySave.Model
                 encryptedExtensions = save.encryptedExtensions;
                 businessApp = save.businessApp;
                 backupWorks = save.GetBackupWorks();
+                logType = save.logType;
                 Music = save.Music;
             }
             language = new Language(languageType);
@@ -63,6 +74,7 @@ namespace EasySave.Model
             save.encryptedExtensions = encryptedExtensions;
             save.businessApp = businessApp;
             save.language = language.languageType;
+            save.logType = logType;
             save.Music = Music;
             File.WriteAllText("EasySave.json", save.ToJson());
         }

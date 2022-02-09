@@ -83,6 +83,20 @@ namespace EasySave.ViewModel
             }
         }
 
+        private string _tLogTypeChoice;
+        public string TLogTypeChoice
+        {
+            get
+            {
+                return _tLogTypeChoice;
+            }
+            set
+            {
+                _tLogTypeChoice = value;
+                OnPropertyChanged(nameof(TLogTypeChoice));
+            }
+        }
+
         private string _tMusicChoice;
         public string TMusicChoice
         {
@@ -177,6 +191,25 @@ namespace EasySave.ViewModel
 
         public SelectBusinessAppCommand SelectBuisnessAppExeCommand { get; private set; }
 
+        private object _sLogType;
+        public object SLogType
+        {
+            get
+            {
+                return _sLogType;
+            }
+            set
+            {
+                _sLogType = value;
+                Type t = value.GetType();
+                PropertyInfo info = t.GetProperty("Type");
+                LogType logType = (LogType)info.GetValue(value);
+                Model.Model.Instance.logType = logType;
+                Model.Model.Instance.WriteDataFile();
+            }
+        }
+        public ObservableCollection<object> LogTypes { get; set; }
+
         private object _sMusic;
         public object SMusic
         {
@@ -205,6 +238,17 @@ namespace EasySave.ViewModel
                 }
             }
 
+            LogTypes = new ObservableCollection<object>();
+            foreach (LogType type in Enum.GetValues(typeof(LogType)))
+            {
+                var l = new { Name = type.ToString(), Type = type };
+                LogTypes.Add(l);
+                if (type == Model.Model.Instance.logType)
+                {
+                    SLogType = l;
+                }
+            }
+
             Playlist = new ObservableCollection<object>();
             object selected = new { Name = "Bob Marley - Love Is Love", Path = @"pack://siteoforigin:,,,/Resources/bob_marley_LoveIsLove.mp3" };
             SMusic = selected;
@@ -224,12 +268,13 @@ namespace EasySave.ViewModel
 
         public override void SetTranslation()
         {
-            TMusicChoice = Translate("music_choice");
             TLanguageChoice = Translate("language_choice");
             TEncryptedExtension = Translate("encrypted_extension");
             TEncryptedExtensionAdd = Translate("encrypted_extension_add");
             TEncryptedExtensionDelete = Translate("encrypted_extension_delete");
             TBusinessApp = Translate("select_business_app");
+            TLogTypeChoice = Translate("log_type_choice");
+            TMusicChoice = Translate("music_choice");
         }
     }
 }

@@ -11,6 +11,7 @@ namespace EasySave.Model
         public List<string> encryptedExtensions { get; set; }
         public string businessApp { get; set; }
         public List<Dictionary<string, string>> backupWorks { get; private set; }
+        public LogType logType { get; set; }
         public object Music { get; set; }
 
         public EasySaveConfig()
@@ -41,18 +42,18 @@ namespace EasySave.Model
                     if("FULL".Equals(backupData.GetValueOrDefault("type")))
                     {
                         BackupWork backupWork = new FullBackupWork(backupData.GetValueOrDefault("name"), backupData.GetValueOrDefault("sourceDirectory"), backupData.GetValueOrDefault("targetDirectory"));
-                        //TODO backupWork.Subscribe(Program.instance.logObserver);
-                        //TODO backupWork.Subscribe(Program.instance.stateObserver);
-                        //TODO backupWork.Subscribe(Program.instance.saveObserver);
+                        backupWork.Subscribe(Model.Instance.logObserver);
+                        backupWork.Subscribe(Model.Instance.stateObserver);
+                        backupWork.Subscribe(Model.Instance.saveObserver);
                         output.Add(backupWork);
                         names.Add(backupData.GetValueOrDefault("name"));
                     }
                     else if("DIFFERENTIAL".Equals(backupData.GetValueOrDefault("type")))
                     {
                         BackupWork backupWork = new DifferentialBackupWork(backupData.GetValueOrDefault("name"), backupData.GetValueOrDefault("sourceDirectory"), backupData.GetValueOrDefault("targetDirectory"));
-                        //TODO backupWork.Subscribe(Program.instance.logObserver);
-                        //TODO backupWork.Subscribe(Program.instance.stateObserver);
-                        //TODO backupWork.Subscribe(Program.instance.saveObserver);
+                        backupWork.Subscribe(Model.Instance.logObserver);
+                        backupWork.Subscribe(Model.Instance.stateObserver);
+                        backupWork.Subscribe(Model.Instance.saveObserver);
                         output.Add(backupWork);
                         names.Add(backupData.GetValueOrDefault("name"));
                     }
