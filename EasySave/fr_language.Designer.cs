@@ -61,42 +61,6 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Travail de sauvegarde supprimé.
-        /// </summary>
-        internal static string backup_deleted {
-            get {
-                return ResourceManager.GetString("backup_deleted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Exécution de .
-        /// </summary>
-        internal static string backup_execution {
-            get {
-                return ResourceManager.GetString("backup_execution", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sauvegarde terminé.
-        /// </summary>
-        internal static string backup_execution_finished {
-            get {
-                return ResourceManager.GetString("backup_execution_finished", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à différentiel.
-        /// </summary>
-        internal static string backuptype_differential {
-            get {
-                return ResourceManager.GetString("backuptype_differential", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à complet.
         /// </summary>
         internal static string backuptype_full {
@@ -106,101 +70,11 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Retour.
+        ///   Recherche une chaîne localisée semblable à Créer une sauvegarde.
         /// </summary>
-        internal static string backupview_back {
+        internal static string create_backup {
             get {
-                return ResourceManager.GetString("backupview_back", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Travail de sauvegarde créé.
-        /// </summary>
-        internal static string backupview_backup_created {
-            get {
-                return ResourceManager.GetString("backupview_backup_created", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Supprimer.
-        /// </summary>
-        internal static string backupview_delete_backup {
-            get {
-                return ResourceManager.GetString("backupview_delete_backup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Modifier.
-        /// </summary>
-        internal static string backupview_edit_backup {
-            get {
-                return ResourceManager.GetString("backupview_edit_backup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Exécuter la sauvegarde.
-        /// </summary>
-        internal static string backupview_execute_backup {
-            get {
-                return ResourceManager.GetString("backupview_execute_backup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Nouveau nom du travail de sauvegarde : .
-        /// </summary>
-        internal static string backupview_rename {
-            get {
-                return ResourceManager.GetString("backupview_rename", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Travail de sauvegarde sélectionné : .
-        /// </summary>
-        internal static string backupview_selected_backup_name {
-            get {
-                return ResourceManager.GetString("backupview_selected_backup_name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Source : .
-        /// </summary>
-        internal static string backupview_selected_backup_source {
-            get {
-                return ResourceManager.GetString("backupview_selected_backup_source", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Destination : .
-        /// </summary>
-        internal static string backupview_selected_backup_target {
-            get {
-                return ResourceManager.GetString("backupview_selected_backup_target", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Type : .
-        /// </summary>
-        internal static string backupview_selected_backup_type {
-            get {
-                return ResourceManager.GetString("backupview_selected_backup_type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Choisissez une action : .
-        /// </summary>
-        internal static string chose_action {
-            get {
-                return ResourceManager.GetString("chose_action", resourceCulture);
+                return ResourceManager.GetString("create_backup", resourceCulture);
             }
         }
         
@@ -214,11 +88,47 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Erreur lors de la sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Extension à chiffrer.
         /// </summary>
-        internal static string error_backup {
+        internal static string encrypted_extension {
             get {
-                return ResourceManager.GetString("error_backup", resourceCulture);
+                return ResourceManager.GetString("encrypted_extension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ajouter.
+        /// </summary>
+        internal static string encrypted_extension_add {
+            get {
+                return ResourceManager.GetString("encrypted_extension_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Supprimer.
+        /// </summary>
+        internal static string encrypted_extension_delete {
+            get {
+                return ResourceManager.GetString("encrypted_extension_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagEnglish.png.
+        /// </summary>
+        internal static string ENGLISH {
+            get {
+                return ResourceManager.GetString("ENGLISH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Une erreur est survenue.
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
             }
         }
         
@@ -232,20 +142,20 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Action impossible.
-        /// </summary>
-        internal static string error_impossible_action {
-            get {
-                return ResourceManager.GetString("error_impossible_action", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nom déjà utilisé.
         /// </summary>
         internal static string error_name_already_used {
             get {
                 return ResourceManager.GetString("error_name_already_used", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur.
+        /// </summary>
+        internal static string error_title {
+            get {
+                return ResourceManager.GetString("error_title", resourceCulture);
             }
         }
         
@@ -259,6 +169,24 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagFrench.png.
+        /// </summary>
+        internal static string flag_name {
+            get {
+                return ResourceManager.GetString("flag_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagFrench.png.
+        /// </summary>
+        internal static string FRENCH {
+            get {
+                return ResourceManager.GetString("FRENCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Complet.
         /// </summary>
         internal static string FULL {
@@ -268,119 +196,83 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Retour.
+        ///   Recherche une chaîne localisée semblable à Afficher les informations.
         /// </summary>
-        internal static string mainview_back {
+        internal static string get_info {
             get {
-                return ResourceManager.GetString("mainview_back", resourceCulture);
+                return ResourceManager.GetString("get_info", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Travaux de sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Nom de sauvegarde.
         /// </summary>
-        internal static string mainview_backupworks {
+        internal static string label_backup_name {
             get {
-                return ResourceManager.GetString("mainview_backupworks", resourceCulture);
+                return ResourceManager.GetString("label_backup_name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Saisissez le nom de la sauvegarde : .
+        ///   Recherche une chaîne localisée semblable à Type de sauvegarde.
         /// </summary>
-        internal static string mainview_create_backup_name {
+        internal static string label_backup_type {
             get {
-                return ResourceManager.GetString("mainview_create_backup_name", resourceCulture);
+                return ResourceManager.GetString("label_backup_type", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Saisissez le répertoire source : .
+        ///   Recherche une chaîne localisée semblable à Répertoire Source.
         /// </summary>
-        internal static string mainview_create_backup_source {
+        internal static string label_source_directory {
             get {
-                return ResourceManager.GetString("mainview_create_backup_source", resourceCulture);
+                return ResourceManager.GetString("label_source_directory", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Saisissez le répertoire cible : .
+        ///   Recherche une chaîne localisée semblable à Répertoire Cible.
         /// </summary>
-        internal static string mainview_create_backup_target {
+        internal static string label_target_directory {
             get {
-                return ResourceManager.GetString("mainview_create_backup_target", resourceCulture);
+                return ResourceManager.GetString("label_target_directory", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Saisissez le type de sauvegarde (complet / différentiel) : .
+        ///   Recherche une chaîne localisée semblable à Choix du language.
         /// </summary>
-        internal static string mainview_create_backup_type {
+        internal static string language_choice {
             get {
-                return ResourceManager.GetString("mainview_create_backup_type", resourceCulture);
+                return ResourceManager.GetString("language_choice", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Créer un travail de sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Choisissez votre musique.
         /// </summary>
-        internal static string mainview_create_backup_work {
+        internal static string music_choice {
             get {
-                return ResourceManager.GetString("mainview_create_backup_work", resourceCulture);
+                return ResourceManager.GetString("music_choice", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Exécuter tous les travaux de sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Choix du logiciel métier.
         /// </summary>
-        internal static string mainview_execute_all_backup_works {
+        internal static string select_business_app {
             get {
-                return ResourceManager.GetString("mainview_execute_all_backup_works", resourceCulture);
+                return ResourceManager.GetString("select_business_app", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Langue définit en Français.
+        ///   Recherche une chaîne localisée semblable à Exécution séquentielle.
         /// </summary>
-        internal static string mainview_language_changed {
+        internal static string sequential_execution {
             get {
-                return ResourceManager.GetString("mainview_language_changed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Configuration de la langue.
-        /// </summary>
-        internal static string mainview_language_configuration {
-            get {
-                return ResourceManager.GetString("mainview_language_configuration", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à English.
-        /// </summary>
-        internal static string mainview_language_en {
-            get {
-                return ResourceManager.GetString("mainview_language_en", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Français.
-        /// </summary>
-        internal static string mainview_language_fr {
-            get {
-                return ResourceManager.GetString("mainview_language_fr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Quitter.
-        /// </summary>
-        internal static string mainview_quit {
-            get {
-                return ResourceManager.GetString("mainview_quit", resourceCulture);
+                return ResourceManager.GetString("sequential_execution", resourceCulture);
             }
         }
     }

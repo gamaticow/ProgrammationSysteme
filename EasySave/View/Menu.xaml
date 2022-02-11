@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d">
-    <Grid>
-        <Label Content="Menu" HorizontalAlignment="Center" Margin="0,59,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Name}" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top"/>
-        <Button Content="Language" HorizontalAlignment="Center" Margin="0,284,0,0" VerticalAlignment="Top" Height="20" Command="{Binding UpdateViewCommand}" CommandParameter="Language"/>
+    <Grid Width="800" Height="450">
+        <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" Margin="10,10,580,58">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="{Binding Tcreate_backup}" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="CreateBackup"/>
+        <Button Content="{Binding Tinfo}" HorizontalAlignment="Left" Margin="243,40,0,0" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="InfoBackup"/>
+        <Button Content="{Binding Tsequential_execution}" HorizontalAlignment="Left" Margin="243,70,0,0" VerticalAlignment="Top" Height="25" Command="{Binding SequentialExecutionCommand}"/>
     </Grid>
 </UserControl>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace EasySave.ViewModel.Commands
 {
@@ -29,9 +30,21 @@ namespace EasySave.ViewModel.Commands
             {
                 viewModel.SelectedViewModel = new MenuViewModel();
             }
-            else if (parameter.ToString() == "Language")
+            else if (parameter.ToString() == "Settings")
             {
-                viewModel.SelectedViewModel = new LanguageViewModel();
+                viewModel.SelectedViewModel = new SettingsViewModel();
+            }
+            else if (parameter.ToString() == "CreateBackup")
+            {
+                viewModel.SelectedViewModel = new CreateBackupViewModel();
+            }
+            else if (parameter.ToString() == "InfoBackup")
+            {
+                if(viewModel.GetType() == typeof(MenuViewModel))
+                {
+                    MenuViewModel menu = (MenuViewModel)viewModel;
+                    viewModel.SelectedViewModel = new InfoBackupViewModel(menu.Selected);
+                }
             }
         }
     }

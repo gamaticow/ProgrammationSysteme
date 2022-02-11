@@ -4,14 +4,14 @@ using System.Text;
 
 namespace EasySave.Model
 {
-    class BackupLog
+    public class BackupLog
     {
-        public string Name { get; private set; }
-        public string FileSource { get; private set; }
-        public string FileTarget { get; private set; }
-        public long FileSize { get; private set; }
-        public long FileTransferTime { get; private set; }
-        public string time { get; private set; }
+        public string Name { get; set; }
+        public string FileSource { get; set; }
+        public string FileTarget { get; set; }
+        public long FileSize { get; set; }
+        public long FileTransferTime { get; set; }
+        public string time { get; set; }
 
         public BackupLog(string name, string sourceFile, string targetFile, long fileSize, long transfertTime, string time)
         {
@@ -22,6 +22,9 @@ namespace EasySave.Model
             this.FileTransferTime = transfertTime;
             this.time = time;
         }
+
+        public BackupLog()
+        { }
 
     }
 }
