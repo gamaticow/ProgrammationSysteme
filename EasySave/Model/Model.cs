@@ -33,6 +33,7 @@ namespace EasySave.Model
         public List<string> encryptedExtensions { get; set; } = new List<string>();
         public string businessApp { get; set; }
         public MediaPlayer mediaPlayer { get; set; }
+        public string EncryptionKey { get; private set; }
 
         public object Music { get; set; }
 
@@ -59,8 +60,22 @@ namespace EasySave.Model
                 backupWorks = save.GetBackupWorks();
                 logType = save.logType;
                 Music = save.Music;
+                EncryptionKey = save.EncryptionKey;
             }
             language = new Language(languageType);
+
+            // Generation of an encryption key for Cryptosoft
+            if (EncryptionKey == null)
+            {
+                string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                Random rng = new Random();
+                EncryptionKey = "";
+                for(int i = 0; i < 20; i++)
+                {
+                    EncryptionKey += chars.ElementAt(rng.Next(0, chars.Length));
+                }
+                WriteDataFile();
+            }
         }
 
         // Wite the new backup in the configuration JSON file
@@ -76,6 +91,7 @@ namespace EasySave.Model
             save.language = language.languageType;
             save.logType = logType;
             save.Music = Music;
+            save.EncryptionKey = EncryptionKey;
             File.WriteAllText("EasySave.json", save.ToJson());
         }
 

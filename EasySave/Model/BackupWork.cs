@@ -81,7 +81,7 @@ namespace EasySave.Model
                         // Edit the state JSON file with the informations we have on the save progression
                         UpdateState(file.source.FullName, file.target.FullName, "ACTIVE", files.Count, totalFileSize, nbFilesLeftToDo);
                         long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                        int encryptTime;
+                        int encryptTime = 0;
 
                         // Copy the file into the target repository
                         bool encrypt = false;
@@ -90,7 +90,7 @@ namespace EasySave.Model
                             if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
                             {
                                 ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
-                                Cryptosoft.Arguments = $"AZEFGBDNKCOIJGFDHKBGJLDNSK {file.source.FullName} {file.target.FullName}";
+                                Cryptosoft.Arguments = $"{Model.Instance.EncryptionKey} {file.source.FullName} {file.target.FullName}";
                                 Cryptosoft.UseShellExecute = false;
                                 Cryptosoft.CreateNoWindow = true;
                                 Process process = Process.Start(Cryptosoft);
@@ -105,7 +105,7 @@ namespace EasySave.Model
                         }
 
                         // Edit the log JSON file
-                        Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start);
+                        Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
                         nbFilesLeftToDo--;
                     }
                     // When we have copy all the files, edit the state JSON file to "END"

@@ -13,6 +13,7 @@ namespace EasySave.Model
         public List<Dictionary<string, string>> backupWorks { get; private set; }
         public LogType logType { get; set; }
         public object Music { get; set; }
+        public string EncryptionKey { get; set; }
 
         public EasySaveConfig()
         {
