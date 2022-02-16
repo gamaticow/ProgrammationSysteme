@@ -81,6 +81,7 @@ namespace EasySave.Model
                         // Edit the state JSON file with the informations we have on the save progression
                         UpdateState(file.source.FullName, file.target.FullName, "ACTIVE", files.Count, totalFileSize, nbFilesLeftToDo);
                         long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                        int encryptTime;
 
                         // Copy the file into the target repository
                         bool encrypt = false;
@@ -93,6 +94,8 @@ namespace EasySave.Model
                                 Cryptosoft.UseShellExecute = false;
                                 Cryptosoft.CreateNoWindow = true;
                                 Process process = Process.Start(Cryptosoft);
+                                process.WaitForExit();
+                                encryptTime = process.ExitCode;
                                 encrypt = true;
                             }
                         }
@@ -204,9 +207,9 @@ namespace EasySave.Model
         }
 
         // Method to add logs via observer
-        protected void Log(string sourceFile, string targetFile, long fileSize, long transfertTime)
+        protected void Log(string sourceFile, string targetFile, long fileSize, long transfertTime, int encryptTime)
         {
-            BackupLog log = new BackupLog(name, sourceFile, targetFile, fileSize, transfertTime, DateTime.Now.ToString("G"));
+            BackupLog log = new BackupLog(name, sourceFile, targetFile, fileSize, transfertTime, encryptTime, DateTime.Now.ToString("G"));
             foreach (IObserver<BackupLog> observer in logObservers)
             {
                 observer.OnNext(log);
