@@ -45,20 +45,24 @@ namespace EasySave.Model
             {
                 bool canExecute = true;
 
-                // Check the presence of CalculatorApp in the current processes that have not exited and set the canExecute variable according the presence state
-                Process[] localAll = Process.GetProcesses();
-                foreach (var process in localAll)
+                if(Model.Instance.businessApp != null && Model.Instance.businessApp.Length > 0)
                 {
-                    try
+                    // Check the presence of CalculatorApp in the current processes that have not exited and set the canExecute variable according the presence state
+                    Process[] localAll = Process.GetProcesses();
+                    foreach (var process in localAll)
                     {
-                        if (!process.HasExited && process.MainModule.FileName.EndsWith(Model.Instance.businessApp))
+                        try
                         {
-                            canExecute = false;
+                            if (!process.HasExited && process.MainModule.FileName.EndsWith(Model.Instance.businessApp))
+                            {
+                                canExecute = false;
+                                break;
+                            }
                         }
-                    }
-                    catch (Win32Exception e)
-                    {
+                        catch (Win32Exception e)
+                        {
 
+                        }
                     }
                 }
 
@@ -90,7 +94,7 @@ namespace EasySave.Model
                             if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
                             {
                                 ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
-                                Cryptosoft.Arguments = $"{Model.Instance.EncryptionKey} {file.source.FullName} {file.target.FullName}";
+                                Cryptosoft.Arguments = $"\"{Model.Instance.EncryptionKey}\" \"{file.source.FullName}\" \"{file.target.FullName}\"";
                                 Cryptosoft.UseShellExecute = false;
                                 Cryptosoft.CreateNoWindow = true;
                                 Process process = Process.Start(Cryptosoft);

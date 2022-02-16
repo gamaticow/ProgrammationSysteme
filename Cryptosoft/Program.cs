@@ -10,7 +10,6 @@ namespace Cryptosoft
         static void Main(string[] args)
         {
             Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
             string inputKey = args[0];
             string sourcePath = args[1];
             string destPath = args[2];
@@ -39,14 +38,16 @@ namespace Cryptosoft
                 }*/
             }
 
+            stopwatch.Start();
             byte[] encrypted = EncryptOrDecrypt(b, key);
+            stopwatch.Stop();
 
             using (FileStream fs = fo.OpenWrite())
             {
                 // Add some information to the file.
                 fs.Write(encrypted, 0, encrypted.Length);
             }
-            stopwatch.Stop();
+            
             int encryptTime = Convert.ToInt32(stopwatch.Elapsed.TotalMilliseconds);
             Environment.Exit(encryptTime);
         }
