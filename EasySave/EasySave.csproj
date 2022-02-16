@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Cryptosoft.deps.json" />
+    <None Remove="Cryptosoft.dll" />
+    <None Remove="Cryptosoft.exe" />
+    <None Remove="Cryptosoft.runtimeconfig.json" />
     <None Remove="home.png" />
     <None Remove="Resources\bob_marley_1.mp3" />
     <None Remove="Resources\bob_marley_LoveIsLove.mp3" />
@@ -34,6 +38,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Cryptosoft.deps.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cryptosoft.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cryptosoft.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cryptosoft.runtimeconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\bob_marley_LoveIsLove.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

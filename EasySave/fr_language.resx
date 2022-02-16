@@ -180,8 +180,11 @@
   <data name="language_choice" xml:space="preserve">
     <value>Choix du language</value>
   </data>
+  <data name="log_type_choice" xml:space="preserve">
+    <value>Choix du type de log</value>
+  </data>
   <data name="music_choice" xml:space="preserve">
-    <value>Choisissez votre musique</value>
+    <value>Choix de la musique</value>
   </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Choix du logiciel métier</value>

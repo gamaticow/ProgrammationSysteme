@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace EasySave.Model
 {
@@ -12,7 +13,7 @@ namespace EasySave.Model
         private List<IObserver<BackupState>> stateObservers = new List<IObserver<BackupState>>();
         private List<IObserver<string>> saveObservers = new List<IObserver<string>>();
 
-        private string _name;      
+        private string _name;
         public string name
         {
             get
@@ -40,34 +41,80 @@ namespace EasySave.Model
 
         protected bool ExecuteBackup(DirectoryInfo source, DirectoryInfo target)
         {
-            List<BackupFile> files = new List<BackupFile>();
-            // Execute GetFiles() and get the total file size that will be write in the state JSON file
-            long totalFileSize = GetFiles(files, source, target);
-            if(totalFileSize < 0)
+            using (Process myProcess = new Process())
             {
-                return false;
+                bool canExecute = true;
+
+                // Check the presence of CalculatorApp in the current processes that have not exited and set the canExecute variable according the presence state
+                Process[] localAll = Process.GetProcesses();
+                foreach (var process in localAll)
+                {
+                    try
+                    {
+                        if (!process.HasExited && process.MainModule.FileName.EndsWith(Model.Instance.businessApp))
+                        {
+                            canExecute = false;
+                        }
+                    }
+                    catch (Win32Exception e)
+                    {
+
+                    }
+                }
+
+                if (canExecute)
+                {
+                    List<BackupFile> files = new List<BackupFile>();
+                    // Execute GetFiles() and get the total file size that will be write in the state JSON file
+                    long totalFileSize = GetFiles(files, source, target);
+                    if (totalFileSize < 0)
+                    {
+                        return false;
+                    }
+
+                    // Get the current file size that will be write in the state JSON file
+                    int nbFilesLeftToDo = files.Count;
+
+                    // Loop on each file we need to save 
+                    foreach (BackupFile file in files)
+                    {
+                        // Edit the state JSON file with the informations we have on the save progression
+                        UpdateState(file.source.FullName, file.target.FullName, "ACTIVE", files.Count, totalFileSize, nbFilesLeftToDo);
+                        long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+                        // Copy the file into the target repository
+                        bool encrypt = false;
+                        foreach (string extension in Model.Instance.encryptedExtensions)
+                        {
+                            if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
+                            {
+                                ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
+                                Cryptosoft.Arguments = $"AZEFGBDNKCOIJGFDHKBGJLDNSK {file.source.FullName} {file.target.FullName}";
+                                Cryptosoft.UseShellExecute = false;
+                                Cryptosoft.CreateNoWindow = true;
+                                Process process = Process.Start(Cryptosoft);
+                                encrypt = true;
+                            }
+                        }
+                        if (encrypt == false)
+                        {
+                            file.source.CopyTo(file.target.FullName, true);
+                        }
+
+                        // Edit the log JSON file
+                        Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start);
+                        nbFilesLeftToDo--;
+                    }
+                    // When we have copy all the files, edit the state JSON file to "END"
+                    UpdateState("", "", "END", 0, 0, 0);
+                    return true;
+                }
+                else
+                {
+                    //Console.WriteLine("Notepad ouvert");
+                }
+                return true;
             }
-
-            // Get the current file size that will be write in the state JSON file
-            int nbFilesLeftToDo = files.Count;
-
-            // Loop on each file we need to save 
-            foreach (BackupFile file in files)
-            {
-                // Edit the state JSON file with the informations we have on the save progression
-                UpdateState(file.source.FullName, file.target.FullName, "ACTIVE", files.Count, totalFileSize, nbFilesLeftToDo);
-                long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-
-                // Copy the file into the target repository
-                file.source.CopyTo(file.target.FullName, true);
-
-                // Edit the log JSON file
-                Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start);
-                nbFilesLeftToDo--;
-            }
-            // When we have copy all the files, edit the state JSON file to "END"
-            UpdateState("", "", "END", 0, 0, 0);
-            return true;
         }
         private long GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
         {
@@ -153,14 +200,14 @@ namespace EasySave.Model
             else
             {
                 return -1;
-            }         
+            }
         }
 
         // Method to add logs via observer
         protected void Log(string sourceFile, string targetFile, long fileSize, long transfertTime)
         {
             BackupLog log = new BackupLog(name, sourceFile, targetFile, fileSize, transfertTime, DateTime.Now.ToString("G"));
-            foreach(IObserver<BackupLog> observer in logObservers)
+            foreach (IObserver<BackupLog> observer in logObservers)
             {
                 observer.OnNext(log);
             }

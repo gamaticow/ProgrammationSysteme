@@ -8,9 +8,10 @@ namespace Cryptosoft
     {
         static void Main(string[] args)
         {
-            string sourcePath = @"C:\Users\rasor\OneDrive\Documents\test\levik2.png";
-            string destPath = @"C:\Users\rasor\OneDrive\Documents\test\levik2.png";
-            string inputKey = "AZEFGBDNKCOIJGFDHKBGJLDNSK";
+            string inputKey = args[0];
+            string sourcePath = args[1];
+            string destPath = args[2];
+
             byte[] key = Encoding.Unicode.GetBytes(inputKey);
             byte[] b;
 
@@ -20,13 +21,7 @@ namespace Cryptosoft
             // Delete the file if it exists.
             if (!fi.Exists)
             {
-                //Create the file.
-                using (FileStream fs = fi.Create())
-                {
-                    Byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
-                    //Add some information to the file.
-                    fs.Write(info, 0, info.Length);
-                }
+                Environment.Exit(-1);
             }
             
             //Open the stream and read it back.
@@ -48,6 +43,7 @@ namespace Cryptosoft
                 // Add some information to the file.
                 fs.Write(encrypted, 0, encrypted.Length);
             }
+            Environment.Exit(0);
         }
 
         public static byte[] EncryptOrDecrypt(byte[] text, byte[] key)

@@ -250,7 +250,16 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Choisissez votre musique.
+        ///   Recherche une chaîne localisée semblable à Choix du type de log.
+        /// </summary>
+        internal static string log_type_choice {
+            get {
+                return ResourceManager.GetString("log_type_choice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Choix de la musique.
         /// </summary>
         internal static string music_choice {
             get {
