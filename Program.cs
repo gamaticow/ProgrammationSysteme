@@ -73,6 +73,12 @@ namespace EasySave
             WriteDataFile();
         }
 
+        public void SetLogType(LanguageType languageType)
+        {
+            logObserver = new Language(languageType);
+            WriteDataFile();
+        }
+
         /**
          * Create new backup work and save it
          * @return status

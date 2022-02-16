@@ -83,12 +83,41 @@ namespace EasySave.Controller
         }
 
         // Controller for language configuration
+/*
         private void LanguageConfiguration()
         {
             bool exit = true;
             do
             {
                 string result = view.RenderLanguageConfiguration();
+                switch (result)
+                {
+                    case "1":
+                        Program.instance.SetLanguage(Model.LanguageType.ENGLISH);
+                        view.RenderLanguageChanged();
+                        break;
+                    case "2":
+                        Program.instance.SetLanguage(Model.LanguageType.FRENCH);
+                        view.RenderLanguageChanged();
+                        break;
+                    case "3":
+                        break;
+                    default:
+                        view.RenderError("error_impossible_action");
+                        exit = false;
+                        break;
+                }
+            } while (!exit);
+        }
+*/
+
+        // Controller for Log file type configuration
+        private void LogTypeConfiguration()
+        {
+            bool exit = true;
+            do
+            {
+                string result = view.RenderLogTypeConfiguration();
                 switch (result)
                 {
                     case "1":

@@ -3,11 +3,14 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace EasySave.Model
 {
     class LogObserver : IObserver<BackupLog>
     {
+        public string type = "null";
         public void OnCompleted()
         { }
 
@@ -16,28 +19,60 @@ namespace EasySave.Model
 
         public void OnNext(BackupLog value)
         {
-            string jsonString = JsonConvert.SerializeObject(value, Formatting.Indented);
+            string output = "";
+            LogType type = Model.Instance.logType;
 
-            string filePath = GetFilePath();
-            if(!File.Exists(filePath))
+            string filePath = GetFilePath(type);
+            if (!File.Exists(filePath))
             {
                 File.Create(filePath).Close();
             }
             else
             {
-                jsonString = $",\n{jsonString}";
+                if (type == LogType.JSON)
+                {
+                    output += ",";
+                }
+                output += "\n";
+            }
+
+            if (type == LogType.JSON)
+            {
+                output += JsonConvert.SerializeObject(value, Newtonsoft.Json.Formatting.Indented);
+            }
+            else if (type == LogType.XML)
+            {
+                var emptyNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+                XmlSerializer serializer = new XmlSerializer(value.GetType());
+                var settings = new XmlWriterSettings();
+                settings.Indent = true;
+                settings.OmitXmlDeclaration = true;
+                using (var stream = new StringWriter())
+                using (var writer = XmlWriter.Create(stream, settings))
+                {
+                    serializer.Serialize(writer, value, emptyNamespaces);
+                    output = $"{stream.ToString()}";
+                }
             }
 
             using (StreamWriter sw = File.AppendText(filePath))
             {
-                sw.Write(jsonString);
-                sw.Close();
+                sw.Write(output);
             }
         }
 
-        private string GetFilePath()
+        private string GetFilePath(LogType logType)
         {
-            return $@"log_{DateTime.Now.ToString("dd-MM-yyyy")}.json";
+            string extension = "";
+            if (logType == LogType.JSON)
+            {
+                extension = "json";
+            }
+            else if (logType == LogType.XML)
+            {
+                extension = "xml";
+            }
+            return $@"log_{DateTime.Now.ToString("dd-MM-yyyy")}.{extension}";
         }
     }
 }

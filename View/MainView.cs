@@ -16,6 +16,7 @@ namespace EasySave.View
         {
             Console.WriteLine($"1. {controller.Translate("mainview_backupworks")}");
             Console.WriteLine($"2. {controller.Translate("mainview_language_configuration")}");
+            Console.WriteLine("4. Log file configuration");
             Console.WriteLine($"3. {controller.Translate("mainview_quit")}");
             RenderChoseAction();
             return Console.ReadLine();
@@ -45,6 +46,15 @@ namespace EasySave.View
         {
             Console.WriteLine($"1. {controller.Translate("mainview_language_en")}");
             Console.WriteLine($"2. {controller.Translate("mainview_language_fr")}");
+            Console.WriteLine($"3. {controller.Translate("mainview_back")}");
+            RenderChoseAction();
+            return Console.ReadLine();
+        }
+
+        public string RenderLogTypeConfiguration()
+        {
+            Console.WriteLine($"1. JSON");
+            Console.WriteLine($"2. XML");
             Console.WriteLine($"3. {controller.Translate("mainview_back")}");
             RenderChoseAction();
             return Console.ReadLine();
