@@ -10,6 +10,8 @@ namespace EasySave.Model
 {
     class LogObserver : IObserver<BackupLog>
     {
+        private object _lock = new object();
+
         public void OnCompleted()
         { }
 
@@ -54,9 +56,12 @@ namespace EasySave.Model
                 }
             }
 
-            using (StreamWriter sw = File.AppendText(filePath))
+            lock (_lock)
             {
-                sw.Write(output);
+                using (StreamWriter sw = File.AppendText(filePath))
+                {
+                    sw.Write(output);
+                }
             }
 
         }

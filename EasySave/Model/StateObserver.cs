@@ -8,6 +8,7 @@ namespace EasySave.Model
 {
     class StateObserver : IObserver<BackupState>
     {
+        private object _lock = new object();
         private Dictionary<string, BackupState> backupStates = new Dictionary<string, BackupState>();
 
         public void OnCompleted()
@@ -18,12 +19,16 @@ namespace EasySave.Model
 
         public void OnNext(BackupState value)
         {
-            backupStates[value.Name] = value;
+            lock (_lock)
+            {
+                backupStates[value.Name] = value;
 
-            BackupState[] values = new BackupState[backupStates.Count];
-            backupStates.Values.CopyTo(values, 0);
-            string jsonString = JsonConvert.SerializeObject(values, Formatting.Indented);
-            File.WriteAllText("backup-state.json", jsonString);
+                BackupState[] values = new BackupState[backupStates.Count];
+                backupStates.Values.CopyTo(values, 0);
+                string jsonString = JsonConvert.SerializeObject(values, Formatting.Indented);
+
+                File.WriteAllText("backup-state.json", jsonString);
+            }
         }
     }
 }
