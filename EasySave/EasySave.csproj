@@ -30,10 +30,12 @@
     <None Remove="Resources\makassy-doucement.mp3" />
     <None Remove="Resources\makassy_doucement.mp3" />
     <None Remove="Resources\ninja_turtles.mp3" />
+    <None Remove="Resources\pause.png" />
     <None Remove="Resources\Petit son.mp3" />
     <None Remove="Resources\Petit_son.mp3" />
     <None Remove="Resources\play.png" />
     <None Remove="Resources\setting.png" />
+    <None Remove="Resources\stop.png" />
     <None Remove="Resources\trash.png" />
   </ItemGroup>
 
@@ -115,8 +117,10 @@
 	  <Resource Include="Resources\FlagFrench.png" />
 	  <Resource Include="Resources\folder.png" />
 	  <Resource Include="Resources\home.png" />
+	  <Resource Include="Resources\pause.png" />
 	  <Resource Include="Resources\play.png" />
 	  <Resource Include="Resources\setting.png" />
+	  <Resource Include="Resources\stop.png" />
 	  <Resource Include="Resources\trash.png" />
 	</ItemGroup>
 

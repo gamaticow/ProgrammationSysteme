@@ -30,13 +30,14 @@ namespace EasySave.ViewModel.Commands
         {
             foreach (BackupWork backupWork in Model.Model.Instance.backupWorks)
             {
-                if (backupWork.ExecuteBackup())
+                backupWork.ExecuteBackup();
+                /*if (backupWork.ExecuteBackup())
                 {
                 }
                 else
                 {
                     MessageBox.Show(Model.Model.Instance.language.Translate("error_sequential_execution"), Model.Model.Instance.language.Translate("error_sequential_execution"), MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                }*/
             }
         }
     }

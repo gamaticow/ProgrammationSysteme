@@ -15,12 +15,12 @@ namespace EasySave.Model
         public int NbFilesLeftToDo { get; private set; }
         public int Progression { get; private set; }
 
-        public BackupState(string name, string sourceFilePath, string targetFilePath, string state, int totalFilesToCopy, long totalFilesSize, int nbFilesLeftToDo, int progression)
+        public BackupState(string name, string sourceFilePath, string targetFilePath, BackupStateEnum state, int totalFilesToCopy, long totalFilesSize, int nbFilesLeftToDo, int progression)
         {
             Name = name;
             SourceFilePath = sourceFilePath;
             TargetFilePath = targetFilePath;
-            State = state;
+            State = state.ToString();
             TotalFilesToCopy = totalFilesToCopy;
             TotalFileSize = totalFilesSize;
             NbFilesLeftToDo = nbFilesLeftToDo;

@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Threading;
 
 namespace EasySave.Model
 {
@@ -29,18 +30,77 @@ namespace EasySave.Model
         public string sourceDirectory { get; private set; }
         public string targetDirectory { get; private set; }
         public BackupType backupType { get; protected set; }
+        private BackupStateEnum State { get; set; }
+
+        private Semaphore pause = new Semaphore(1, 1);
+        private Thread thread;
+        private bool interrupt = false;
+
+        // Datas fo backup state
+        private string sourceFilePath;
+        private string targetFilePath;
+        private int totalFilesToCopy;
+        private long totalFilesSize;
+        private int nbFilesLeftToDo;
+        private bool forceProgress;
 
         public BackupWork(string name, string sourceDirectory, string targetDirectory)
         {
             this.name = name;
             this.sourceDirectory = sourceDirectory;
             this.targetDirectory = targetDirectory;
+
+            State = BackupStateEnum.END;
+            sourceFilePath = "";
+            targetFilePath = "";
+            totalFilesToCopy = 0;
+            totalFilesSize = 0;
+            nbFilesLeftToDo = 0;
+            forceProgress = false;
         }
 
-        public abstract bool ExecuteBackup();
-
-        protected bool ExecuteBackup(DirectoryInfo source, DirectoryInfo target)
+        public void ExecuteBackup()
         {
+            if((State == BackupStateEnum.END || State == BackupStateEnum.INTERRUPTED) && ((thread != null && thread.ThreadState == System.Threading.ThreadState.Stopped) || thread == null))
+            {
+                interrupt = false;
+                thread = new Thread(ExecuteBackupWork);
+                thread.Start();
+            }
+            else if (State == BackupStateEnum.PAUSE)
+            {
+                pause.Release();
+            }
+        }
+
+        public void Pause()
+        {
+            if(State == BackupStateEnum.ACTIVE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
+            {
+                pause.WaitOne();
+                State = BackupStateEnum.PAUSE;
+                UpdateState();
+            }
+        }
+
+        public void Interupt()
+        {
+            if(State == BackupStateEnum.ACTIVE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
+            {
+                interrupt = true;
+            }
+            else if (State == BackupStateEnum.PAUSE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
+            {
+                interrupt = true;
+                pause.Release();
+            }
+        }
+
+        protected void ExecuteBackupWork()
+        {
+            DirectoryInfo source = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo target = new DirectoryInfo(targetDirectory);
+
             using (Process myProcess = new Process())
             {
                 bool canExecute = true;
@@ -73,17 +133,32 @@ namespace EasySave.Model
                     long totalFileSize = GetFiles(files, source, target);
                     if (totalFileSize < 0)
                     {
-                        return false;
+                        return;
                     }
+                    totalFilesSize = totalFileSize;
 
                     // Get the current file size that will be write in the state JSON file
-                    int nbFilesLeftToDo = files.Count;
+                    totalFilesToCopy = files.Count;
+                    nbFilesLeftToDo = files.Count;
 
                     // Loop on each file we need to save 
                     foreach (BackupFile file in files)
                     {
+                        pause.WaitOne();
+                        if(interrupt)
+                        {
+                            State = BackupStateEnum.INTERRUPTED;
+                            UpdateState();
+                            pause.Release();
+                            return;
+                        }
+
+                        State = BackupStateEnum.ACTIVE;
+                        sourceFilePath = file.source.FullName;
+                        targetFilePath = file.target.FullName;
+
                         // Edit the state JSON file with the informations we have on the save progression
-                        UpdateState(file.source.FullName, file.target.FullName, "ACTIVE", files.Count, totalFileSize, nbFilesLeftToDo);
+                        UpdateState();
                         long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                         int encryptTime = 0;
 
@@ -107,20 +182,28 @@ namespace EasySave.Model
                         {
                             file.source.CopyTo(file.target.FullName, true);
                         }
+                        //Thread.Sleep(5000);
 
                         // Edit the log JSON file
                         Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
                         nbFilesLeftToDo--;
+
+                        pause.Release();
                     }
                     // When we have copy all the files, edit the state JSON file to "END"
-                    UpdateState("", "", "END", 0, 0, 0);
-                    return true;
+                    sourceFilePath = "";
+                    targetFilePath = "";
+                    totalFilesToCopy = 0;
+                    nbFilesLeftToDo = 0;
+                    totalFilesSize = 0;
+                    forceProgress = true;
+                    State = BackupStateEnum.END;
+                    UpdateState();
                 }
                 else
                 {
                     //Console.WriteLine("Notepad ouvert");
                 }
-                return true;
             }
         }
         private long GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
@@ -221,9 +304,9 @@ namespace EasySave.Model
         }
 
         // Method to update states via observer
-        protected void UpdateState(string sourceFilePath, string targetFilePath, string backupState, int totalFilesToCopy, long totalFilesSize, int nbFilesLeftToDo)
+        protected void UpdateState()
         {
-            BackupState state = new BackupState(name, sourceFilePath, targetFilePath, backupState, totalFilesToCopy, totalFilesSize, nbFilesLeftToDo, totalFilesToCopy > 0 ? Convert.ToInt32((totalFilesToCopy - nbFilesLeftToDo) * 100.0 / totalFilesToCopy) : 0);
+            BackupState state = new BackupState(name, sourceFilePath, targetFilePath, State, totalFilesToCopy, totalFilesSize, nbFilesLeftToDo, totalFilesToCopy > 0 ? Convert.ToInt32((totalFilesToCopy - nbFilesLeftToDo) * 100.0 / totalFilesToCopy) : (forceProgress ? 100 : 0));
             foreach (IObserver<BackupState> observer in stateObservers)
             {
                 observer.OnNext(state);
@@ -253,7 +336,7 @@ namespace EasySave.Model
             if (!stateObservers.Contains(observer))
             {
                 stateObservers.Add(observer);
-                UpdateState("", "", "END", 0, 0, 0);
+                UpdateState();
             }
             return new Unsubscriber<BackupState>(stateObservers, observer);
         }
