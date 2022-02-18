@@ -32,6 +32,9 @@ namespace EasySave.Controller
                         LanguageConfiguration();
                         break;
                     case "3":
+                        LogTypeConfiguration();
+                        break;
+                    case "4":
                         exit = true;
                         break;
                     default:
@@ -83,7 +86,6 @@ namespace EasySave.Controller
         }
 
         // Controller for language configuration
-/*
         private void LanguageConfiguration()
         {
             bool exit = true;
@@ -109,9 +111,9 @@ namespace EasySave.Controller
                 }
             } while (!exit);
         }
-*/
 
         // Controller for Log file type configuration
+
         private void LogTypeConfiguration()
         {
             bool exit = true;
@@ -121,12 +123,12 @@ namespace EasySave.Controller
                 switch (result)
                 {
                     case "1":
-                        Program.instance.SetLanguage(Model.LanguageType.ENGLISH);
-                        view.RenderLanguageChanged();
+                        Program.instance.SetLogType(LogType.JSON);
+                        view.RenderLogTypeChanged();
                         break;
                     case "2":
-                        Program.instance.SetLanguage(Model.LanguageType.FRENCH);
-                        view.RenderLanguageChanged();
+                        Program.instance.SetLogType(LogType.XML);
+                        view.RenderLogTypeChanged();
                         break;
                     case "3":
                         break;
@@ -137,6 +139,7 @@ namespace EasySave.Controller
                 }
             } while (!exit);
         }
+
 
         // Controller for create backup work
         private void CreateBackupWork()

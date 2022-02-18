@@ -15,6 +15,7 @@ namespace EasySave
         public LogObserver logObserver { get; private set; }
         public StateObserver stateObserver { get; private set; }
         public SaveBackupObserver saveObserver { get; private set; }
+        public LogType logType;
 
         static void Main(string[] args)
         {
@@ -73,10 +74,9 @@ namespace EasySave
             WriteDataFile();
         }
 
-        public void SetLogType(LanguageType languageType)
+        public void SetLogType(LogType logType)
         {
-            logObserver = new Language(languageType);
-            WriteDataFile();
+            this.logType = logType;
         }
 
         /**

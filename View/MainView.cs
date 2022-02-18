@@ -16,8 +16,8 @@ namespace EasySave.View
         {
             Console.WriteLine($"1. {controller.Translate("mainview_backupworks")}");
             Console.WriteLine($"2. {controller.Translate("mainview_language_configuration")}");
-            Console.WriteLine("4. Log file configuration");
-            Console.WriteLine($"3. {controller.Translate("mainview_quit")}");
+            Console.WriteLine("3. Log file configuration");
+            Console.WriteLine($"4. {controller.Translate("mainview_quit")}");
             RenderChoseAction();
             return Console.ReadLine();
         }
@@ -63,6 +63,11 @@ namespace EasySave.View
         public void RenderLanguageChanged()
         {
             Console.WriteLine(controller.Translate("mainview_language_changed"));
+        }
+
+        public void RenderLogTypeChanged()
+        {
+            Console.WriteLine("Log Type defined");
         }
 
         public string[] RenderCreateBackupWork()

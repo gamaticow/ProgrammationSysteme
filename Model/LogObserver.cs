@@ -10,7 +10,6 @@ namespace EasySave.Model
 {
     class LogObserver : IObserver<BackupLog>
     {
-        public string type = "null";
         public void OnCompleted()
         { }
 
@@ -20,7 +19,7 @@ namespace EasySave.Model
         public void OnNext(BackupLog value)
         {
             string output = "";
-            LogType type = Model.Instance.logType;
+            LogType type = Program.instance.logType;
 
             string filePath = GetFilePath(type);
             if (!File.Exists(filePath))
@@ -59,6 +58,7 @@ namespace EasySave.Model
             {
                 sw.Write(output);
             }
+
         }
 
         private string GetFilePath(LogType logType)

@@ -160,7 +160,8 @@ namespace EasySave.Model
         // Method to add logs via observer
         protected void Log(string sourceFile, string targetFile, long fileSize, long transfertTime)
         {
-            BackupLog log = new BackupLog(name, sourceFile, targetFile, fileSize, transfertTime, DateTime.Now.ToString("G"));
+            BackupLog log = new BackupLog();
+            log.SetAttributes(name, sourceFile, targetFile, fileSize, transfertTime, DateTime.Now.ToString("G"));
             foreach(IObserver<BackupLog> observer in logObservers)
             {
                 observer.OnNext(log);
