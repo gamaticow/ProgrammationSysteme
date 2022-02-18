@@ -284,5 +284,14 @@ namespace EasySave {
                 return ResourceManager.GetString("sequential_execution", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Size Limit.
+        /// </summary>
+        internal static string size_limit {
+            get {
+                return ResourceManager.GetString("size_limit", resourceCulture);
+            }
+        }
     }
 }
