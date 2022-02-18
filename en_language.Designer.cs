@@ -376,6 +376,24 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Log type defined.
+        /// </summary>
+        internal static string mainview_logType_changed {
+            get {
+                return ResourceManager.GetString("mainview_logType_changed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Log file type configuration.
+        /// </summary>
+        internal static string mainview_logType_configuration {
+            get {
+                return ResourceManager.GetString("mainview_logType_configuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Quit.
         /// </summary>
         internal static string mainview_quit {

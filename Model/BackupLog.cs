@@ -18,7 +18,7 @@ namespace EasySave.Model
 
         }
 
-        public void SetAttributes(string name, string sourceFile, string targetFile, long fileSize, long transfertTime, string time)
+        public BackupLog(string name, string sourceFile, string targetFile, long fileSize, long transfertTime, string time)
         {
             this.Name = name;
             this.FileSource = sourceFile;

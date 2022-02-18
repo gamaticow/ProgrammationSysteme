@@ -340,7 +340,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Langue définit en Français.
+        ///   Recherche une chaîne localisée semblable à Langue défini en Français.
         /// </summary>
         internal static string mainview_language_changed {
             get {
@@ -372,6 +372,24 @@ namespace EasySave {
         internal static string mainview_language_fr {
             get {
                 return ResourceManager.GetString("mainview_language_fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type de fichier de log défini.
+        /// </summary>
+        internal static string mainview_logType_changed {
+            get {
+                return ResourceManager.GetString("mainview_logType_changed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Configuration du type du fichier de log.
+        /// </summary>
+        internal static string mainview_logType_configuration {
+            get {
+                return ResourceManager.GetString("mainview_logType_configuration", resourceCulture);
             }
         }
         

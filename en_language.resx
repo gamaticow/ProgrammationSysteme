@@ -222,6 +222,12 @@
   <data name="mainview_language_fr" xml:space="preserve">
     <value>Français</value>
   </data>
+  <data name="mainview_logType_changed" xml:space="preserve">
+    <value>Log type defined</value>
+  </data>
+  <data name="mainview_logType_configuration" xml:space="preserve">
+    <value>Log file type configuration</value>
+  </data>
   <data name="mainview_quit" xml:space="preserve">
     <value>Quit</value>
   </data>

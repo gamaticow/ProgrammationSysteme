@@ -50,7 +50,7 @@ namespace EasySave.Model
                 using (var writer = XmlWriter.Create(stream, settings))
                 {
                     serializer.Serialize(writer, value, emptyNamespaces);
-                    output = $"{stream.ToString()}";
+                    output += $"{stream.ToString()}";
                 }
             }
 

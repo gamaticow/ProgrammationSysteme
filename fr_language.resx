@@ -211,7 +211,7 @@
     <value>Exécuter tous les travaux de sauvegarde</value>
   </data>
   <data name="mainview_language_changed" xml:space="preserve">
-    <value>Langue définit en Français</value>
+    <value>Langue défini en Français</value>
   </data>
   <data name="mainview_language_configuration" xml:space="preserve">
     <value>Configuration de la langue</value>
@@ -221,6 +221,12 @@
   </data>
   <data name="mainview_language_fr" xml:space="preserve">
     <value>Français</value>
+  </data>
+  <data name="mainview_logType_changed" xml:space="preserve">
+    <value>Type de fichier de log défini</value>
+  </data>
+  <data name="mainview_logType_configuration" xml:space="preserve">
+    <value>Configuration du type du fichier de log</value>
   </data>
   <data name="mainview_quit" xml:space="preserve">
     <value>Quitter</value>
