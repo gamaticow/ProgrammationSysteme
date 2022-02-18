@@ -8,11 +8,11 @@ using System.Windows.Input;
 
 namespace EasySave.ViewModel.Commands
 {
-    class SelectBusinessAppCommand : ICommand
+    class SelectFileCommand : ICommand
     {
         private SettingsViewModel viewModel;
 
-        public SelectBusinessAppCommand(SettingsViewModel viewModel)
+        public SelectFileCommand(SettingsViewModel viewModel)
         {
             this.viewModel = viewModel;
         }

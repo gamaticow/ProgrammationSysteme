@@ -41,34 +41,6 @@ namespace EasySave.ViewModel
             }
         }
 
-        private string _tEncryptedExtensionAdd;
-        public string TEncryptedExtensionAdd
-        {
-            get
-            {
-                return _tEncryptedExtensionAdd;
-            }
-            set
-            {
-                _tEncryptedExtensionAdd = value;
-                OnPropertyChanged(nameof(TEncryptedExtensionAdd));
-            }
-        }
-
-        private string _tEncryptedExtensionDelete;
-        public string TEncryptedExtensionDelete
-        {
-            get
-            {
-                return _tEncryptedExtensionDelete;
-            }
-            set
-            {
-                _tEncryptedExtensionDelete = value;
-                OnPropertyChanged(nameof(TEncryptedExtensionDelete));
-            }
-        }
-
         private string _tBusinessApp;
         public string TBusinessApp
         {
@@ -94,6 +66,20 @@ namespace EasySave.ViewModel
             {
                 _tLogTypeChoice = value;
                 OnPropertyChanged(nameof(TLogTypeChoice));
+            }
+        }
+
+        private string _tPriorityFiles;
+        public string TPriorityFiles
+        {
+            get
+            {
+                return _tPriorityFiles;
+            }
+            set
+            {
+                _tPriorityFiles = value;
+                OnPropertyChanged(nameof(TPriorityFiles));
             }
         }
 
@@ -189,7 +175,7 @@ namespace EasySave.ViewModel
             }
         }
 
-        public SelectBusinessAppCommand SelectBuisnessAppExeCommand { get; private set; }
+        public SelectFileCommand SelectFileCommand { get; private set; }
 
         private object _sLogType;
         public object SLogType
@@ -209,6 +195,50 @@ namespace EasySave.ViewModel
             }
         }
         public ObservableCollection<object> LogTypes { get; set; }
+
+        private string _sPriorityFile;
+        public string SPriorityFile
+        {
+            get
+            {
+                return _sPriorityFile;
+            }
+            set
+            {
+                _sPriorityFile = value;
+                DeletePriorityFileCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public ObservableCollection<string> PriorityFiles
+        {
+            get
+            {
+                return new ObservableCollection<string>(Model.Model.Instance.priorityFiles);
+            }
+            set
+            {
+
+            }
+        }
+
+        private string _priorityFileTextBox;
+        public string PriorityFileTextBox
+        {
+            get
+            {
+                return _priorityFileTextBox;
+            }
+            set
+            {
+                _priorityFileTextBox = value;
+                AddPriorityFileCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public AddPriorityFileCommand AddPriorityFileCommand { get; private set; }
+
+        public DeletePriorityFileCommand DeletePriorityFileCommand { get; private set; }
 
         private object _sMusic;
         public object SMusic
@@ -263,17 +293,18 @@ namespace EasySave.ViewModel
             Playlist.Add(new { Name = "Jack Uzi - Ford Freestyle", Path = @"pack://siteoforigin:,,,/Resources/jack_uzi_ford_freestyle.mp3" });
             AddEncryptedExtensionCommand = new AddEncryptedExtensionCommand(this);
             DeleteEncryptedExtensionCommand = new DeleteEncryptedExtensionCommand(this);
-            SelectBuisnessAppExeCommand = new SelectBusinessAppCommand(this);
+            SelectFileCommand = new SelectFileCommand(this);
+            AddPriorityFileCommand = new AddPriorityFileCommand(this);
+            DeletePriorityFileCommand = new DeletePriorityFileCommand(this);
         }
 
         public override void SetTranslation()
         {
             TLanguageChoice = Translate("language_choice");
             TEncryptedExtension = Translate("encrypted_extension");
-            TEncryptedExtensionAdd = Translate("encrypted_extension_add");
-            TEncryptedExtensionDelete = Translate("encrypted_extension_delete");
             TBusinessApp = Translate("select_business_app");
             TLogTypeChoice = Translate("log_type_choice");
+            TPriorityFiles = Translate("priority_files");
             TMusicChoice = Translate("music_choice");
         }
     }

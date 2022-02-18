@@ -34,7 +34,7 @@ namespace EasySave.Model
         public string businessApp { get; set; }
         public MediaPlayer mediaPlayer { get; set; }
         public string EncryptionKey { get; private set; }
-
+        public List<string> priorityFiles { get; set; } = new List<string>();
         public object Music { get; set; }
 
         private Model()
@@ -61,6 +61,7 @@ namespace EasySave.Model
                 logType = save.logType;
                 Music = save.Music;
                 EncryptionKey = save.EncryptionKey;
+                priorityFiles = save.priorityFiles;
             }
             language = new Language(languageType);
 
@@ -92,6 +93,7 @@ namespace EasySave.Model
             save.logType = logType;
             save.Music = Music;
             save.EncryptionKey = EncryptionKey;
+            save.priorityFiles = priorityFiles;
             File.WriteAllText("EasySave.json", save.ToJson());
         }
 

@@ -268,6 +268,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fichiers prioritaires.
+        /// </summary>
+        internal static string priority_files {
+            get {
+                return ResourceManager.GetString("priority_files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Choix du logiciel métier.
         /// </summary>
         internal static string select_business_app {
