@@ -15,6 +15,7 @@ namespace EasySave.Model
         public object Music { get; set; }
         public string EncryptionKey { get; set; }
         public List<string> priorityFiles { get; set; }
+        public int sizeLimit { get; set; }
 
         public EasySaveConfig()
         {

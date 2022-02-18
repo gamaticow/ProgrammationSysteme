@@ -192,4 +192,7 @@
   <data name="sequential_execution" xml:space="preserve">
     <value>Sequential Execution</value>
   </data>
+  <data name="size_limit" xml:space="preserve">
+    <value>Size Limit</value>
+  </data>
 </root>

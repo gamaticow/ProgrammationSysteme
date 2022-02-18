@@ -32,6 +32,7 @@ namespace EasySave.Model
         public BackupType backupType { get; protected set; }
         private BackupStateEnum State { get; set; }
 
+        private static Semaphore HugeFiles = new Semaphore(1, 1);
         private Semaphore pause = new Semaphore(1, 1);
         private Thread thread;
         private bool interrupt = false;
@@ -142,8 +143,10 @@ namespace EasySave.Model
                     nbFilesLeftToDo = files.Count;
 
                     // Loop on each file we need to save 
-                    foreach (BackupFile file in files)
+                    while (files.Count > 0)
                     {
+                        BackupFile file = files[0];
+                        files.RemoveAt(0);
                         pause.WaitOne();
                         if(interrupt)
                         {
@@ -159,36 +162,71 @@ namespace EasySave.Model
 
                         // Edit the state JSON file with the informations we have on the save progression
                         UpdateState();
-                        long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                        int encryptTime = 0;
-
-                        // Copy the file into the target repository
-                        bool encrypt = false;
-                        foreach (string extension in Model.Instance.encryptedExtensions)
+                        bool HugeFile;
+                        bool canExecuteHugeFile;
+                        if (file.source.Length >= Model.Instance.sizeLimit*1024)
                         {
-                            if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
+                            HugeFile = true;
+                            if (HugeFiles.WaitOne(50) == true)
                             {
-                                ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
-                                Cryptosoft.Arguments = $"\"{Model.Instance.EncryptionKey}\" \"{file.source.FullName}\" \"{file.target.FullName}\"";
-                                Cryptosoft.UseShellExecute = false;
-                                Cryptosoft.CreateNoWindow = true;
-                                Process process = Process.Start(Cryptosoft);
-                                process.WaitForExit();
-                                encryptTime = process.ExitCode;
-                                encrypt = true;
+                                canExecuteHugeFile = true;
+                            }
+                            else
+                            {
+                                canExecuteHugeFile = false;
                             }
                         }
-                        if (encrypt == false)
+                        else
                         {
-                            file.source.CopyTo(file.target.FullName, true);
+                            HugeFile = false;
+                            canExecuteHugeFile = true;
                         }
-                        //Thread.Sleep(5000);
+                        
+                        if (canExecuteHugeFile == true)
+                        {
+                            long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                            int encryptTime = 0;
 
-                        // Edit the log JSON file
-                        Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
-                        nbFilesLeftToDo--;
+                            // Copy the file into the target repository
+                            bool encrypt = false;
+                            foreach (string extension in Model.Instance.encryptedExtensions)
+                            {
+                                if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
+                                {
+                                    ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
+                                    Cryptosoft.Arguments = $"\"{Model.Instance.EncryptionKey}\" \"{file.source.FullName}\" \"{file.target.FullName}\"";
+                                    Cryptosoft.UseShellExecute = false;
+                                    Cryptosoft.CreateNoWindow = true;
+                                    Process process = Process.Start(Cryptosoft);
+                                    process.WaitForExit();
+                                    encryptTime = process.ExitCode;
+                                    encrypt = true;
+                                }
+                            }
+                            if (encrypt == false)
+                            {
+                                file.source.CopyTo(file.target.FullName, true);
+                            }
 
-                        pause.Release();
+                            //Thread.Sleep(5000);
+
+                            // Edit the log JSON file
+                            Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
+                            nbFilesLeftToDo--;
+
+                            if (HugeFile == true)
+                            {
+                                HugeFiles.Release();
+                            }
+                            pause.Release();
+                        }
+                        else
+                        {
+                            files.Add(file);
+                        }
+                        
+                        
+                        
                     }
                     // When we have copy all the files, edit the state JSON file to "END"
                     sourceFilePath = "";

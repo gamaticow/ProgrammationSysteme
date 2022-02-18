@@ -83,6 +83,32 @@ namespace EasySave.ViewModel
             }
         }
 
+        private string _tSizeLimit;
+        public string TSizeLimit
+        {
+            get
+            {
+                return _tSizeLimit;
+            }
+            set
+            {
+                _tSizeLimit = value;
+                OnPropertyChanged(nameof(TSizeLimit));
+            }
+        }
+        public int SizeLimitInput
+        {
+            get
+            {
+                return Model.Model.Instance.sizeLimit;
+            }
+            set
+            {
+                Model.Model.Instance.sizeLimit = value;
+                Model.Model.Instance.WriteDataFile();
+            }
+        }
+
         private string _tMusicChoice;
         public string TMusicChoice
         {
@@ -307,6 +333,7 @@ namespace EasySave.ViewModel
             TLogTypeChoice = Translate("log_type_choice");
             TPriorityFiles = Translate("priority_files");
             TMusicChoice = Translate("music_choice");
+            TSizeLimit = Translate("size_limit");
         }
     }
 }
