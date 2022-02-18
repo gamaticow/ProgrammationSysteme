@@ -66,6 +66,7 @@ namespace EasySave.Model
             {
                 interrupt = false;
                 thread = new Thread(ExecuteBackupWork);
+                thread.Name = name;
                 thread.Start();
             }
             else if (State == BackupStateEnum.PAUSE)
@@ -208,8 +209,6 @@ namespace EasySave.Model
                                 file.source.CopyTo(file.target.FullName, true);
                             }
 
-                            //Thread.Sleep(5000);
-
                             // Edit the log JSON file
                             Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
                             nbFilesLeftToDo--;
@@ -218,15 +217,12 @@ namespace EasySave.Model
                             {
                                 HugeFiles.Release();
                             }
-                            pause.Release();
                         }
                         else
                         {
                             files.Add(file);
                         }
-                        
-                        
-                        
+                        pause.Release();
                     }
                     // When we have copy all the files, edit the state JSON file to "END"
                     sourceFilePath = "";
