@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySave.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +44,7 @@ namespace EasySave.ViewModel.Commands
                 if(viewModel.GetType() == typeof(MenuViewModel))
                 {
                     MenuViewModel menu = (MenuViewModel)viewModel;
-                    viewModel.SelectedViewModel = new InfoBackupViewModel(menu.Selected);
+                    viewModel.SelectedViewModel = new InfoBackupViewModel(menu.Selected.BackupWork);
                 }
             }
         }

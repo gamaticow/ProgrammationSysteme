@@ -18,14 +18,14 @@ namespace EasySave.ViewModel.Commands
 
         protected override bool CanExecute(object parameter)
         {
-            return viewModel.SEncryptedExtension != null && viewModel.SEncryptedExtension.Length > 0;
+            return viewModel.SPriorityFile != null && viewModel.SPriorityFile.Length > 0;
         }
 
         protected override void Execute(object parameter)
         {
-            Model.Model.Instance.encryptedExtensions.Remove(viewModel.SEncryptedExtension);
+            Model.Model.Instance.priorityFiles.Remove(viewModel.SPriorityFile);
             Model.Model.Instance.WriteDataFile();
-            viewModel.OnPropertyChanged(nameof(viewModel.EncryptedExtensions));
+            viewModel.OnPropertyChanged(nameof(viewModel.PriorityFiles));
         }
 
     }

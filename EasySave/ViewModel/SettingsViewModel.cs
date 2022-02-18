@@ -232,6 +232,7 @@ namespace EasySave.ViewModel
             set
             {
                 _priorityFileTextBox = value;
+                OnPropertyChanged(nameof(PriorityFileTextBox));
                 AddPriorityFileCommand.RaiseCanExecuteChanged();
             }
         }

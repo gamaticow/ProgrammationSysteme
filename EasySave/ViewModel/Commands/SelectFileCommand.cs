@@ -27,11 +27,30 @@ namespace EasySave.ViewModel.Commands
         public void Execute(object parameter)
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Executable (*.exe)|*.exe";
+            if(parameter.ToString() == "BusinessApp")
+            {
+                openFile.Filter = "Executable (*.exe)|*.exe";
+            }
+            else if (parameter.ToString() == "PriorityFile")
+            {
+                openFile.Filter = "All types (*.*)|*.*";
+            }
+            else
+            {
+                return;
+            }
+            
             bool? result = openFile.ShowDialog();
             if (result.HasValue && result.Value)
             {
-                viewModel.BusinessApp = openFile.FileName;
+                if (parameter.ToString() == "BusinessApp")
+                {
+                    viewModel.BusinessApp = openFile.FileName;
+                }
+                else if (parameter.ToString() == "PriorityFile")
+                {
+                    viewModel.PriorityFileTextBox = openFile.FileName;
+                }
             }
         }
     }

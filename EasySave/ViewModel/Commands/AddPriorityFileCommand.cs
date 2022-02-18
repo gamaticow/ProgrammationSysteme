@@ -19,26 +19,22 @@ namespace EasySave.ViewModel.Commands
 
         protected override bool CanExecute(object parameter)
         {
-            return viewModel.EncryptedExtensionTextBox != null && viewModel.EncryptedExtensionTextBox.Length > 0;
+            return viewModel.PriorityFileTextBox != null && viewModel.PriorityFileTextBox.Length > 0;
         }
 
         protected override void Execute(object parameter)
         {
-            string extension = viewModel.EncryptedExtensionTextBox;
-            if(!extension.StartsWith("."))
-            {
-                extension = $".{extension}";
-            }
+            string priorityFile = viewModel.PriorityFileTextBox;
 
-            if(!Model.Model.Instance.encryptedExtensions.Contains(extension))
+            if(!Model.Model.Instance.priorityFiles.Contains(priorityFile))
             {
-                Model.Model.Instance.encryptedExtensions.Add(extension);
+                Model.Model.Instance.priorityFiles.Add(priorityFile);
                 Model.Model.Instance.WriteDataFile();
-                viewModel.OnPropertyChanged(nameof(viewModel.EncryptedExtensions));
+                viewModel.OnPropertyChanged(nameof(viewModel.PriorityFiles));
             }
 
             viewModel.EncryptedExtensionTextBox = "";
-            viewModel.OnPropertyChanged(nameof(viewModel.EncryptedExtensionTextBox));
+            viewModel.OnPropertyChanged(nameof(viewModel.PriorityFileTextBox));
         }
     }
 }

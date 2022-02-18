@@ -9,7 +9,10 @@
         <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" Margin="10,10,580,58">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=name}"/>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                        <ProgressBar Width="175" Height="25" Minimum="0" Maximum="100" Value="{Binding Progress}" Foreground="{Binding Color}" />
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
