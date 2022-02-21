@@ -35,6 +35,25 @@ namespace EasySave.Model
         public MediaPlayer mediaPlayer { get; set; }
         public string EncryptionKey { get; private set; }
         public int sizeLimit { get; set; }
+        public SizeUnit SizeUnit { get; set; }
+        public long SizeUnitSize
+        {
+            get
+            {
+                switch (SizeUnit)
+                {
+                    case SizeUnit.Ko:
+                        return 1024;
+                    case SizeUnit.Mo:
+                        return 1048576;
+                    case SizeUnit.Go:
+                        return 1073741824;
+                    case SizeUnit.To:
+                        return 1099511627776;
+                }
+                return 1024;
+            }
+        }
         public List<string> priorityFiles { get; set; } = new List<string>();
         public object Music { get; set; }
 
@@ -64,8 +83,13 @@ namespace EasySave.Model
                 EncryptionKey = save.EncryptionKey;
                 priorityFiles = save.priorityFiles;
                 sizeLimit = save.sizeLimit;
+                SizeUnit = save.SizeUnit;
             }
             language = new Language(languageType);
+            if(SizeUnit == null)
+            {
+                SizeUnit = SizeUnit.Ko;
+            }
 
             // Generation of an encryption key for Cryptosoft
             if (EncryptionKey == null)
@@ -97,6 +121,7 @@ namespace EasySave.Model
             save.EncryptionKey = EncryptionKey;
             save.priorityFiles = priorityFiles;
             save.sizeLimit = sizeLimit;
+            save.SizeUnit = SizeUnit;
             File.WriteAllText("EasySave.json", save.ToJson());
         }
 

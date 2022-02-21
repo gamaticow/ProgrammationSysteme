@@ -96,18 +96,6 @@ namespace EasySave.ViewModel
                 OnPropertyChanged(nameof(TSizeLimit));
             }
         }
-        public int SizeLimitInput
-        {
-            get
-            {
-                return Model.Model.Instance.sizeLimit;
-            }
-            set
-            {
-                Model.Model.Instance.sizeLimit = value;
-                Model.Model.Instance.WriteDataFile();
-            }
-        }
 
         private string _tMusicChoice;
         public string TMusicChoice
@@ -266,6 +254,40 @@ namespace EasySave.ViewModel
         public AddPriorityFileCommand AddPriorityFileCommand { get; private set; }
 
         public DeletePriorityFileCommand DeletePriorityFileCommand { get; private set; }
+
+        public int SizeLimitInput
+        {
+            get
+            {
+                return Model.Model.Instance.sizeLimit;
+            }
+            set
+            {
+                Model.Model.Instance.sizeLimit = value;
+                Model.Model.Instance.WriteDataFile();
+            }
+        }
+
+        public SizeUnit SSizeUnit
+        {
+            get
+            {
+                return Model.Model.Instance.SizeUnit;
+            }
+            set
+            {
+                Model.Model.Instance.SizeUnit = value;
+                Model.Model.Instance.WriteDataFile();
+            }
+        }
+
+        public ObservableCollection<SizeUnit> SizeUnits
+        {
+            get
+            {
+                return new ObservableCollection<SizeUnit>(Enum.GetValues(typeof(SizeUnit)).Cast<SizeUnit>());
+            }
+        }
 
         private object _sMusic;
         public object SMusic
