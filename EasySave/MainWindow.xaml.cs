@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,11 +22,28 @@ namespace EasySave
     /// </summary>
     public partial class MainWindow : Window
     {
+        Mutex mutex = new Mutex(true, "{ea88457f-79b4-4d23-bfee-3376cee292f2}");
+        bool hasMutex = false;
+
         public MainWindow()
         {
-            InitializeComponent();
+            if (mutex.WaitOne(TimeSpan.Zero, true))
+            {
+                hasMutex = true;
+                InitializeComponent();
+                DataContext = MainViewModel.Instance;
+            }
+            else
+            {
+                MessageBox.Show(Model.Model.Instance.language.Translate("error_mono_instance"), Model.Model.Instance.language.Translate("error_title"), MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+            }
+        }
 
-            DataContext = MainViewModel.Instance;
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+        {
+            if(hasMutex)
+                mutex.ReleaseMutex();
         }
     }
 }

@@ -171,6 +171,15 @@ namespace EasySave.Model
                             pause.Release();
                             return;
                         }
+
+                        Process[] processName = Process.GetProcessesByName(fileName.Substring(0, fileName.LastIndexOf('.')));
+                        if (processName.Length > 0)
+                        {
+                            State = BackupStateEnum.PAUSE;
+                            UpdateState();
+                            processName[0].WaitForExit();
+                        }
+
                         BackupFile file = null;
 
                         bool HugeFile = false;
@@ -204,14 +213,6 @@ namespace EasySave.Model
                         if(file == null)
                         {
                             break;
-                        }
-
-                        Process[] processName = Process.GetProcessesByName(fileName.Substring(0, fileName.LastIndexOf('.')));
-                        if (processName.Length > 0)
-                        {
-                            State = BackupStateEnum.PAUSE;
-                            UpdateState();
-                            processName[0].WaitForExit();
                         }
 
                         State = BackupStateEnum.ACTIVE;

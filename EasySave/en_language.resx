@@ -141,6 +141,9 @@
   <data name="error_fields_empty" xml:space="preserve">
     <value>Not all fields have been filled</value>
   </data>
+  <data name="error_mono_instance" xml:space="preserve">
+    <value>The application is already in use</value>
+  </data>
   <data name="error_name_already_used" xml:space="preserve">
     <value>Backup name already used</value>
   </data>

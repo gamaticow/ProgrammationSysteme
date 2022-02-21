@@ -144,6 +144,9 @@
   <data name="error_fields_empty" xml:space="preserve">
     <value>Tous les champs n'ont pas été remplies</value>
   </data>
+  <data name="error_mono_instance" xml:space="preserve">
+    <value>L'application est déjà en cours d'utilisation</value>
+  </data>
   <data name="error_name_already_used" xml:space="preserve">
     <value>Nom déjà utilisé</value>
   </data>

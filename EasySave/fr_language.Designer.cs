@@ -142,6 +142,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;application est déjà en cours d&apos;utilisation.
+        /// </summary>
+        internal static string error_mono_instance {
+            get {
+                return ResourceManager.GetString("error_mono_instance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nom déjà utilisé.
         /// </summary>
         internal static string error_name_already_used {
