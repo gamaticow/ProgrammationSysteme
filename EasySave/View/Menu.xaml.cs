@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySave.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace EasySave.View
         public Menu()
         {
             InitializeComponent();
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ((MenuViewModel)DataContext).BackupWorkDoubleClickCommand.Execute(null);
         }
     }
 }

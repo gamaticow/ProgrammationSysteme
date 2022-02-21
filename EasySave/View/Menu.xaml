@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="ListBoxItem" x:Key="listViewDoubleClick">
+            <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+        </Style>
+    </UserControl.Resources>
     <Grid Width="800" Height="450">
-        <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" Margin="10,10,580,58">
+        <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" ItemContainerStyle="{StaticResource listViewDoubleClick}" Margin="10,10,580,58">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
+                        
                         <TextBlock Text="{Binding Path=Name}"/>
                         <ProgressBar Width="175" Height="25" Minimum="0" Maximum="100" Value="{Binding Progress}" Foreground="{Binding Color}" />
                     </StackPanel>
