@@ -64,7 +64,7 @@ namespace EasySave.Model
 
         public void ExecuteBackup()
         {
-            if((State == BackupStateEnum.END || State == BackupStateEnum.INTERRUPTED) && ((thread != null && thread.ThreadState == System.Threading.ThreadState.Stopped) || thread == null))
+            if ((State == BackupStateEnum.END || State == BackupStateEnum.INTERRUPTED) && ((thread != null && thread.ThreadState == System.Threading.ThreadState.Stopped) || thread == null))
             {
                 interrupt = false;
                 thread = new Thread(ExecuteBackupWork);
@@ -79,7 +79,7 @@ namespace EasySave.Model
 
         public void Pause()
         {
-            if(State == BackupStateEnum.ACTIVE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
+            if (State == BackupStateEnum.ACTIVE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
             {
                 Task.Run(() =>
                 {
@@ -94,7 +94,7 @@ namespace EasySave.Model
 
         public void Interupt()
         {
-            if(State == BackupStateEnum.ACTIVE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
+            if (State == BackupStateEnum.ACTIVE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
             {
                 interrupt = true;
             }
@@ -110,194 +110,166 @@ namespace EasySave.Model
             DirectoryInfo source = new DirectoryInfo(sourceDirectory);
             DirectoryInfo target = new DirectoryInfo(targetDirectory);
 
-            string fileName = Path.GetFileName(Model.Instance.businessApp);
-            
-            using (Process myProcess = new Process())
+            if (IsBusinessAppRunning() == null)
             {
-                bool canExecute = true;
-
-                if(Model.Instance.businessApp != null && Model.Instance.businessApp.Length > 0)
+                List<BackupFile> allFiles = new List<BackupFile>();
+                // Execute GetFiles() and get the total file size that will be write in the state JSON file
+                long totalFileSize = GetFiles(allFiles, source, target);
+                if (totalFileSize < 0)
                 {
-                    // Check the presence of CalculatorApp in the current processes that have not exited and set the canExecute variable according the presence state
-                    Process[] localAll = Process.GetProcesses();
-                    foreach (var process in localAll)
-                    {
-                        try
-                        {
-                            if (!process.HasExited && process.MainModule.FileName.EndsWith(Model.Instance.businessApp))
-                            {
-                                canExecute = false;
-                                break;
-                            }
-                        }
-                        catch (Win32Exception e)
-                        {
+                    return;
+                }
+                totalFilesSize = totalFileSize;
 
-                        }
-                    }
+                SimplePriorityQueue<BackupFile> files = new SimplePriorityQueue<BackupFile>();
+                SimplePriorityQueue<BackupFile> hugeFiles = new SimplePriorityQueue<BackupFile>();
+
+                foreach (BackupFile file in allFiles)
+                {
+                    files.Enqueue(file, GetFilePriority(file.source.FullName));
                 }
 
-                if (canExecute)
+                // Get the current file size that will be write in the state JSON file
+                totalFilesToCopy = files.Count;
+                nbFilesLeftToDo = files.Count;
+
+                // Loop on each file we need to save 
+                while (files.Count > 0 || hugeFiles.Count > 0)
                 {
-                    List<BackupFile> allFiles = new List<BackupFile>();
-                    // Execute GetFiles() and get the total file size that will be write in the state JSON file
-                    long totalFileSize = GetFiles(allFiles, source, target);
-                    if (totalFileSize < 0)
+                    pause.WaitOne();
+                    if (interrupt)
                     {
+                        State = BackupStateEnum.INTERRUPTED;
+                        UpdateState();
+                        pause.Release();
                         return;
                     }
-                    totalFilesSize = totalFileSize;
 
-                    SimplePriorityQueue<BackupFile> files = new SimplePriorityQueue<BackupFile>();
-                    SimplePriorityQueue<BackupFile> hugeFiles = new SimplePriorityQueue<BackupFile>();
-
-                    foreach(BackupFile file in allFiles)
+                    Process process = IsBusinessAppRunning();
+                    if(process != null)
                     {
-                        files.Enqueue(file, GetFilePriority(file.source.FullName));
+                        State = BackupStateEnum.PAUSE;
+                        UpdateState();
+                        process.WaitForExit();
                     }
 
-                    // Get the current file size that will be write in the state JSON file
-                    totalFilesToCopy = files.Count;
-                    nbFilesLeftToDo = files.Count;
+                    BackupFile file = null;
 
-                    // Loop on each file we need to save 
-                    while (files.Count > 0 || hugeFiles.Count > 0)
+                    bool HugeFile = false;
+                    bool canExecuteHugeFile = false;
+
+                    if (files.Count > 0 && hugeFiles.Count > 0)
                     {
-                        pause.WaitOne();
-                        if(interrupt)
+                        if (GetFilePriority(hugeFiles.First.source.FullName) <= GetFilePriority(files.First.source.FullName))
                         {
-                            State = BackupStateEnum.INTERRUPTED;
-                            UpdateState();
-                            pause.Release();
-                            return;
-                        }
-
-                        Process[] processName = Process.GetProcessesByName(fileName.Substring(0, fileName.LastIndexOf('.')));
-                        if (processName.Length > 0)
-                        {
-                            State = BackupStateEnum.PAUSE;
-                            UpdateState();
-                            processName[0].WaitForExit();
-                        }
-
-                        BackupFile file = null;
-
-                        bool HugeFile = false;
-                        bool canExecuteHugeFile = false;
-                        
-                        if(files.Count > 0 && hugeFiles.Count > 0)
-                        {
-                            if(GetFilePriority(hugeFiles.First.source.FullName) <= GetFilePriority(files.First.source.FullName))
+                            if (HugeFiles.WaitOne(50))
                             {
-                                if(HugeFiles.WaitOne(50))
-                                {
-                                    file = hugeFiles.Dequeue();
-                                    HugeFile = true;
-                                    canExecuteHugeFile = true;
-                                }
-                                else
-                                {
-                                    file = files.Dequeue();
-                                }
-                            }
-                        }
-                        else if(files.Count > 0)
-                        {
-                            file = files.Dequeue();
-                        }
-                        else if(hugeFiles.Count > 0)
-                        {
-                            file = hugeFiles.Dequeue();
-                        }
-                        
-                        if(file == null)
-                        {
-                            break;
-                        }
-
-                        State = BackupStateEnum.ACTIVE;
-                        sourceFilePath = file.source.FullName;
-                        targetFilePath = file.target.FullName;
-
-                        // Edit the state JSON file with the informations we have on the save progression
-                        UpdateState();
-                        
-                        if(!HugeFile && !canExecuteHugeFile)
-                        {
-                            if (file.source.Length >= Model.Instance.sizeLimit * 1024)
-                            {
+                                file = hugeFiles.Dequeue();
                                 HugeFile = true;
-                                if (HugeFiles.WaitOne(50))
-                                {
-                                    canExecuteHugeFile = true;
-                                }
-                                else
-                                {
-                                    canExecuteHugeFile = false;
-                                }
+                                canExecuteHugeFile = true;
                             }
                             else
                             {
-                                HugeFile = false;
-                                canExecuteHugeFile = true;
+                                file = files.Dequeue();
                             }
                         }
-                        
-                        if (canExecuteHugeFile)
+                    }
+                    else if (files.Count > 0)
+                    {
+                        file = files.Dequeue();
+                    }
+                    else if (hugeFiles.Count > 0)
+                    {
+                        file = hugeFiles.Dequeue();
+                    }
+
+                    if (file == null)
+                    {
+                        break;
+                    }
+
+                    State = BackupStateEnum.ACTIVE;
+                    sourceFilePath = file.source.FullName;
+                    targetFilePath = file.target.FullName;
+
+                    // Edit the state JSON file with the informations we have on the save progression
+                    UpdateState();
+
+                    if (!HugeFile && !canExecuteHugeFile)
+                    {
+                        if (file.source.Length >= Model.Instance.sizeLimit * Model.Instance.SizeUnitSize)
                         {
-                            long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                            int encryptTime = 0;
-
-                            // Copy the file into the target repository
-                            bool encrypt = false;
-                            foreach (string extension in Model.Instance.encryptedExtensions)
+                            HugeFile = true;
+                            if (HugeFiles.WaitOne(50))
                             {
-                                if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
-                                {
-                                    ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
-                                    Cryptosoft.Arguments = $"\"{Model.Instance.EncryptionKey}\" \"{file.source.FullName}\" \"{file.target.FullName}\"";
-                                    Cryptosoft.UseShellExecute = false;
-                                    Cryptosoft.CreateNoWindow = true;
-                                    Process process = Process.Start(Cryptosoft);
-                                    process.WaitForExit();
-                                    encryptTime = process.ExitCode;
-                                    encrypt = true;
-                                }
+                                canExecuteHugeFile = true;
                             }
-                            if (!encrypt)
+                            else
                             {
-                                file.source.CopyTo(file.target.FullName, true);
-                            }
-
-                            // Edit the log JSON file
-                            Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
-                            nbFilesLeftToDo--;
-
-                            if (HugeFile)
-                            {
-                                HugeFiles.Release();
+                                canExecuteHugeFile = false;
                             }
                         }
                         else
                         {
-                            hugeFiles.Enqueue(file, GetFilePriority(file.source.FullName));
+                            HugeFile = false;
+                            canExecuteHugeFile = true;
                         }
-                        pause.Release();
                     }
-                    // When we have copy all the files, edit the state JSON file to "END"
-                    sourceFilePath = "";
-                    targetFilePath = "";
-                    totalFilesToCopy = 0;
-                    nbFilesLeftToDo = 0;
-                    totalFilesSize = 0;
-                    forceProgress = true;
-                    State = BackupStateEnum.END;
-                    UpdateState();
+
+                    if (canExecuteHugeFile)
+                    {
+                        long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                        int encryptTime = 0;
+
+                        // Copy the file into the target repository
+                        bool encrypt = false;
+                        foreach (string extension in Model.Instance.encryptedExtensions)
+                        {
+                            if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
+                            {
+                                ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
+                                Cryptosoft.Arguments = $"\"{Model.Instance.EncryptionKey}\" \"{file.source.FullName}\" \"{file.target.FullName}\"";
+                                Cryptosoft.UseShellExecute = false;
+                                Cryptosoft.CreateNoWindow = true;
+                                Process cryptoProcess = Process.Start(Cryptosoft);
+                                cryptoProcess.WaitForExit();
+                                encryptTime = cryptoProcess.ExitCode;
+                                encrypt = true;
+                            }
+                        }
+                        if (!encrypt)
+                        {
+                            file.source.CopyTo(file.target.FullName, true);
+                        }
+
+                        // Edit the log JSON file
+                        Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
+                        nbFilesLeftToDo--;
+
+                        if (HugeFile)
+                        {
+                            HugeFiles.Release();
+                        }
+                    }
+                    else
+                    {
+                        hugeFiles.Enqueue(file, GetFilePriority(file.source.FullName));
+                    }
+                    pause.Release();
                 }
-                else
-                {
-                    //Console.WriteLine("Notepad ouvert");
-                }
+                // When we have copy all the files, edit the state JSON file to "END"
+                sourceFilePath = "";
+                targetFilePath = "";
+                totalFilesToCopy = 0;
+                nbFilesLeftToDo = 0;
+                totalFilesSize = 0;
+                forceProgress = true;
+                State = BackupStateEnum.END;
+                UpdateState();
+            }
+            else
+            {
+                //Console.WriteLine("Notepad ouvert");
             }
         }
         private long GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)
@@ -390,6 +362,20 @@ namespace EasySave.Model
         private int GetFilePriority(string file)
         {
             return Model.Instance.priorityFiles.Contains(file.ToLower()) ? 1 : 2;
+        }
+
+        private Process IsBusinessAppRunning()
+        {
+            if (Model.Instance.businessApp == null || Model.Instance.businessApp.Length <= 0)
+                return null;
+
+            string fileName = Path.GetFileName(Model.Instance.businessApp);
+            Process[] processName = Process.GetProcessesByName(fileName.Substring(0, fileName.LastIndexOf('.')));
+            if (processName.Length > 0)
+            {
+                return processName[0];
+            }
+            return null;
         }
 
         // Method to add logs via observer
