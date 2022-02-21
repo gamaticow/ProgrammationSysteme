@@ -259,6 +259,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Parallel Execution.
+        /// </summary>
+        internal static string parallel_execution {
+            get {
+                return ResourceManager.GetString("parallel_execution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Priority files.
         /// </summary>
         internal static string priority_files {
@@ -273,15 +282,6 @@ namespace EasySave {
         internal static string select_business_app {
             get {
                 return ResourceManager.GetString("select_business_app", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sequential Execution.
-        /// </summary>
-        internal static string sequential_execution {
-            get {
-                return ResourceManager.GetString("sequential_execution", resourceCulture);
             }
         }
         

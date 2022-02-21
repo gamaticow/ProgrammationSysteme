@@ -18,6 +18,6 @@
         </ListBox>
         <Button Content="{Binding Tcreate_backup}" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="CreateBackup"/>
         <Button Content="{Binding Tinfo}" HorizontalAlignment="Left" Margin="243,40,0,0" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="InfoBackup"/>
-        <Button Content="{Binding Tsequential_execution}" HorizontalAlignment="Left" Margin="243,70,0,0" VerticalAlignment="Top" Height="25" Command="{Binding SequentialExecutionCommand}"/>
+        <Button Content="{Binding Tparallel_execution}" HorizontalAlignment="Left" Margin="243,70,0,0" VerticalAlignment="Top" Height="25" Command="{Binding ParallelExecutionCommand}"/>
     </Grid>
 </UserControl>

@@ -186,14 +186,14 @@
   <data name="music_choice" xml:space="preserve">
     <value>Choix de la musique</value>
   </data>
+  <data name="parallel_execution" xml:space="preserve">
+    <value>Exécution parallèle</value>
+  </data>
   <data name="priority_files" xml:space="preserve">
     <value>Fichiers prioritaires</value>
   </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Choix du logiciel métier</value>
-  </data>
-  <data name="sequential_execution" xml:space="preserve">
-    <value>Exécution séquentielle</value>
   </data>
   <data name="size_limit" xml:space="preserve">
     <value>Taille Limite</value>

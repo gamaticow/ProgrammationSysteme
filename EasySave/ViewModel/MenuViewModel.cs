@@ -14,7 +14,7 @@ namespace EasySave.ViewModel
     {
         public string Tcreate_backup { get; set; }
         public string Tinfo { get; set; }
-        public string Tsequential_execution { get; set; }
+        public string Tparallel_execution { get; set; }
         public MenuBackupWork Selected { get; set; }
 
         private List<MenuBackupWork> _backupWorkList;
@@ -29,7 +29,7 @@ namespace EasySave.ViewModel
                 
             }
         }
-        public ICommand SequentialExecutionCommand { get; private set; }
+        public ICommand ParallelExecutionCommand { get; private set; }
 
         public MenuViewModel()
         {
@@ -40,14 +40,14 @@ namespace EasySave.ViewModel
                 backupWork.Subscribe(this);
             }
 
-            SequentialExecutionCommand = new SequentialExecutionCommand(this);
+            ParallelExecutionCommand = new ParallelExecutionCommand(this);
         }
 
         public override void SetTranslation()
         {
             Tcreate_backup = Translate("create_backup");
             Tinfo = Translate("get_info");
-            Tsequential_execution = Translate("sequential_execution");
+            Tparallel_execution = Translate("parallel_execution");
         }
 
         public void OnCompleted()

@@ -110,6 +110,8 @@ namespace EasySave.Model
             DirectoryInfo source = new DirectoryInfo(sourceDirectory);
             DirectoryInfo target = new DirectoryInfo(targetDirectory);
 
+            string fileName = Path.GetFileName(Model.Instance.businessApp);
+            
             using (Process myProcess = new Process())
             {
                 bool canExecute = true;
@@ -202,6 +204,14 @@ namespace EasySave.Model
                         if(file == null)
                         {
                             break;
+                        }
+
+                        Process[] processName = Process.GetProcessesByName(fileName.Substring(0, fileName.LastIndexOf('.')));
+                        if (processName.Length > 0)
+                        {
+                            State = BackupStateEnum.PAUSE;
+                            UpdateState();
+                            processName[0].WaitForExit();
                         }
 
                         State = BackupStateEnum.ACTIVE;
