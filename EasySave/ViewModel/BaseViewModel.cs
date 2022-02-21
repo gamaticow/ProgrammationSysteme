@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using EasySave.Model;
+using Prism.Commands;
 
 namespace EasySave.ViewModel
 {
@@ -28,7 +29,7 @@ namespace EasySave.ViewModel
             }
         }
 
-        public ICommand UpdateViewCommand { get; set; }
+        public DelegateCommandBase UpdateViewCommand { get; set; }
 
         public BaseViewModel()
         {

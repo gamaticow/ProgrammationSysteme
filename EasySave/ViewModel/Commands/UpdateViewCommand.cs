@@ -1,4 +1,5 @@
 ﻿using EasySave.Model;
+using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Media;
 
 namespace EasySave.ViewModel.Commands
 {
-    class UpdateViewCommand : ICommand
+    class UpdateViewCommand : DelegateCommandBase
     {
         private BaseViewModel viewModel;
 
@@ -20,12 +21,26 @@ namespace EasySave.ViewModel.Commands
 
         public event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter)
+        protected override bool CanExecute(object parameter)
         {
+            if (parameter == null)
+                return false;
+            if(parameter.ToString() == "InfoBackup")
+            {
+                if (viewModel.GetType() == typeof(MenuViewModel))
+                {
+                    MenuViewModel menu = (MenuViewModel)viewModel;
+                    if(menu.Selected != null)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
             return true;
         }
 
-        public void Execute(object parameter)
+        protected override void Execute(object parameter)
         {
             if (parameter.ToString() == "Menu")
             {
