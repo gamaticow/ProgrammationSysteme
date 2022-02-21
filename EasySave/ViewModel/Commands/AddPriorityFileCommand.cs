@@ -33,7 +33,7 @@ namespace EasySave.ViewModel.Commands
                 viewModel.OnPropertyChanged(nameof(viewModel.PriorityFiles));
             }
 
-            viewModel.EncryptedExtensionTextBox = "";
+            viewModel.PriorityFileTextBox = "";
             viewModel.OnPropertyChanged(nameof(viewModel.PriorityFileTextBox));
         }
     }
