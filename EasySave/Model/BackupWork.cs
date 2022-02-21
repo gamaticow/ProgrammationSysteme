@@ -5,6 +5,8 @@ using System.IO;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Threading;
+using System.Threading.Tasks;
+using Priority_Queue;
 
 namespace EasySave.Model
 {
@@ -32,6 +34,7 @@ namespace EasySave.Model
         public BackupType backupType { get; protected set; }
         private BackupStateEnum State { get; set; }
 
+        private static Semaphore HugeFiles = new Semaphore(1, 1);
         private Semaphore pause = new Semaphore(1, 1);
         private Thread thread;
         private bool interrupt = false;
@@ -65,6 +68,7 @@ namespace EasySave.Model
             {
                 interrupt = false;
                 thread = new Thread(ExecuteBackupWork);
+                thread.Name = name;
                 thread.Start();
             }
             else if (State == BackupStateEnum.PAUSE)
@@ -77,9 +81,14 @@ namespace EasySave.Model
         {
             if(State == BackupStateEnum.ACTIVE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
             {
-                pause.WaitOne();
-                State = BackupStateEnum.PAUSE;
-                UpdateState();
+                Task.Run(() =>
+                {
+                    pause.WaitOne();
+                    Thread.Sleep(50);
+                    if (State == BackupStateEnum.ACTIVE)
+                        State = BackupStateEnum.PAUSE;
+                    UpdateState();
+                });
             }
         }
 
@@ -101,6 +110,8 @@ namespace EasySave.Model
             DirectoryInfo source = new DirectoryInfo(sourceDirectory);
             DirectoryInfo target = new DirectoryInfo(targetDirectory);
 
+            string fileName = Path.GetFileName(Model.Instance.businessApp);
+            
             using (Process myProcess = new Process())
             {
                 bool canExecute = true;
@@ -128,21 +139,29 @@ namespace EasySave.Model
 
                 if (canExecute)
                 {
-                    List<BackupFile> files = new List<BackupFile>();
+                    List<BackupFile> allFiles = new List<BackupFile>();
                     // Execute GetFiles() and get the total file size that will be write in the state JSON file
-                    long totalFileSize = GetFiles(files, source, target);
+                    long totalFileSize = GetFiles(allFiles, source, target);
                     if (totalFileSize < 0)
                     {
                         return;
                     }
                     totalFilesSize = totalFileSize;
 
+                    SimplePriorityQueue<BackupFile> files = new SimplePriorityQueue<BackupFile>();
+                    SimplePriorityQueue<BackupFile> hugeFiles = new SimplePriorityQueue<BackupFile>();
+
+                    foreach(BackupFile file in allFiles)
+                    {
+                        files.Enqueue(file, GetFilePriority(file.source.FullName));
+                    }
+
                     // Get the current file size that will be write in the state JSON file
                     totalFilesToCopy = files.Count;
                     nbFilesLeftToDo = files.Count;
 
                     // Loop on each file we need to save 
-                    foreach (BackupFile file in files)
+                    while (files.Count > 0 || hugeFiles.Count > 0)
                     {
                         pause.WaitOne();
                         if(interrupt)
@@ -153,41 +172,116 @@ namespace EasySave.Model
                             return;
                         }
 
+                        Process[] processName = Process.GetProcessesByName(fileName.Substring(0, fileName.LastIndexOf('.')));
+                        if (processName.Length > 0)
+                        {
+                            State = BackupStateEnum.PAUSE;
+                            UpdateState();
+                            processName[0].WaitForExit();
+                        }
+
+                        BackupFile file = null;
+
+                        bool HugeFile = false;
+                        bool canExecuteHugeFile = false;
+                        
+                        if(files.Count > 0 && hugeFiles.Count > 0)
+                        {
+                            if(GetFilePriority(hugeFiles.First.source.FullName) <= GetFilePriority(files.First.source.FullName))
+                            {
+                                if(HugeFiles.WaitOne(50))
+                                {
+                                    file = hugeFiles.Dequeue();
+                                    HugeFile = true;
+                                    canExecuteHugeFile = true;
+                                }
+                                else
+                                {
+                                    file = files.Dequeue();
+                                }
+                            }
+                        }
+                        else if(files.Count > 0)
+                        {
+                            file = files.Dequeue();
+                        }
+                        else if(hugeFiles.Count > 0)
+                        {
+                            file = hugeFiles.Dequeue();
+                        }
+                        
+                        if(file == null)
+                        {
+                            break;
+                        }
+
                         State = BackupStateEnum.ACTIVE;
                         sourceFilePath = file.source.FullName;
                         targetFilePath = file.target.FullName;
 
                         // Edit the state JSON file with the informations we have on the save progression
                         UpdateState();
-                        long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                        int encryptTime = 0;
-
-                        // Copy the file into the target repository
-                        bool encrypt = false;
-                        foreach (string extension in Model.Instance.encryptedExtensions)
+                        
+                        if(!HugeFile && !canExecuteHugeFile)
                         {
-                            if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
+                            if (file.source.Length >= Model.Instance.sizeLimit * 1024)
                             {
-                                ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
-                                Cryptosoft.Arguments = $"\"{Model.Instance.EncryptionKey}\" \"{file.source.FullName}\" \"{file.target.FullName}\"";
-                                Cryptosoft.UseShellExecute = false;
-                                Cryptosoft.CreateNoWindow = true;
-                                Process process = Process.Start(Cryptosoft);
-                                process.WaitForExit();
-                                encryptTime = process.ExitCode;
-                                encrypt = true;
+                                HugeFile = true;
+                                if (HugeFiles.WaitOne(50))
+                                {
+                                    canExecuteHugeFile = true;
+                                }
+                                else
+                                {
+                                    canExecuteHugeFile = false;
+                                }
+                            }
+                            else
+                            {
+                                HugeFile = false;
+                                canExecuteHugeFile = true;
                             }
                         }
-                        if (encrypt == false)
+                        
+                        if (canExecuteHugeFile)
                         {
-                            file.source.CopyTo(file.target.FullName, true);
+                            long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                            int encryptTime = 0;
+
+                            // Copy the file into the target repository
+                            bool encrypt = false;
+                            foreach (string extension in Model.Instance.encryptedExtensions)
+                            {
+                                if (file.target.Name.ToLower().EndsWith(extension.ToLower()))
+                                {
+                                    ProcessStartInfo Cryptosoft = new ProcessStartInfo("Cryptosoft.exe");
+                                    Cryptosoft.Arguments = $"\"{Model.Instance.EncryptionKey}\" \"{file.source.FullName}\" \"{file.target.FullName}\"";
+                                    Cryptosoft.UseShellExecute = false;
+                                    Cryptosoft.CreateNoWindow = true;
+                                    Process process = Process.Start(Cryptosoft);
+                                    process.WaitForExit();
+                                    encryptTime = process.ExitCode;
+                                    encrypt = true;
+                                }
+                            }
+                            if (!encrypt)
+                            {
+                                file.source.CopyTo(file.target.FullName, true);
+                            }
+
+                            // Edit the log JSON file
+                            Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
+                            nbFilesLeftToDo--;
+
+                            if (HugeFile)
+                            {
+                                HugeFiles.Release();
+                            }
                         }
-                        //Thread.Sleep(5000);
-
-                        // Edit the log JSON file
-                        Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
-                        nbFilesLeftToDo--;
-
+                        else
+                        {
+                            hugeFiles.Enqueue(file, GetFilePriority(file.source.FullName));
+                        }
                         pause.Release();
                     }
                     // When we have copy all the files, edit the state JSON file to "END"
@@ -291,6 +385,11 @@ namespace EasySave.Model
             {
                 return -1;
             }
+        }
+
+        private int GetFilePriority(string file)
+        {
+            return Model.Instance.priorityFiles.Contains(file.ToLower()) ? 1 : 2;
         }
 
         // Method to add logs via observer

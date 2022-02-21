@@ -6,57 +6,82 @@
         xmlns:local="clr-namespace:EasySave.View"
         mc:Ignorable="d">
     <UserControl.Resources>
-         <Image x:Key="folder" Source="../Resources/folder.png"/>
+        <Image x:Key="folder" Source="../Resources/folder.png"/>
+        <Image x:Key="folder_2" Source="../Resources/folder.png"/>
+        <Image x:Key="add" Source="../Resources/add.png"/>
+        <Image x:Key="delete" Source="../Resources/trash.png"/>
+        <Image x:Key="add_2" Source="../Resources/add.png"/>
+        <Image x:Key="delete_2" Source="../Resources/trash.png"/>
     </UserControl.Resources>
-
-    <StackPanel Height="450" Width="800">
-        <StackPanel Orientation="Horizontal">
-            <Label Content="{Binding TLanguageChoice}" />
-            <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <Image Height="35" Source="{Binding Name}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-            <Label Content="{Binding TEncryptedExtension}" VerticalAlignment="Top" />
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <ListView Height ="100" Width="100" ItemsSource="{Binding EncryptedExtensions}" SelectedItem="{Binding SEncryptedExtension}" />
-                    <Button Content="{Binding TEncryptedExtensionDelete}" Height="25" VerticalAlignment="Top" Command="{Binding DeleteEncryptedExtensionCommand}" Margin="5,0,0,0" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBox Width="100" Height="25" Text="{Binding EncryptedExtensionTextBox, UpdateSourceTrigger=PropertyChanged}" />
-                    <Button Content="{Binding TEncryptedExtensionAdd}" Height="25" VerticalAlignment="Top" Command="{Binding AddEncryptedExtensionCommand}" Margin="5,0,0,0" />
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="415">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{Binding TLanguageChoice}" />
+                <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Image Height="35" Source="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="{Binding TEncryptedExtension}" VerticalAlignment="Top" />
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ListView Height ="100" Width="100" ItemsSource="{Binding EncryptedExtensions}" SelectedItem="{Binding SEncryptedExtension}" />
+                        <Button Content="{StaticResource delete}" Height="25" VerticalAlignment="Top" Command="{Binding DeleteEncryptedExtensionCommand}" Margin="5,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="100" Height="25" Text="{Binding EncryptedExtensionTextBox, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="{StaticResource add}" Height="25" VerticalAlignment="Top" Command="{Binding AddEncryptedExtensionCommand}" Margin="5,0,0,0" />
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="{Binding TBusinessApp}" VerticalAlignment="Top" />
+                <TextBox Width="250" Height="25" Text="{Binding BusinessApp}" />
+                <Button Content="{StaticResource folder}" Height="25" Command="{Binding SelectFileCommand}" CommandParameter="BusinessApp" Margin="5,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="{Binding TLogTypeChoice}" />
+                <ComboBox ItemsSource="{Binding LogTypes}" SelectedItem="{Binding SLogType}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="{Binding TPriorityFiles}" VerticalAlignment="Top" />
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ListView Height ="100" Width="250" ItemsSource="{Binding PriorityFiles}" SelectedItem="{Binding SPriorityFile}" />
+                        <Button Content="{StaticResource delete_2}" Height="25" VerticalAlignment="Top" Command="{Binding DeletePriorityFileCommand}" Margin="5,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="250" Height="25" Text="{Binding PriorityFileTextBox, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="{StaticResource folder_2}" Height="25" Command="{Binding SelectFileCommand}" CommandParameter="PriorityFile" Margin="5,0,0,0" />
+                        <Button Content="{StaticResource add_2}" Height="25" VerticalAlignment="Top" Command="{Binding AddPriorityFileCommand}" Margin="5,0,0,0" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="{Binding TSizeLimit}" VerticalAlignment="Top" />
+                <TextBox VerticalContentAlignment="Center" Padding="5,0" Text="{Binding SizeLimitInput}" />
+                <Label Content="Ko" VerticalAlignment="Top" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="{Binding TMusicChoice}" />
+                <ComboBox ItemsSource="{Binding Playlist}" SelectedItem="{Binding SMusic}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-            <Label Content="{Binding TBusinessApp}" VerticalAlignment="Top" />
-            <TextBox Width="250" Height="25" Text="{Binding BusinessApp}" />
-            <Button Content="{StaticResource folder}" Height="25" Command="{Binding SelectBuisnessAppExeCommand}" Margin="5,0,0,0" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-            <Label Content="{Binding TLogTypeChoice}" />
-            <ComboBox ItemsSource="{Binding LogTypes}" SelectedItem="{Binding SLogType}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-            <Label Content="{Binding TMusicChoice}" />
-            <ComboBox ItemsSource="{Binding Playlist}" SelectedItem="{Binding SMusic}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

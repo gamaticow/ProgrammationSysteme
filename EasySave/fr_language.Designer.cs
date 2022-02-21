@@ -142,6 +142,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;application est déjà en cours d&apos;utilisation.
+        /// </summary>
+        internal static string error_mono_instance {
+            get {
+                return ResourceManager.GetString("error_mono_instance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nom déjà utilisé.
         /// </summary>
         internal static string error_name_already_used {
@@ -268,6 +277,24 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Exécution parallèle.
+        /// </summary>
+        internal static string parallel_execution {
+            get {
+                return ResourceManager.GetString("parallel_execution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fichiers prioritaires.
+        /// </summary>
+        internal static string priority_files {
+            get {
+                return ResourceManager.GetString("priority_files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Choix du logiciel métier.
         /// </summary>
         internal static string select_business_app {
@@ -277,11 +304,11 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Exécution séquentielle.
+        ///   Recherche une chaîne localisée semblable à Taille Limite.
         /// </summary>
-        internal static string sequential_execution {
+        internal static string size_limit {
             get {
-                return ResourceManager.GetString("sequential_execution", resourceCulture);
+                return ResourceManager.GetString("size_limit", resourceCulture);
             }
         }
     }

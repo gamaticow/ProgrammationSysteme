@@ -7,6 +7,8 @@
         xmlns:views="clr-namespace:EasySave.View"
         xmlns:viewmodels="clr-namespace:EasySave.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Closing="DataWindow_Closing"
         Title="EasySave" Height="535" Width="800">
     <Window.Resources>
         <Image x:Key="Home" Source="Resources/home.png"/>
@@ -29,7 +31,7 @@
         </Grid.Resources>
         <Button Content="{StaticResource Home}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Menu"/>
         <Button Content="{StaticResource Setting}"  Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Settings"/>
-        <ContentControl Content="{Binding SelectedViewModel}" Margin="0,25,0,0" />
+        <ContentControl VerticalAlignment="Top" Content="{Binding SelectedViewModel}" Margin="0,30,0,0" />
         <Grid Height="35" Background="LightGray" Margin="0,449,0,10">
             <Label xml:space="preserve" VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin     DEMBELE Romaric     RAMBIER Ewen</Label>
             <Button HorizontalAlignment="Right" Margin="0,0,10,0" Command="{Binding MediaPlayerCommand}" BorderThickness="0" Background="LightGray">

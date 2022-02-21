@@ -13,6 +13,7 @@
     <None Remove="Cryptosoft.exe" />
     <None Remove="Cryptosoft.runtimeconfig.json" />
     <None Remove="home.png" />
+    <None Remove="Resources\add.png" />
     <None Remove="Resources\bob_marley_1.mp3" />
     <None Remove="Resources\bob_marley_LoveIsLove.mp3" />
     <None Remove="Resources\bob_marley_NoWomanNoCry.mp3" />
@@ -83,6 +84,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="OptimizedPriorityQueue" Version="5.1.0" />
     <PackageReference Include="Prism.Core" Version="8.1.97" />
     <PackageReference Include="Uno.UI" Version="4.0.13" />
   </ItemGroup>
@@ -112,6 +114,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resources\add.png" />
 	  <Resource Include="Resources\diskette.png" />
 	  <Resource Include="Resources\FlagEnglish.png" />
 	  <Resource Include="Resources\FlagFrench.png" />

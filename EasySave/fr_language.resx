@@ -144,6 +144,9 @@
   <data name="error_fields_empty" xml:space="preserve">
     <value>Tous les champs n'ont pas été remplies</value>
   </data>
+  <data name="error_mono_instance" xml:space="preserve">
+    <value>L'application est déjà en cours d'utilisation</value>
+  </data>
   <data name="error_name_already_used" xml:space="preserve">
     <value>Nom déjà utilisé</value>
   </data>
@@ -186,10 +189,16 @@
   <data name="music_choice" xml:space="preserve">
     <value>Choix de la musique</value>
   </data>
+  <data name="parallel_execution" xml:space="preserve">
+    <value>Exécution parallèle</value>
+  </data>
+  <data name="priority_files" xml:space="preserve">
+    <value>Fichiers prioritaires</value>
+  </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Choix du logiciel métier</value>
   </data>
-  <data name="sequential_execution" xml:space="preserve">
-    <value>Exécution séquentielle</value>
+  <data name="size_limit" xml:space="preserve">
+    <value>Taille Limite</value>
   </data>
 </root>

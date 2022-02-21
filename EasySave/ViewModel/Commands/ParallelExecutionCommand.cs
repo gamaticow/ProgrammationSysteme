@@ -10,11 +10,11 @@ using EasySave.Model;
 
 namespace EasySave.ViewModel.Commands
 {
-    class SequentialExecutionCommand: ICommand
+    class ParallelExecutionCommand: ICommand
     {
         private MenuViewModel viewModel;
 
-        public SequentialExecutionCommand(MenuViewModel viewModel)
+        public ParallelExecutionCommand(MenuViewModel viewModel)
         {
             this.viewModel = viewModel;
         }

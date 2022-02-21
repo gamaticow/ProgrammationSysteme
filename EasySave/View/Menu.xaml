@@ -9,12 +9,15 @@
         <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" Margin="10,10,580,58">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=name}"/>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                        <ProgressBar Width="175" Height="25" Minimum="0" Maximum="100" Value="{Binding Progress}" Foreground="{Binding Color}" />
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Content="{Binding Tcreate_backup}" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="CreateBackup"/>
         <Button Content="{Binding Tinfo}" HorizontalAlignment="Left" Margin="243,40,0,0" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="InfoBackup"/>
-        <Button Content="{Binding Tsequential_execution}" HorizontalAlignment="Left" Margin="243,70,0,0" VerticalAlignment="Top" Height="25" Command="{Binding SequentialExecutionCommand}"/>
+        <Button Content="{Binding Tparallel_execution}" HorizontalAlignment="Left" Margin="243,70,0,0" VerticalAlignment="Top" Height="25" Command="{Binding ParallelExecutionCommand}"/>
     </Grid>
 </UserControl>
