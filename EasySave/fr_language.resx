@@ -195,6 +195,9 @@
   <data name="priority_files" xml:space="preserve">
     <value>Fichiers prioritaires</value>
   </data>
+  <data name="selected_backup_work" xml:space="preserve">
+    <value>Travail de sauvegarde sélectionné</value>
+  </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Choix du logiciel métier</value>
   </data>

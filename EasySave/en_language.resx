@@ -192,6 +192,9 @@
   <data name="priority_files" xml:space="preserve">
     <value>Priority files</value>
   </data>
+  <data name="selected_backup_work" xml:space="preserve">
+    <value>Selected backup work</value>
+  </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Business app choice</value>
   </data>

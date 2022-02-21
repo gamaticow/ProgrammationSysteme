@@ -15,6 +15,7 @@ namespace EasySave.ViewModel
         public string Tcreate_backup { get; set; }
         public string Tinfo { get; set; }
         public string Tparallel_execution { get; set; }
+        public string TSelectedBackupWork { get; set; }
 
         private MenuBackupWork _selected;
         public MenuBackupWork Selected
@@ -27,6 +28,9 @@ namespace EasySave.ViewModel
             {
                 _selected = value;
                 UpdateViewCommand.RaiseCanExecuteChanged();
+                ExecuteBackupCommand.RaiseCanExecuteChanged();
+                PauseBackupCommand.RaiseCanExecuteChanged();
+                InterruptBackupCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -43,19 +47,25 @@ namespace EasySave.ViewModel
             }
         }
         public ICommand ParallelExecutionCommand { get; private set; }
-        public ICommand BackupWorkDoubleClickCommand { get; set; }
+        public ICommand BackupWorkDoubleClickCommand { get; private set; }
+        public ExecuteBackupCommand ExecuteBackupCommand { get; private set; }
+        public PauseBackupCommand PauseBackupCommand { get; private set; }
+        public InterruptBackupCommand InterruptBackupCommand { get; private set; }
 
         public MenuViewModel()
         {
+            ParallelExecutionCommand = new ParallelExecutionCommand(this);
+            BackupWorkDoubleClickCommand = new BackupWorkDoubleClickCommand(this);
+            ExecuteBackupCommand = new ExecuteBackupCommand(this);
+            PauseBackupCommand = new PauseBackupCommand(this);
+            InterruptBackupCommand = new InterruptBackupCommand(this);
+
             _backupWorkList = new List<MenuBackupWork>();
-            foreach(BackupWork backupWork in Model.Model.Instance.backupWorks)
+            foreach (BackupWork backupWork in Model.Model.Instance.backupWorks)
             {
                 _backupWorkList.Add(new MenuBackupWork() { BackupWork = backupWork, Name = backupWork.name, Progress = 0, Color = "#198754" });
                 backupWork.Subscribe(this);
             }
-
-            ParallelExecutionCommand = new ParallelExecutionCommand(this);
-            BackupWorkDoubleClickCommand = new BackupWorkDoubleClickCommand(this);
         }
 
         public override void SetTranslation()
@@ -63,6 +73,7 @@ namespace EasySave.ViewModel
             Tcreate_backup = Translate("create_backup");
             Tinfo = Translate("get_info");
             Tparallel_execution = Translate("parallel_execution");
+            TSelectedBackupWork = Translate("selected_backup_work");
         }
 
         public void OnCompleted()
@@ -101,6 +112,9 @@ namespace EasySave.ViewModel
             backupWork.Color = color;
 
             OnPropertyChanged(nameof(BackupWorksList));
+            ExecuteBackupCommand.RaiseCanExecuteChanged();
+            PauseBackupCommand.RaiseCanExecuteChanged();
+            InterruptBackupCommand.RaiseCanExecuteChanged();
         }
     }
 

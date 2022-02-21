@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,25 +8,44 @@ using System.Windows.Input;
 
 namespace EasySave.ViewModel.Commands
 {
-    class PauseBackupCommand : ICommand
+    class PauseBackupCommand : DelegateCommandBase
     {
-        private InfoBackupViewModel viewModel;
+        private InfoBackupViewModel infoBackupViewModel;
+        private MenuViewModel menuViewModel;
 
         public PauseBackupCommand(InfoBackupViewModel viewModel)
         {
-            this.viewModel = viewModel;
+            infoBackupViewModel = viewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        public PauseBackupCommand(MenuViewModel viewModel)
         {
-            return true;
+            menuViewModel = viewModel;
         }
 
-        public void Execute(object parameter)
+        protected override bool CanExecute(object parameter)
         {
-            viewModel.BackupWorkSelected.Pause();
+            if (infoBackupViewModel != null)
+            {
+                return infoBackupViewModel.BackupWorkSelected.State == Model.BackupStateEnum.ACTIVE;
+            }
+            else if (menuViewModel != null)
+            {
+                return menuViewModel.Selected != null && menuViewModel.Selected.BackupWork.State == Model.BackupStateEnum.ACTIVE;
+            }
+            return false;
+        }
+
+        protected override void Execute(object parameter)
+        {
+            if (infoBackupViewModel != null)
+            {
+                infoBackupViewModel.BackupWorkSelected.Pause();
+            }
+            else if (menuViewModel != null)
+            {
+                menuViewModel.Selected.BackupWork.Pause();
+            }
         }
     }
 }

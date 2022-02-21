@@ -65,15 +65,13 @@ namespace EasySave.ViewModel
 
         public EditBackupCommand EditBackupCommand { get; private set; }
         public ICommand DeleteBackupCommand { get; private set; }
-        public ICommand ExecuteBackupCommand { get; private set; }
-        public ICommand PauseBackupCommand { get; private set; }
-        public ICommand InterruptBackupCommand { get; private set; }
+        public ExecuteBackupCommand ExecuteBackupCommand { get; private set; }
+        public PauseBackupCommand PauseBackupCommand { get; private set; }
+        public InterruptBackupCommand InterruptBackupCommand { get; private set; }
 
         public InfoBackupViewModel(BackupWork BackupWorkSelected)
         {
             this.BackupWorkSelected = BackupWorkSelected;
-
-            BackupWorkSelected.Subscribe(this);
 
             name = BackupWorkSelected.name;
             sourceDirectory = BackupWorkSelected.sourceDirectory;
@@ -85,6 +83,8 @@ namespace EasySave.ViewModel
             ExecuteBackupCommand = new ExecuteBackupCommand(this);
             PauseBackupCommand = new PauseBackupCommand(this);
             InterruptBackupCommand = new InterruptBackupCommand(this);
+
+            BackupWorkSelected.Subscribe(this);
         }
 
         public override void SetTranslation()
@@ -116,6 +116,9 @@ namespace EasySave.ViewModel
             {
                 ProgressColor = "#198754";
             }
+            ExecuteBackupCommand.RaiseCanExecuteChanged();
+            PauseBackupCommand.RaiseCanExecuteChanged();
+            InterruptBackupCommand.RaiseCanExecuteChanged();
         }
     }
 }

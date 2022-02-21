@@ -9,21 +9,33 @@
         <Style TargetType="ListBoxItem" x:Key="listViewDoubleClick">
             <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
         </Style>
+        <Image x:Key="pause" Source="../Resources/pause.png"/>
+        <Image x:Key="stop" Source="../Resources/stop.png"/>
+        <Image x:Key="play" Source="../Resources/play.png"/>
     </UserControl.Resources>
-    <Grid Width="800" Height="450">
-        <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" ItemContainerStyle="{StaticResource listViewDoubleClick}" Margin="10,10,580,58">
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+        <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" ItemContainerStyle="{StaticResource listViewDoubleClick}" Width="250" Height="400">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        
                         <TextBlock Text="{Binding Path=Name}"/>
                         <ProgressBar Width="175" Height="25" Minimum="0" Maximum="100" Value="{Binding Progress}" Foreground="{Binding Color}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="{Binding Tcreate_backup}" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="CreateBackup"/>
-        <Button Content="{Binding Tinfo}" HorizontalAlignment="Left" Margin="243,40,0,0" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="InfoBackup"/>
-        <Button Content="{Binding Tparallel_execution}" HorizontalAlignment="Left" Margin="243,70,0,0" VerticalAlignment="Top" Height="25" Command="{Binding ParallelExecutionCommand}"/>
-    </Grid>
+        <StackPanel Margin="5,0,0,0">
+            <Button Content="{Binding Tcreate_backup}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="CreateBackup"/>
+            <Button Content="{Binding Tparallel_execution}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding ParallelExecutionCommand}" Margin="0,5,0,0"/>
+
+            <GroupBox Header="{Binding TSelectedBackupWork}" Padding="5" Margin="0,5,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="{Binding Tinfo}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="InfoBackup"/>
+                    <Button Content="{StaticResource play}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding ExecuteBackupCommand}" CommandParameter="InfoBackup" Margin="5,0,0,0"/>
+                    <Button Content="{StaticResource pause}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PauseBackupCommand}" CommandParameter="InfoBackup" Margin="5,0,0,0"/>
+                    <Button Content="{StaticResource stop}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding InterruptBackupCommand}" CommandParameter="InfoBackup" Margin="5,0,0,0"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

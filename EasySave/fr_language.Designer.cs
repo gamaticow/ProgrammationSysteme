@@ -304,6 +304,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Travail de sauvegarde sélectionné.
+        /// </summary>
+        internal static string selected_backup_work {
+            get {
+                return ResourceManager.GetString("selected_backup_work", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Taille Limite.
         /// </summary>
         internal static string size_limit {
