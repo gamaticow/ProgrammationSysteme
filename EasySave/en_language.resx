@@ -165,6 +165,9 @@
   <data name="get_info" xml:space="preserve">
     <value>Get Informations</value>
   </data>
+  <data name="JAPAN" xml:space="preserve">
+    <value>pack://application:,,,/Resources/FlagJapan.png</value>
+  </data>
   <data name="label_backup_name" xml:space="preserve">
     <value>Backup Name</value>
   </data>
@@ -192,10 +195,16 @@
   <data name="priority_files" xml:space="preserve">
     <value>Priority files</value>
   </data>
+  <data name="RUSSIAN" xml:space="preserve">
+    <value>pack://application:,,,/Resources/FlagRussian.png</value>
+  </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Business app choice</value>
   </data>
   <data name="size_limit" xml:space="preserve">
     <value>Size Limit</value>
+  </data>
+  <data name="SPANISH" xml:space="preserve">
+    <value>pack://application:,,,/Resources/FlagSpanish.png</value>
   </data>
 </root>

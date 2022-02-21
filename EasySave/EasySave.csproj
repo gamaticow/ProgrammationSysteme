@@ -18,10 +18,14 @@
     <None Remove="Resources\bob_marley_LoveIsLove.mp3" />
     <None Remove="Resources\bob_marley_NoWomanNoCry.mp3" />
     <None Remove="Resources\colonel_reyel_celui.mp3" />
+    <None Remove="Resources\Contre_sens.mp3" />
     <None Remove="Resources\diskette.png" />
     <None Remove="Resources\FlagEng.bmp" />
     <None Remove="Resources\FlagEnglish.png" />
     <None Remove="Resources\FlagFrench.png" />
+    <None Remove="Resources\FlagJapan.png" />
+    <None Remove="Resources\FlagRussian.png" />
+    <None Remove="Resources\FlagSpanish.png" />
     <None Remove="Resources\florent_pagny_savoir_aimer.mp3" />
     <None Remove="Resources\folder.png" />
     <None Remove="Resources\home.png" />
@@ -35,7 +39,9 @@
     <None Remove="Resources\Petit son.mp3" />
     <None Remove="Resources\Petit_son.mp3" />
     <None Remove="Resources\play.png" />
+    <None Remove="Resources\russia.png" />
     <None Remove="Resources\setting.png" />
+    <None Remove="Resources\Shifter_pro.mp3" />
     <None Remove="Resources\stop.png" />
     <None Remove="Resources\trash.png" />
   </ItemGroup>
@@ -62,6 +68,9 @@
     <Content Include="Resources\colonel_reyel_celui.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Contre_sens.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\florent_pagny_savoir_aimer.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -80,6 +89,9 @@
     <Content Include="Resources\ninja_turtles.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Shifter_pro.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -95,10 +107,25 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>en_language.resx</DependentUpon>
 		</Compile>
+		<Compile Update="spa_language.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>spa_language.resx</DependentUpon>
+		</Compile>
 		<Compile Update="fr_language.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>fr_language.resx</DependentUpon>
+		</Compile>
+		<Compile Update="jap_language.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>jap_language.resx</DependentUpon>
+		</Compile>
+		<Compile Update="ru_language.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ru_language.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
@@ -107,9 +134,21 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>en_language.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="spa_language.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>spa_language.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="fr_language.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>fr_language.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="jap_language.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>jap_language.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="ru_language.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ru_language.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
@@ -118,6 +157,9 @@
 	  <Resource Include="Resources\diskette.png" />
 	  <Resource Include="Resources\FlagEnglish.png" />
 	  <Resource Include="Resources\FlagFrench.png" />
+	  <Resource Include="Resources\FlagJapan.png" />
+	  <Resource Include="Resources\FlagRussian.png" />
+	  <Resource Include="Resources\FlagSpanish.png" />
 	  <Resource Include="Resources\folder.png" />
 	  <Resource Include="Resources\home.png" />
 	  <Resource Include="Resources\pause.png" />

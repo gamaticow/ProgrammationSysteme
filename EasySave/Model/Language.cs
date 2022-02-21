@@ -22,6 +22,18 @@ namespace EasySave.Model
             {
                 resourceManager = fr_language.ResourceManager;
             }
+            else if (languageType == LanguageType.JAPAN)
+            {
+                resourceManager = jap_language.ResourceManager;
+            }
+            else if (languageType == LanguageType.RUSSIAN)
+            {
+                resourceManager = ru_language.ResourceManager;
+            }
+            else if (languageType == LanguageType.SPANISH)
+            {
+                resourceManager = spa_language.ResourceManager;
+            }
         }
 
         public string Translate(string key)

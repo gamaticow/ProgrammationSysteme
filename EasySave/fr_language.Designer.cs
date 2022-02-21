@@ -214,6 +214,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagJapan.png.
+        /// </summary>
+        internal static string JAPAN {
+            get {
+                return ResourceManager.GetString("JAPAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nom de sauvegarde.
         /// </summary>
         internal static string label_backup_name {
@@ -295,6 +304,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagRussian.png.
+        /// </summary>
+        internal static string RUSSIAN {
+            get {
+                return ResourceManager.GetString("RUSSIAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Choix du logiciel métier.
         /// </summary>
         internal static string select_business_app {
@@ -309,6 +327,15 @@ namespace EasySave {
         internal static string size_limit {
             get {
                 return ResourceManager.GetString("size_limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagSpanish.png.
+        /// </summary>
+        internal static string SPANISH {
+            get {
+                return ResourceManager.GetString("SPANISH", resourceCulture);
             }
         }
     }

@@ -118,94 +118,94 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="backuptype_full" xml:space="preserve">
-    <value>complet</value>
+    <value>completa</value>
   </data>
   <data name="create_backup" xml:space="preserve">
-    <value>Créer une sauvegarde</value>
+    <value>Crear una copia de seguridad</value>
   </data>
   <data name="DIFFERENTIAL" xml:space="preserve">
-    <value>Différentiel</value>
+    <value>Diferencial</value>
   </data>
   <data name="encrypted_extension" xml:space="preserve">
-    <value>Extension à chiffrer</value>
+    <value>Extensión a encriptar</value>
   </data>
   <data name="encrypted_extension_add" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>Añadir</value>
   </data>
   <data name="encrypted_extension_delete" xml:space="preserve">
-    <value>Supprimer</value>
+    <value>Eliminar</value>
   </data>
   <data name="ENGLISH" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagEnglish.png</value>
   </data>
   <data name="error" xml:space="preserve">
-    <value>Une erreur est survenue</value>
+    <value>Se ha producido un error</value>
   </data>
   <data name="error_fields_empty" xml:space="preserve">
-    <value>Tous les champs n'ont pas été remplies</value>
+    <value>No se han rellenado todos los campos</value>
   </data>
   <data name="error_mono_instance" xml:space="preserve">
-    <value>L'application est déjà en cours d'utilisation</value>
+    <value>La aplicación ya está en uso</value>
   </data>
   <data name="error_name_already_used" xml:space="preserve">
-    <value>Nom déjà utilisé</value>
+    <value>Nombre ya utilizado</value>
   </data>
   <data name="error_title" xml:space="preserve">
-    <value>Erreur</value>
+    <value>Error</value>
   </data>
   <data name="error_unknown_type" xml:space="preserve">
-    <value>Type de travail de sauvegarde inconnu</value>
+    <value>Tipo de trabajo de copia de seguridad desconocido</value>
   </data>
   <data name="flag_name" xml:space="preserve">
-    <value>pack://application:,,,/Resources/FlagFrench.png</value>
+    <value>pack://application:,,,/Resources/FlagSpanish.png</value>
   </data>
   <data name="FRENCH" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagFrench.png</value>
   </data>
   <data name="FULL" xml:space="preserve">
-    <value>Complet</value>
+    <value>Completo</value>
   </data>
   <data name="get_info" xml:space="preserve">
-    <value>Afficher les informations</value>
+    <value>Mostrar información</value>
   </data>
   <data name="JAPAN" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagJapan.png</value>
   </data>
   <data name="label_backup_name" xml:space="preserve">
-    <value>Nom de sauvegarde</value>
+    <value>Nombre de la copia de seguridad</value>
   </data>
   <data name="label_backup_type" xml:space="preserve">
-    <value>Type de sauvegarde</value>
+    <value>Tipo de respaldo</value>
   </data>
   <data name="label_source_directory" xml:space="preserve">
-    <value>Répertoire Source</value>
+    <value>Directorio de fuentes</value>
   </data>
   <data name="label_target_directory" xml:space="preserve">
-    <value>Répertoire Cible</value>
+    <value>Directorio de destino</value>
   </data>
   <data name="language_choice" xml:space="preserve">
-    <value>Choix du language</value>
+    <value>Elección de la lengua</value>
   </data>
   <data name="log_type_choice" xml:space="preserve">
-    <value>Choix du type de log</value>
+    <value>Elección del tipo de tronco</value>
   </data>
   <data name="music_choice" xml:space="preserve">
-    <value>Choix de la musique</value>
+    <value>Elección de la música</value>
   </data>
   <data name="parallel_execution" xml:space="preserve">
-    <value>Exécution parallèle</value>
+    <value>Ejecución paralela</value>
   </data>
   <data name="priority_files" xml:space="preserve">
-    <value>Fichiers prioritaires</value>
+    <value>Expedientes prioritarios</value>
   </data>
   <data name="RUSSIAN" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagRussian.png</value>
   </data>
   <data name="select_business_app" xml:space="preserve">
-    <value>Choix du logiciel métier</value>
+    <value>Elección del software empresarial</value>
   </data>
   <data name="size_limit" xml:space="preserve">
-    <value>Taille Limite</value>
+    <value>Límite de tamaño</value>
   </data>
   <data name="SPANISH" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagSpanish.png</value>

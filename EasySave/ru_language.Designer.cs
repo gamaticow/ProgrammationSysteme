@@ -22,14 +22,14 @@ namespace EasySave {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class en_language {
+    internal class ru_language {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal en_language() {
+        internal ru_language() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace EasySave {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EasySave.en_language", typeof(en_language).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EasySave.ru_language", typeof(ru_language).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Create a backup.
+        ///   Recherche une chaîne localisée semblable à Создание резервной копии.
         /// </summary>
         internal static string create_backup {
             get {
@@ -70,7 +70,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Differential.
+        ///   Recherche une chaîne localisée semblable à Дифференциальная.
         /// </summary>
         internal static string DIFFERENTIAL {
             get {
@@ -79,7 +79,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Extension to encrypt.
+        ///   Recherche une chaîne localisée semblable à Расширение для шифрования.
         /// </summary>
         internal static string encrypted_extension {
             get {
@@ -88,7 +88,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Add.
+        ///   Recherche une chaîne localisée semblable à Добавить.
         /// </summary>
         internal static string encrypted_extension_add {
             get {
@@ -97,7 +97,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Delete.
+        ///   Recherche une chaîne localisée semblable à Удалить.
         /// </summary>
         internal static string encrypted_extension_delete {
             get {
@@ -115,7 +115,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à An error has occurred.
+        ///   Recherche une chaîne localisée semblable à Произошла ошибка.
         /// </summary>
         internal static string error {
             get {
@@ -124,7 +124,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Not all fields have been filled.
+        ///   Recherche une chaîne localisée semblable à Не все поля заполнены.
         /// </summary>
         internal static string error_fields_empty {
             get {
@@ -133,7 +133,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à The application is already in use.
+        ///   Recherche une chaîne localisée semblable à Приложение уже используется.
         /// </summary>
         internal static string error_mono_instance {
             get {
@@ -142,7 +142,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Backup name already used.
+        ///   Recherche une chaîne localisée semblable à Имя резервной копии уже используется.
         /// </summary>
         internal static string error_name_already_used {
             get {
@@ -151,7 +151,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Error.
+        ///   Recherche une chaîne localisée semblable à Ошибка.
         /// </summary>
         internal static string error_title {
             get {
@@ -160,7 +160,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Unknwown backup type.
+        ///   Recherche une chaîne localisée semblable à Неизвестный тип резервной копии.
         /// </summary>
         internal static string error_unknown_type {
             get {
@@ -169,7 +169,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagEnglish.png.
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagRussian.png.
         /// </summary>
         internal static string flag_name {
             get {
@@ -187,7 +187,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Full.
+        ///   Recherche une chaîne localisée semblable à Полный.
         /// </summary>
         internal static string FULL {
             get {
@@ -196,7 +196,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Get Informations.
+        ///   Recherche une chaîne localisée semblable à Получить информацию.
         /// </summary>
         internal static string get_info {
             get {
@@ -214,7 +214,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Backup Name.
+        ///   Recherche une chaîne localisée semblable à Имя резервной копии.
         /// </summary>
         internal static string label_backup_name {
             get {
@@ -223,7 +223,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Backup Type.
+        ///   Recherche une chaîne localisée semblable à Тип резервной копии.
         /// </summary>
         internal static string label_backup_type {
             get {
@@ -232,7 +232,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Source Directory.
+        ///   Recherche une chaîne localisée semblable à Исходная директория.
         /// </summary>
         internal static string label_source_directory {
             get {
@@ -241,7 +241,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Target Directory.
+        ///   Recherche une chaîne localisée semblable à Целевая директория.
         /// </summary>
         internal static string label_target_directory {
             get {
@@ -250,7 +250,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Language choice.
+        ///   Recherche une chaîne localisée semblable à Выбор языка.
         /// </summary>
         internal static string language_choice {
             get {
@@ -259,7 +259,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Log type choice.
+        ///   Recherche une chaîne localisée semblable à Выбор типа журнала.
         /// </summary>
         internal static string log_type_choice {
             get {
@@ -268,7 +268,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Music choice.
+        ///   Recherche une chaîne localisée semblable à Выбор музыки.
         /// </summary>
         internal static string music_choice {
             get {
@@ -277,7 +277,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Parallel Execution.
+        ///   Recherche une chaîne localisée semblable à Параллельное выполнение.
         /// </summary>
         internal static string parallel_execution {
             get {
@@ -286,7 +286,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Priority files.
+        ///   Recherche une chaîne localisée semblable à Приоритетные файлы.
         /// </summary>
         internal static string priority_files {
             get {
@@ -304,7 +304,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Business app choice.
+        ///   Recherche une chaîne localisée semblable à Выбор бизнес-приложения.
         /// </summary>
         internal static string select_business_app {
             get {
@@ -313,7 +313,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Size Limit.
+        ///   Recherche une chaîne localisée semblable à Ограничение по размеру.
         /// </summary>
         internal static string size_limit {
             get {

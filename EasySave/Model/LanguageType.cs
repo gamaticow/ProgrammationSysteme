@@ -9,7 +9,10 @@ namespace EasySave.Model
     {
 
         ENGLISH,
-        FRENCH
-        
+        FRENCH,
+        JAPAN,
+        RUSSIAN,
+        SPANISH,
+  
     }
 }
