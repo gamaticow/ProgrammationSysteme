@@ -29,9 +29,47 @@ namespace EasySave.Model
                 Save();
             }
         }
-        public string sourceDirectory { get; private set; }
-        public string targetDirectory { get; private set; }
-        public BackupType backupType { get; protected set; }
+        private string _sourceDirectory;
+        public string sourceDirectory
+        {
+            get
+            {
+                return _sourceDirectory;
+            }
+            set
+            {
+                _sourceDirectory = value;
+                Save();
+            }
+        }
+        
+        private string _targetDirectory;
+        public string targetDirectory
+        {
+            get
+            {
+                return _targetDirectory;
+            }
+            set
+            {
+                _targetDirectory = value;
+                Save();
+            }
+        }
+
+        private BackupType _backupType;
+        public BackupType backupType
+        {
+            get
+            {
+                return _backupType;
+            }
+            set
+            {
+                _backupType = value;
+                Save();
+            }
+        }
         private BackupStateEnum State { get; set; }
 
         private static Semaphore HugeFiles = new Semaphore(1, 1);
