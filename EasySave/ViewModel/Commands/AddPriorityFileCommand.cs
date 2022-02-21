@@ -26,9 +26,9 @@ namespace EasySave.ViewModel.Commands
         {
             string priorityFile = viewModel.PriorityFileTextBox;
 
-            if(!Model.Model.Instance.priorityFiles.Contains(priorityFile))
+            if(!Model.Model.Instance.priorityFiles.Contains(priorityFile.ToLower()))
             {
-                Model.Model.Instance.priorityFiles.Add(priorityFile);
+                Model.Model.Instance.priorityFiles.Add(priorityFile.ToLower());
                 Model.Model.Instance.WriteDataFile();
                 viewModel.OnPropertyChanged(nameof(viewModel.PriorityFiles));
             }

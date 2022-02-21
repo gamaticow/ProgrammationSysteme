@@ -5,6 +5,8 @@ using System.IO;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Threading;
+using System.Threading.Tasks;
+using Priority_Queue;
 
 namespace EasySave.Model
 {
@@ -79,9 +81,14 @@ namespace EasySave.Model
         {
             if(State == BackupStateEnum.ACTIVE && thread != null && thread.ThreadState != System.Threading.ThreadState.Stopped)
             {
-                pause.WaitOne();
-                State = BackupStateEnum.PAUSE;
-                UpdateState();
+                Task.Run(() =>
+                {
+                    pause.WaitOne();
+                    Thread.Sleep(50);
+                    if (State == BackupStateEnum.ACTIVE)
+                        State = BackupStateEnum.PAUSE;
+                    UpdateState();
+                });
             }
         }
 
@@ -130,24 +137,30 @@ namespace EasySave.Model
 
                 if (canExecute)
                 {
-                    List<BackupFile> files = new List<BackupFile>();
+                    List<BackupFile> allFiles = new List<BackupFile>();
                     // Execute GetFiles() and get the total file size that will be write in the state JSON file
-                    long totalFileSize = GetFiles(files, source, target);
+                    long totalFileSize = GetFiles(allFiles, source, target);
                     if (totalFileSize < 0)
                     {
                         return;
                     }
                     totalFilesSize = totalFileSize;
 
+                    SimplePriorityQueue<BackupFile> files = new SimplePriorityQueue<BackupFile>();
+                    SimplePriorityQueue<BackupFile> hugeFiles = new SimplePriorityQueue<BackupFile>();
+
+                    foreach(BackupFile file in allFiles)
+                    {
+                        files.Enqueue(file, GetFilePriority(file.source.FullName));
+                    }
+
                     // Get the current file size that will be write in the state JSON file
                     totalFilesToCopy = files.Count;
                     nbFilesLeftToDo = files.Count;
 
                     // Loop on each file we need to save 
-                    while (files.Count > 0)
+                    while (files.Count > 0 || hugeFiles.Count > 0)
                     {
-                        BackupFile file = files[0];
-                        files.RemoveAt(0);
                         pause.WaitOne();
                         if(interrupt)
                         {
@@ -156,6 +169,40 @@ namespace EasySave.Model
                             pause.Release();
                             return;
                         }
+                        BackupFile file = null;
+
+                        bool HugeFile = false;
+                        bool canExecuteHugeFile = false;
+                        
+                        if(files.Count > 0 && hugeFiles.Count > 0)
+                        {
+                            if(GetFilePriority(hugeFiles.First.source.FullName) <= GetFilePriority(files.First.source.FullName))
+                            {
+                                if(HugeFiles.WaitOne(50))
+                                {
+                                    file = hugeFiles.Dequeue();
+                                    HugeFile = true;
+                                    canExecuteHugeFile = true;
+                                }
+                                else
+                                {
+                                    file = files.Dequeue();
+                                }
+                            }
+                        }
+                        else if(files.Count > 0)
+                        {
+                            file = files.Dequeue();
+                        }
+                        else if(hugeFiles.Count > 0)
+                        {
+                            file = hugeFiles.Dequeue();
+                        }
+                        
+                        if(file == null)
+                        {
+                            break;
+                        }
 
                         State = BackupStateEnum.ACTIVE;
                         sourceFilePath = file.source.FullName;
@@ -163,27 +210,29 @@ namespace EasySave.Model
 
                         // Edit the state JSON file with the informations we have on the save progression
                         UpdateState();
-                        bool HugeFile;
-                        bool canExecuteHugeFile;
-                        if (file.source.Length >= Model.Instance.sizeLimit*1024)
+                        
+                        if(!HugeFile && !canExecuteHugeFile)
                         {
-                            HugeFile = true;
-                            if (HugeFiles.WaitOne(50) == true)
+                            if (file.source.Length >= Model.Instance.sizeLimit * 1024)
                             {
-                                canExecuteHugeFile = true;
+                                HugeFile = true;
+                                if (HugeFiles.WaitOne(50))
+                                {
+                                    canExecuteHugeFile = true;
+                                }
+                                else
+                                {
+                                    canExecuteHugeFile = false;
+                                }
                             }
                             else
                             {
-                                canExecuteHugeFile = false;
+                                HugeFile = false;
+                                canExecuteHugeFile = true;
                             }
                         }
-                        else
-                        {
-                            HugeFile = false;
-                            canExecuteHugeFile = true;
-                        }
                         
-                        if (canExecuteHugeFile == true)
+                        if (canExecuteHugeFile)
                         {
                             long start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                             int encryptTime = 0;
@@ -204,7 +253,7 @@ namespace EasySave.Model
                                     encrypt = true;
                                 }
                             }
-                            if (encrypt == false)
+                            if (!encrypt)
                             {
                                 file.source.CopyTo(file.target.FullName, true);
                             }
@@ -213,14 +262,14 @@ namespace EasySave.Model
                             Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
                             nbFilesLeftToDo--;
 
-                            if (HugeFile == true)
+                            if (HugeFile)
                             {
                                 HugeFiles.Release();
                             }
                         }
                         else
                         {
-                            files.Add(file);
+                            hugeFiles.Enqueue(file, GetFilePriority(file.source.FullName));
                         }
                         pause.Release();
                     }
@@ -325,6 +374,11 @@ namespace EasySave.Model
             {
                 return -1;
             }
+        }
+
+        private int GetFilePriority(string file)
+        {
+            return Model.Instance.priorityFiles.Contains(file.ToLower()) ? 1 : 2;
         }
 
         // Method to add logs via observer
