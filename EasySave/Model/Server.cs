@@ -6,54 +6,63 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EasySaveRemote.Model
+namespace EasySave.Model
 {
-    class Client
+    class Server
     {
+        private static readonly string server = "127.0.0.1";
+        private static readonly int port = 9050;
         /*
-      static void Main(string[] args)
-      {
-          Socket socket = Connect("127.0.0.1", 9050);
-          ListenNetwork(socket);
-          Disconnect(socket);
-      }
-      */
+        static void Main(string[] args)
+        {
+            Socket socket_server = Connect(server, port);
+            Console.WriteLine($"Connecté avec l'adresse {server} et {port}");
 
-        public string Name { get; set; }
-        public string SourceDirectory { get; set; }
-        public BackupType BackupType { get; set; }
-        public BackupStateEnum State { get; set; }
-        public int Progression { get; set; }
-        public bool ForceProgress { get; set; }
-
-        // Properties needeed to fill up the progression attribute
-        public int TotalFilesToCopy { get; set; }
-        public long TotalFilesSize { get; set; }
-        public int NbFilesLeftToDo { get; set; }
-
-
+            Socket socket_client = AcceptConnection(socket_server);
+            ListenNetwork(socket_client);
+            // Disconnect(socket_server);
+        }
+        */
         private static Socket Connect(string server, int port)
         {
             // create the socket
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse(server), port);
 
-            // Connect to the remote endpoint
-            socket.Connect(endpoint);
+            // bind the listening socket to the port
+            try
+            {
+                socket.Bind(endpoint);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Winsock error: " + e.ToString());
+            }
+
+            // start listening
+            int backlog = 10;
+            socket.Listen(backlog);
+            Console.WriteLine("Serveur disponible à l'écoute ...");
 
             return socket;
         }
 
+        private static Socket AcceptConnection(Socket socket)
+        {
+            // Accept a simple Socket connection
+            Socket mySocket = socket.Accept();
+            return mySocket;
+        }
+
         private static int ListenNetwork(Socket client)
         {
+            byte[] msg = Encoding.UTF8.GetBytes("Bienvenu sur le serveur");
             try
             {
-
                 while (true)
                 {
                     string read = "Essai";
                     byte[] bytes = new byte[256];
-
 
                     byte[] readBytes = Encoding.UTF8.GetBytes(read);
                     // Blocks until send returns.
@@ -62,13 +71,15 @@ namespace EasySaveRemote.Model
                     // Get reply from the server.
                     byteCount = client.Receive(bytes, 0, bytes.Length, SocketFlags.None);
                     string receivedString = Encoding.UTF8.GetString(bytes, 0, byteCount);
+
                 }
+
 
             }
             catch (SocketException e)
             {
                 Console.WriteLine("{0} Error code: {1}.", e.Message, e.ErrorCode);
-                return e.ErrorCode;
+                return (e.ErrorCode);
             }
 
         }
@@ -83,12 +94,6 @@ namespace EasySaveRemote.Model
             {
                 socket.Close();
             }
-
-        }
-
-        public void SetProgression()
-        {
-            this.Progression = this.TotalFilesToCopy > 0 ? Convert.ToInt32((this.TotalFilesToCopy - this.NbFilesLeftToDo) * 100.0 / this.TotalFilesToCopy) : (ForceProgress ? 100 : 0);
         }
     }
 }
