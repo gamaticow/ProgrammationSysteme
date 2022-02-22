@@ -14,7 +14,7 @@
         <Image x:Key="play" Source="../Resources/play.png"/>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-        <ListBox ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" ItemContainerStyle="{StaticResource listViewDoubleClick}" Width="250" Height="400">
+        <ListBox Margin="5,0,0,0" ItemsSource="{Binding BackupWorksList}" SelectedItem="{Binding Selected}" ItemContainerStyle="{StaticResource listViewDoubleClick}" Width="250" Height="400">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
