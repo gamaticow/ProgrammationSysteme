@@ -124,6 +124,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à The execution can&apos;t be done because {0} is open.
+        /// </summary>
+        internal static string error_business_app {
+            get {
+                return ResourceManager.GetString("error_business_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Not all fields have been filled.
         /// </summary>
         internal static string error_fields_empty {

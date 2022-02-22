@@ -138,6 +138,9 @@
   <data name="error" xml:space="preserve">
     <value>Произошла ошибка</value>
   </data>
+  <data name="error_business_app" xml:space="preserve">
+    <value>Выполнение невозможно, потому что {0} открыто</value>
+  </data>
   <data name="error_fields_empty" xml:space="preserve">
     <value>Не все поля заполнены</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="RUSSIAN" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagRussian.png</value>
+  </data>
+  <data name="selected_backup_work" xml:space="preserve">
+    <value>Избранные резервные работы</value>
   </data>
   <data name="select_business_app" xml:space="preserve">
     <value>Выбор бизнес-приложения</value>

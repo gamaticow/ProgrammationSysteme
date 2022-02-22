@@ -61,15 +61,6 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à かんぺき.
-        /// </summary>
-        internal static string backuptype_full {
-            get {
-                return ResourceManager.GetString("backuptype_full", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à バックアップを作成する.
         /// </summary>
         internal static string create_backup {
@@ -129,6 +120,15 @@ namespace EasySave {
         internal static string error {
             get {
                 return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} が開いているため、実行できない.
+        /// </summary>
+        internal static string error_business_app {
+            get {
+                return ResourceManager.GetString("error_business_app", resourceCulture);
             }
         }
         
@@ -318,6 +318,15 @@ namespace EasySave {
         internal static string select_business_app {
             get {
                 return ResourceManager.GetString("select_business_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 厳選されたバックアップワーク.
+        /// </summary>
+        internal static string selected_backup_work {
+            get {
+                return ResourceManager.GetString("selected_backup_work", resourceCulture);
             }
         }
         

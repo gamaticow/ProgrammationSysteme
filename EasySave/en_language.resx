@@ -210,4 +210,7 @@
   <data name="SPANISH" xml:space="preserve">
     <value>pack://application:,,,/Resources/FlagSpanish.png</value>
   </data>
+  <data name="error_business_app" xml:space="preserve">
+    <value>The execution can't be done because {0} is open</value>
+  </data>
 </root>
