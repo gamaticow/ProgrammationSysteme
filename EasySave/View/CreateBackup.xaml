@@ -13,15 +13,15 @@
     <Grid>
         <StackPanel>
             <Label HorizontalAlignment="Center" Content="{Binding TLabelBackupName}"/>
-            <TextBox HorizontalAlignment="Center" Text="{Binding name, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="168" Height="25"/>
+            <TextBox VerticalContentAlignment="Center" HorizontalAlignment="Center" Text="{Binding name, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="168" Height="25"/>
             <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelSourceDirectory}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBox Text="{Binding sourceDirectory, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="168" Margin="30,0,0,0"/>
+                <TextBox VerticalContentAlignment="Center" Text="{Binding sourceDirectory, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="168" Margin="30,0,0,0"/>
                 <Button Content="{StaticResource folder}" Height="25" Margin="5,0,0,0" Command="{Binding SelectFolderCommand}" CommandParameter="source" />
             </StackPanel>
             <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelTargetDirectory}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBox Text="{Binding targetDirectory, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="168" Margin="30,0,0,0"/>
+                <TextBox VerticalContentAlignment="Center" Text="{Binding targetDirectory, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="168" Margin="30,0,0,0"/>
                 <Button Content="{StaticResource folder2}" Height="25" Margin="5,0,0,0" Command="{Binding SelectFolderCommand}" CommandParameter="target" />
             </StackPanel>
             <Label HorizontalAlignment="Center"  Margin="0,15,0,0" Content="{Binding TLabelBackupType}"/>
