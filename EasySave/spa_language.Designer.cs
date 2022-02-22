@@ -22,14 +22,14 @@ namespace EasySave {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class fr_language {
+    internal class spa_language {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal fr_language() {
+        internal spa_language() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace EasySave {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EasySave.fr_language", typeof(fr_language).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EasySave.spa_language", typeof(spa_language).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à complet.
+        ///   Recherche une chaîne localisée semblable à completa.
         /// </summary>
         internal static string backuptype_full {
             get {
@@ -70,7 +70,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Créer une sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Crear una copia de seguridad.
         /// </summary>
         internal static string create_backup {
             get {
@@ -79,7 +79,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Différentiel.
+        ///   Recherche une chaîne localisée semblable à Diferencial.
         /// </summary>
         internal static string DIFFERENTIAL {
             get {
@@ -88,7 +88,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Extension à chiffrer.
+        ///   Recherche une chaîne localisée semblable à Extensión a encriptar.
         /// </summary>
         internal static string encrypted_extension {
             get {
@@ -97,7 +97,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Ajouter.
+        ///   Recherche une chaîne localisée semblable à Añadir.
         /// </summary>
         internal static string encrypted_extension_add {
             get {
@@ -106,7 +106,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Supprimer.
+        ///   Recherche une chaîne localisée semblable à Eliminar.
         /// </summary>
         internal static string encrypted_extension_delete {
             get {
@@ -124,7 +124,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Une erreur est survenue.
+        ///   Recherche une chaîne localisée semblable à Se ha producido un error.
         /// </summary>
         internal static string error {
             get {
@@ -133,7 +133,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Tous les champs n&apos;ont pas été remplies.
+        ///   Recherche une chaîne localisée semblable à No se han rellenado todos los campos.
         /// </summary>
         internal static string error_fields_empty {
             get {
@@ -142,7 +142,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à L&apos;application est déjà en cours d&apos;utilisation.
+        ///   Recherche une chaîne localisée semblable à La aplicación ya está en uso.
         /// </summary>
         internal static string error_mono_instance {
             get {
@@ -151,7 +151,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Nom déjà utilisé.
+        ///   Recherche une chaîne localisée semblable à Nombre ya utilizado.
         /// </summary>
         internal static string error_name_already_used {
             get {
@@ -160,7 +160,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Erreur.
+        ///   Recherche une chaîne localisée semblable à Error.
         /// </summary>
         internal static string error_title {
             get {
@@ -169,7 +169,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Type de travail de sauvegarde inconnu.
+        ///   Recherche une chaîne localisée semblable à Tipo de trabajo de copia de seguridad desconocido.
         /// </summary>
         internal static string error_unknown_type {
             get {
@@ -178,7 +178,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagFrench.png.
+        ///   Recherche une chaîne localisée semblable à pack://application:,,,/Resources/FlagSpanish.png.
         /// </summary>
         internal static string flag_name {
             get {
@@ -196,7 +196,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Complet.
+        ///   Recherche une chaîne localisée semblable à Completo.
         /// </summary>
         internal static string FULL {
             get {
@@ -205,7 +205,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Afficher les informations.
+        ///   Recherche une chaîne localisée semblable à Mostrar información.
         /// </summary>
         internal static string get_info {
             get {
@@ -223,7 +223,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Nom de sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Nombre de la copia de seguridad.
         /// </summary>
         internal static string label_backup_name {
             get {
@@ -232,7 +232,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Type de sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Tipo de respaldo.
         /// </summary>
         internal static string label_backup_type {
             get {
@@ -241,7 +241,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Répertoire Source.
+        ///   Recherche une chaîne localisée semblable à Directorio de fuentes.
         /// </summary>
         internal static string label_source_directory {
             get {
@@ -250,7 +250,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Répertoire Cible.
+        ///   Recherche une chaîne localisée semblable à Directorio de destino.
         /// </summary>
         internal static string label_target_directory {
             get {
@@ -259,7 +259,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Choix du language.
+        ///   Recherche une chaîne localisée semblable à Elección de la lengua.
         /// </summary>
         internal static string language_choice {
             get {
@@ -268,7 +268,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Choix du type de log.
+        ///   Recherche une chaîne localisée semblable à Elección del tipo de tronco.
         /// </summary>
         internal static string log_type_choice {
             get {
@@ -277,7 +277,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Choix de la musique.
+        ///   Recherche une chaîne localisée semblable à Elección de la música.
         /// </summary>
         internal static string music_choice {
             get {
@@ -286,7 +286,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Exécution parallèle.
+        ///   Recherche une chaîne localisée semblable à Ejecución paralela.
         /// </summary>
         internal static string parallel_execution {
             get {
@@ -295,7 +295,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fichiers prioritaires.
+        ///   Recherche une chaîne localisée semblable à Expedientes prioritarios.
         /// </summary>
         internal static string priority_files {
             get {
@@ -313,7 +313,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Choix du logiciel métier.
+        ///   Recherche une chaîne localisée semblable à Elección del software empresarial.
         /// </summary>
         internal static string select_business_app {
             get {
@@ -322,16 +322,7 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Travail de sauvegarde sélectionné.
-        /// </summary>
-        internal static string selected_backup_work {
-            get {
-                return ResourceManager.GetString("selected_backup_work", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Taille Limite.
+        ///   Recherche une chaîne localisée semblable à Límite de tamaño.
         /// </summary>
         internal static string size_limit {
             get {
