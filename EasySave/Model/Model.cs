@@ -58,19 +58,12 @@ namespace EasySave.Model
         public List<string> priorityFiles { get; set; } = new List<string>();
         public object Music { get; set; }
 
-        public Server serverStateObserver { get; set; }
-
         private Model()
         {
             // This class is a singleton
             logObserver = new LogObserver();
             stateObserver = new StateObserver();
             saveObserver = new SaveBackupObserver();
-            serverStateObserver = new Server();
-            
-            Socket socket_server = serverStateObserver.Connect("127.0.0.1", 9050);
-            //Socket socket_client = serverStateObserver.AcceptConnection(socket_server);
-            //serverStateObserver.ListenNetwork(socket_client);
         }
 
         // Method that read the configuration JSON file and import all the objects in it 
@@ -165,7 +158,6 @@ namespace EasySave.Model
                 backupWork.Subscribe(logObserver);
                 backupWork.Subscribe(stateObserver);
                 backupWork.Subscribe(saveObserver);
-                backupWork.Subscribe(serverStateObserver);
                 backupWorks.Add(backupWork);
             }
             else if (type == BackupType.DIFFERENTIAL)
@@ -174,7 +166,6 @@ namespace EasySave.Model
                 backupWork.Subscribe(logObserver);
                 backupWork.Subscribe(stateObserver);
                 backupWork.Subscribe(saveObserver);
-                backupWork.Subscribe(serverStateObserver);
                 backupWorks.Add(backupWork);
             }
             else
