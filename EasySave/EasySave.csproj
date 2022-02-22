@@ -14,12 +14,14 @@
     <None Remove="Cryptosoft.runtimeconfig.json" />
     <None Remove="home.png" />
     <None Remove="Resources\add.png" />
+    <None Remove="Resources\backgroundEasySave.jpg" />
     <None Remove="Resources\bob_marley_1.mp3" />
     <None Remove="Resources\bob_marley_LoveIsLove.mp3" />
     <None Remove="Resources\bob_marley_NoWomanNoCry.mp3" />
     <None Remove="Resources\colonel_reyel_celui.mp3" />
     <None Remove="Resources\Contre_sens.mp3" />
     <None Remove="Resources\diskette.png" />
+    <None Remove="Resources\EasySave_Logo.png" />
     <None Remove="Resources\FlagEng.bmp" />
     <None Remove="Resources\FlagEnglish.png" />
     <None Remove="Resources\FlagFrench.png" />
@@ -35,6 +37,7 @@
     <None Remove="Resources\makassy-doucement.mp3" />
     <None Remove="Resources\makassy_doucement.mp3" />
     <None Remove="Resources\ninja_turtles.mp3" />
+    <None Remove="Resources\parallel.png" />
     <None Remove="Resources\pause.png" />
     <None Remove="Resources\Petit son.mp3" />
     <None Remove="Resources\Petit_son.mp3" />
@@ -153,7 +156,9 @@
 
 	<ItemGroup>
 	  <Resource Include="Resources\add.png" />
+	  <Resource Include="Resources\backgroundEasySave.jpg" />
 	  <Resource Include="Resources\diskette.png" />
+	  <Resource Include="Resources\EasySave_Logo.png" />
 	  <Resource Include="Resources\FlagEnglish.png" />
 	  <Resource Include="Resources\FlagFrench.png" />
 	  <Resource Include="Resources\FlagJapan.png" />
@@ -161,6 +166,7 @@
 	  <Resource Include="Resources\FlagSpanish.png" />
 	  <Resource Include="Resources\folder.png" />
 	  <Resource Include="Resources\home.png" />
+	  <Resource Include="Resources\parallel.png" />
 	  <Resource Include="Resources\pause.png" />
 	  <Resource Include="Resources\play.png" />
 	  <Resource Include="Resources\setting.png" />

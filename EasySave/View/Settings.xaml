@@ -16,7 +16,11 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" Height="415">
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="{Binding TLanguageChoice}" />
+                <Label Width="150" Content="{Binding TLanguageChoice}">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.6"/>
+                    </Label.Background>
+                </Label>
                 <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -26,7 +30,11 @@
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="{Binding TEncryptedExtension}" VerticalAlignment="Top" />
+                <Label Width="150" Content="{Binding TEncryptedExtension}" VerticalAlignment="Top">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.6"/>
+                    </Label.Background>
+                </Label>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <ListView Height ="100" Width="100" ItemsSource="{Binding EncryptedExtensions}" SelectedItem="{Binding SEncryptedExtension}" />
@@ -39,12 +47,20 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="{Binding TBusinessApp}" VerticalAlignment="Top" />
+                <Label Width="150" Content="{Binding TBusinessApp}" VerticalAlignment="Top">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.6"/>
+                    </Label.Background>
+                </Label>
                 <TextBox VerticalContentAlignment="Center" Width="250" Height="25" Text="{Binding BusinessApp}" />
                 <Button Content="{StaticResource folder}" Height="25" Command="{Binding SelectFileCommand}" CommandParameter="BusinessApp" Margin="5,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="{Binding TLogTypeChoice}" />
+                <Label Width="150" Content="{Binding TLogTypeChoice}">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.6"/>
+                    </Label.Background>
+                </Label>
                 <ComboBox ItemsSource="{Binding LogTypes}" SelectedItem="{Binding SLogType}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -54,7 +70,11 @@
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="{Binding TPriorityFiles}" VerticalAlignment="Top" />
+                <Label Width="150" Content="{Binding TPriorityFiles}" VerticalAlignment="Top">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.6"/>
+                    </Label.Background>
+                </Label>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <ListView Height ="100" Width="250" ItemsSource="{Binding PriorityFiles}" SelectedItem="{Binding SPriorityFile}" />
@@ -68,14 +88,20 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="{Binding TSizeLimit}" VerticalAlignment="Top" />
+                <Label Width="150" Content="{Binding TSizeLimit}" VerticalAlignment="Top">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.6"/>
+                    </Label.Background>
+                </Label>
                 <TextBox VerticalContentAlignment="Center" Padding="5,0" Text="{Binding SizeLimitInput}" />
-                <ComboBox ItemsSource="{Binding SizeUnits}" SelectedItem="{Binding SSizeUnit}">
-                    
-                </ComboBox>
+                <ComboBox ItemsSource="{Binding SizeUnits}" SelectedItem="{Binding SSizeUnit}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="{Binding TMusicChoice}" />
+                <Label Width="150" Content="{Binding TMusicChoice}">
+                    <Label.Background>
+                        <SolidColorBrush Color="White" Opacity="0.6"/>
+                    </Label.Background>
+                </Label>
                 <ComboBox ItemsSource="{Binding Playlist}" SelectedItem="{Binding SMusic}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
