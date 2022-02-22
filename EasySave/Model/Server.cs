@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -8,10 +9,37 @@ using System.Threading.Tasks;
 
 namespace EasySave.Model
 {
-    class Server
+    class Server : IObserver<BackupState>, INotifyPropertyChanged
     {
         private static readonly string server = "127.0.0.1";
         private static readonly int port = 9050;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string Name { get; set; }
+        public string SourceDirectory { get; set; }
+        public BackupType BackupType { get; set; }
+        public BackupStateEnum State { get; set; }
+        private int _progression;
+        public int Progression 
+        { 
+            get 
+            {
+                return _progression;
+            }
+            set 
+            {
+                _progression = value;
+                OnPropertyChanged(nameof(Progression));
+            }
+        }
+        public bool ForceProgress { get; set; }
+
+        // Properties needeed to fill up the progression attribute
+        public int TotalFilesToCopy { get; set; }
+        public long TotalFilesSize { get; set; }
+        public int NbFilesLeftToDo { get; set; }
+
         /*
         static void Main(string[] args)
         {
@@ -23,7 +51,7 @@ namespace EasySave.Model
             // Disconnect(socket_server);
         }
         */
-        private static Socket Connect(string server, int port)
+        public Socket Connect(string server, int port)
         {
             // create the socket
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -47,14 +75,14 @@ namespace EasySave.Model
             return socket;
         }
 
-        private static Socket AcceptConnection(Socket socket)
+        public Socket AcceptConnection(Socket socket)
         {
             // Accept a simple Socket connection
             Socket mySocket = socket.Accept();
             return mySocket;
         }
 
-        private static int ListenNetwork(Socket client)
+        public int ListenNetwork(Socket client)
         {
             byte[] msg = Encoding.UTF8.GetBytes("Bienvenu sur le serveur");
             try
@@ -84,7 +112,7 @@ namespace EasySave.Model
 
         }
 
-        private static void Disconnect(Socket socket)
+        public void Disconnect(Socket socket)
         {
             try
             {
@@ -94,6 +122,22 @@ namespace EasySave.Model
             {
                 socket.Close();
             }
+        }
+
+        public void OnCompleted()
+        {}
+
+        public void OnError(Exception error)
+        {}
+
+        public void OnNext(BackupState value)
+        {
+            Progression = value.Progression;
+        }
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
