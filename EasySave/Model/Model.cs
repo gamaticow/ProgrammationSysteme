@@ -69,7 +69,7 @@ namespace EasySave.Model
             serverStateObserver = new Server();
             
             Socket socket_server = serverStateObserver.Connect("127.0.0.1", 9050);
-            Socket socket_client = serverStateObserver.AcceptConnection(socket_server);
+            //Socket socket_client = serverStateObserver.AcceptConnection(socket_server);
             //serverStateObserver.ListenNetwork(socket_client);
         }
 
