@@ -15,7 +15,7 @@
     </Window.Resources>
     <StackPanel>
     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-            <ListBox Margin="5,0,0,0" ItemsSource="{Binding BackupWorks}" SelectedItem="{Binding Selected}" Width="250" Height="356">
+            <ListBox Margin="5,0,0,0" ItemsSource="{Binding BackupWorks}" SelectedItem="{Binding SBackupWork}" Width="250" Height="356">
                 <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -28,9 +28,9 @@
             <StackPanel Margin="5,0,0,0">
                 <GroupBox Header="{Binding TSelectedBackupWork}" Padding="5" Margin="0,5,0,0">
                     <StackPanel Orientation="Horizontal">
-                        <Button Content="{StaticResource play}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding ExecuteBackupCommand}" Margin="5,0,0,0"/>
-                        <Button Content="{StaticResource pause}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PauseBackupCommand}" Margin="5,0,0,0"/>
-                        <Button Content="{StaticResource stop}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding InterruptBackupCommand}" Margin="5,0,0,0"/>
+                        <Button Content="{StaticResource play}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PlayCommand}" Margin="5,0,0,0"/>
+                        <Button Content="{StaticResource pause}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PauseCommand}" Margin="5,0,0,0"/>
+                        <Button Content="{StaticResource stop}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding StopCommand}" Margin="5,0,0,0"/>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>

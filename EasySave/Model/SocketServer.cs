@@ -56,6 +56,37 @@ namespace EasySave.Model
                                 LanguagePacket packet = (LanguagePacket)obj;
                                 SendAll(GetLanguagePacket(packet.Language));
                             }
+                            else if (obj.GetType() == typeof(CommandPacket))
+                            {
+                                CommandPacket packet = (CommandPacket)obj;
+                                BackupWork backupWork = null;
+                                foreach (BackupWork bw in Model.Instance.backupWorks)
+                                {
+                                    if(bw.Id == packet.Id)
+                                    {
+                                        backupWork = bw;
+                                        break;
+                                    }
+                                }
+                                
+                                if(backupWork== null)
+                                {
+                                    continue;
+                                }
+
+                                switch (packet.Command)
+                                {
+                                    case "Play":
+                                        backupWork.ExecuteBackup();
+                                        break;
+                                    case "Pause":
+                                        backupWork.Pause();
+                                        break;
+                                    case "Stop":
+                                        backupWork.Interupt();
+                                        break;
+                                }
+                            }
                         }
                     });
                     listener.Start();
@@ -198,6 +229,9 @@ namespace EasySave.Model
             {
                 remoteBackupWork.Id = backupWork.Id;
                 remoteBackupWork.Name = backupWork.name;
+                remoteBackupWork.Play = backupWork.State != BackupStateEnum.ACTIVE;
+                remoteBackupWork.Pause = backupWork.State == BackupStateEnum.ACTIVE;
+                remoteBackupWork.Stop = backupWork.State == BackupStateEnum.ACTIVE || backupWork.State == BackupStateEnum.PAUSE;
             }
 
             if (states.ContainsKey(id))

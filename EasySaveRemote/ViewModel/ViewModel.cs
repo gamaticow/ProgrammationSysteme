@@ -1,4 +1,5 @@
 ﻿using EasySaveRemote.Model;
+using EasySaveRemote.ViewModel.Commands;
 using RemoteCommon;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace EasySaveRemote.ViewModel
 {
     class ViewModel : INotifyPropertyChanged
     {
-        private SocketClient client;
+        public SocketClient Client { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -34,10 +35,31 @@ namespace EasySaveRemote.ViewModel
         }
 
         // Properties
+        private int SId;
+        private RemoteBackupWork _sBackupWork;
+        public RemoteBackupWork SBackupWork
+        {
+            get
+            {
+                return _sBackupWork;
+            }
+            set
+            {
+                _sBackupWork = value;
+                if(value != null)
+                    SId = value.Id;
+                PlayCommand.RaiseCanExecuteChanged();
+                PauseCommand.RaiseCanExecuteChanged();
+                StopCommand.RaiseCanExecuteChanged();
+            }
+        }
         public ObservableCollection<RemoteBackupWork> BackupWorks
         {
             get
             {
+                if(Model.Model.Instance.BackupWorks.ContainsKey(SId))
+                    SBackupWork = Model.Model.Instance.BackupWorks[SId];
+                OnPropertyChanged(nameof(SBackupWork));
                 return new ObservableCollection<RemoteBackupWork>(Model.Model.Instance.BackupWorks.Values);
             }
             set
@@ -59,14 +81,23 @@ namespace EasySaveRemote.ViewModel
                 Type t = value.GetType();
                 PropertyInfo info = t.GetProperty("Type");
                 string language = (string)info.GetValue(value);
-                client.Send(new LanguagePacket() { Language = language });
+                Client.Send(new LanguagePacket() { Language = language });
             }
         }
         public ObservableCollection<object> Languages { get; set; }
 
+        // Commands
+        public PlayCommand PlayCommand { get; private set; }
+        public PauseCommand PauseCommand { get; private set; }
+        public StopCommand StopCommand { get; private set; }
+
         public ViewModel(SocketClient client)
         {
-            this.client = client;
+            PlayCommand = new PlayCommand(this);
+            PauseCommand = new PauseCommand(this);
+            StopCommand = new StopCommand(this);
+
+            this.Client = client;
             client.Update = new Update(Update);
         }
 
