@@ -51,7 +51,10 @@ namespace EasySave
         void DataWindow_Closing(object sender, CancelEventArgs e)
         {
             if(hasMutex)
+            {
+                Model.Model.Instance.SocketServer.Close();
                 mutex.ReleaseMutex();
+            }
         }
     }
 }

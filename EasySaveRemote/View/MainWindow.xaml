@@ -13,37 +13,68 @@
         <Image x:Key="stop" Source="../Resources/stop.png"/>
         <Image x:Key="play" Source="../Resources/play.png"/>
     </Window.Resources>
-    <StackPanel>
-    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-            <ListBox Margin="5,0,0,0" ItemsSource="{Binding BackupWorks}" SelectedItem="{Binding SBackupWork}" Width="250" Height="356">
-                <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Path=Name}"/>
-                        <ProgressBar Width="175" Height="25" Minimum="0" Maximum="100" Value="{Binding Progress}" Foreground="{Binding Color}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-            <StackPanel Margin="5,0,0,0">
-                <GroupBox Header="{Binding TSelectedBackupWork}" Padding="5" Margin="0,5,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="{StaticResource play}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PlayCommand}" Margin="5,0,0,0"/>
-                        <Button Content="{StaticResource pause}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PauseCommand}" Margin="5,0,0,0"/>
-                        <Button Content="{StaticResource stop}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding StopCommand}" Margin="5,0,0,0"/>
-                    </StackPanel>
-                </GroupBox>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/backgroundEasySave.jpg"/>
+        </Grid.Background>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <ListBox Background="Transparent" Margin="5,5,0,0" ItemsSource="{Binding BackupWorks}" SelectedItem="{Binding SBackupWork}" Width="370" Height="350">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightGray" BorderThickness="0,0,0,1">
+                                <Border.Background>
+                                    <SolidColorBrush Color="White" Opacity="0.6"/>
+                                </Border.Background>
+                                <StackPanel Margin="0,15" Orientation="Horizontal">
+                                    <TextBlock Margin="10,0,0,0" Name="BackupName" Text="{Binding Path=Name}" Foreground="Black" Width="130"/>
+                                    <ProgressBar Margin="0,0,30,0" Width="175" Height="25" Minimum="0" Maximum="100" Value="{Binding Progress}" Foreground="{Binding Color}" HorizontalAlignment="Right"/>
+                                    <Image Source="{Binding Image, TargetNullValue={x:Null}}" Margin="-20,0,0,0" Width="30"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Margin="10,0,0,0">
+                    <GroupBox Header="{Binding TSelectedBackupWork}" Margin="0,5,0,10">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{StaticResource play}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PlayCommand}" CommandParameter="InfoBackup" Margin="5,0,0,0">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button Content="{StaticResource pause}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PauseCommand}" CommandParameter="InfoBackup" Margin="5,0,0,0">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button Content="{StaticResource stop}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding StopCommand}" CommandParameter="InfoBackup" Margin="5,0,0,0">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
             </StackPanel>
+            <Grid Height="35" Background="LightGray" Margin="0,10,0,0">
+                <Label xml:space="preserve" VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin     DEMBELE Romaric     RAMBIER Ewen</Label>
+                <ComboBox VerticalContentAlignment="Center" ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}" HorizontalAlignment="Right" Margin="0,0,5,0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Image Height="35" Source="{Binding Icon}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
         </StackPanel>
-        <Grid Height="35" Background="LightGray" Margin="0,10,0,0">
-            <Label xml:space="preserve" VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin     DEMBELE Romaric     RAMBIER Ewen</Label>
-            <ComboBox VerticalContentAlignment="Center" ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}" HorizontalAlignment="Right" Margin="0,0,5,0">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <Image Height="35" Source="{Binding Icon}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </Grid>
-    </StackPanel>
+        <Image HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Source="../Resources/EasySave_Logo.png" Margin="0,0,34,70"/>
+    </Grid>
 </Window>

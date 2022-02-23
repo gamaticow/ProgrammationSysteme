@@ -13,6 +13,7 @@ namespace RemoteCommon
         public string Name { get; set; }
         public int Progress { get; set; }
         public string Color { get; set; }
+        public string Image { get; set; }
         public bool Play { get; set; }
         public bool Pause { get; set; }
         public bool Stop { get; set; }

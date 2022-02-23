@@ -7,13 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\backgroundEasySave.jpg" />
+    <None Remove="Resources\EasySave_Logo.png" />
     <None Remove="Resources\FlagEnglish.png" />
     <None Remove="Resources\FlagFrench.png" />
     <None Remove="Resources\FlagJapan.png" />
     <None Remove="Resources\FlagRussian.png" />
     <None Remove="Resources\FlagSpanish.png" />
+    <None Remove="Resources\green_play.png" />
+    <None Remove="Resources\orange_pause.png" />
     <None Remove="Resources\pause.png" />
     <None Remove="Resources\play.png" />
+    <None Remove="Resources\red_stop.png" />
     <None Remove="Resources\stop.png" />
   </ItemGroup>
 
@@ -22,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\backgroundEasySave.jpg" />
+    <Resource Include="Resources\EasySave_Logo.png" />
     <Resource Include="Resources\FlagRussian.png" />
   </ItemGroup>
 
@@ -34,8 +41,11 @@
     <Resource Include="Resources\FlagFrench.png" />
     <Resource Include="Resources\FlagJapan.png" />
     <Resource Include="Resources\FlagSpanish.png" />
+    <Resource Include="Resources\green_play.png" />
+    <Resource Include="Resources\orange_pause.png" />
     <Resource Include="Resources\pause.png" />
     <Resource Include="Resources\play.png" />
+    <Resource Include="Resources\red_stop.png" />
     <Resource Include="Resources\stop.png" />
   </ItemGroup>
 

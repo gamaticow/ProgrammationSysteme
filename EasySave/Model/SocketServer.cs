@@ -19,6 +19,7 @@ namespace EasySave.Model
             "selected_backup_work"
         };
 
+        private TcpListener server;
         private List<string> languages;
         private Dictionary<int, BackupState> states = new Dictionary<int, BackupState>();
 
@@ -32,14 +33,23 @@ namespace EasySave.Model
                 languages.Add(languageType.ToString());
             }
 
-            TcpListener server = new TcpListener(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050));
+            server = new TcpListener(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050));
             server.Start();
 
             new Thread(() =>
             {
                 while (true)
                 {
-                    TcpClient client = server.AcceptTcpClient();
+                    TcpClient client = null;
+                    try
+                    {
+                        client = server.AcceptTcpClient();
+                    }
+                    catch (Exception e)
+                    {
+                        break;
+                    }
+
                     clients.Add(client);
                     SendInit(client);
 
@@ -200,6 +210,11 @@ namespace EasySave.Model
             return null;
         }
 
+        public void Close()
+        {
+            server.Stop();
+        }
+
         public void OnCompleted()
         { }
 
@@ -239,15 +254,27 @@ namespace EasySave.Model
                 BackupState state = states[id];
                 remoteBackupWork.Progress = state.Progression;
                 string color = "#198754";
-                if (state.State == "PAUSE")
+                string image = null;
+                if (state.State == "ACTIVE")
+                {
+                    image = "../Resources/green_play.png";
+                }
+                else if (state.State == "PAUSE")
                 {
                     color = "#ffc107";
+                    image = "../Resources/orange_pause.png";
                 }
                 else if (state.State == "INTERRUPTED")
                 {
                     color = "#dc3545";
+                    image = "../Resources/red_stop.png";
+                }
+                else if (state.State == "END")
+                {
+                    image = null;
                 }
                 remoteBackupWork.Color = color;
+                remoteBackupWork.Image = image;
             }
             else
             {
