@@ -61,15 +61,6 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à complet.
-        /// </summary>
-        internal static string backuptype_full {
-            get {
-                return ResourceManager.GetString("backuptype_full", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Créer une sauvegarde.
         /// </summary>
         internal static string create_backup {
@@ -129,6 +120,15 @@ namespace EasySave {
         internal static string error {
             get {
                 return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;exécution ne peut pas se faire parce que {0} est ouvert.
+        /// </summary>
+        internal static string error_business_app {
+            get {
+                return ResourceManager.GetString("error_business_app", resourceCulture);
             }
         }
         

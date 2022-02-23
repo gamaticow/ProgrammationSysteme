@@ -61,15 +61,6 @@ namespace EasySave {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à completa.
-        /// </summary>
-        internal static string backuptype_full {
-            get {
-                return ResourceManager.GetString("backuptype_full", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Crear una copia de seguridad.
         /// </summary>
         internal static string create_backup {
@@ -129,6 +120,15 @@ namespace EasySave {
         internal static string error {
             get {
                 return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La ejecución no puede realizarse porque {0} está abierto.
+        /// </summary>
+        internal static string error_business_app {
+            get {
+                return ResourceManager.GetString("error_business_app", resourceCulture);
             }
         }
         
@@ -318,6 +318,15 @@ namespace EasySave {
         internal static string select_business_app {
             get {
                 return ResourceManager.GetString("select_business_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Trabajos de apoyo seleccionados.
+        /// </summary>
+        internal static string selected_backup_work {
+            get {
+                return ResourceManager.GetString("selected_backup_work", resourceCulture);
             }
         }
         

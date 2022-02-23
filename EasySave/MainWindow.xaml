@@ -13,6 +13,7 @@
     <Window.Resources>
         <Image x:Key="Home" Source="Resources/home.png"/>
         <Image x:Key="Setting" Source="Resources/Setting.png"/>
+        <Image x:Key="Logo" Source="Resources/EasySave_Logo.png"/>
     </Window.Resources>
     <Grid>
         <Grid.Resources>
@@ -29,8 +30,26 @@
                 <views:InfoBackup />
             </DataTemplate>
         </Grid.Resources>
-        <Button Content="{StaticResource Home}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Menu"/>
-        <Button Content="{StaticResource Setting}"  Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Settings"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/backgroundEasySave.jpg"/>
+        </Grid.Background>
+
+        <Image HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,25,70" Width="150" Source="Resources/EasySave_Logo.png"/>
+
+        <Button Content="{StaticResource Home}" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Menu">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="{StaticResource Setting}"  Margin="40,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding UpdateViewCommand}" CommandParameter="Settings">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <ContentControl VerticalAlignment="Top" Content="{Binding SelectedViewModel}" Margin="0,30,0,0" />
         <Grid Height="35" Background="LightGray" Margin="0,449,0,10">
             <Label xml:space="preserve" VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin     DEMBELE Romaric     RAMBIER Ewen</Label>

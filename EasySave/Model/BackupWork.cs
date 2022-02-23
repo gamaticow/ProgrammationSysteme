@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Priority_Queue;
+using System.Windows;
 
 namespace EasySave.Model
 {
@@ -147,6 +148,7 @@ namespace EasySave.Model
         {
             DirectoryInfo source = new DirectoryInfo(sourceDirectory);
             DirectoryInfo target = new DirectoryInfo(targetDirectory);
+            MessageBoxResult result;
 
             if (IsBusinessAppRunning() == null)
             {
@@ -188,6 +190,7 @@ namespace EasySave.Model
                     {
                         State = BackupStateEnum.PAUSE;
                         UpdateState();
+                        result = MessageBox.Show(Model.Instance.language.Translate("error_business_app").Replace("{0}", Path.GetFileName(Model.Instance.businessApp).Substring(0, Path.GetFileName(Model.Instance.businessApp).IndexOf("."))), Model.Instance.language.Translate("error_business_app").Replace("{0}", Path.GetFileName(Model.Instance.businessApp).Substring(0, Path.GetFileName(Model.Instance.businessApp).IndexOf("."))), MessageBoxButton.OK, MessageBoxImage.Error);
                         process.WaitForExit();
                     }
 
@@ -307,7 +310,7 @@ namespace EasySave.Model
             }
             else
             {
-                //Console.WriteLine("Notepad ouvert");
+                MessageBox.Show(Model.Instance.language.Translate("error_business_app").Replace("{0}", Path.GetFileName(Model.Instance.businessApp).Substring(0, Path.GetFileName(Model.Instance.businessApp).IndexOf("."))), Model.Instance.language.Translate("error_business_app").Replace("{0}",Path.GetFileName(Model.Instance.businessApp).Substring(0, Path.GetFileName(Model.Instance.businessApp).IndexOf("."))), MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private long GetFiles(List<BackupFile> files, DirectoryInfo source, DirectoryInfo target)

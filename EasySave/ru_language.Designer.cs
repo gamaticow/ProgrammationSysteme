@@ -124,6 +124,15 @@ namespace EasySave {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Выполнение невозможно, потому что {0} открыто.
+        /// </summary>
+        internal static string error_business_app {
+            get {
+                return ResourceManager.GetString("error_business_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Не все поля заполнены.
         /// </summary>
         internal static string error_fields_empty {
@@ -309,6 +318,15 @@ namespace EasySave {
         internal static string select_business_app {
             get {
                 return ResourceManager.GetString("select_business_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Избранные резервные работы.
+        /// </summary>
+        internal static string selected_backup_work {
+            get {
+                return ResourceManager.GetString("selected_backup_work", resourceCulture);
             }
         }
         
