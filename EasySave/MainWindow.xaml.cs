@@ -29,16 +29,12 @@ namespace EasySave
         {
             if (mutex.WaitOne(TimeSpan.Zero, true))
             {
-<<<<<<< HEAD
-                var uri = new Uri(@"pack://siteoforigin:,,,/Resources/windows_xp.mp3", UriKind.RelativeOrAbsolute);
-=======
                 hasMutex = true;
 
-                var uri = new Uri(@"pack://siteoforigin:,,,/Resources/Contre_sens.mp3", UriKind.RelativeOrAbsolute);
->>>>>>> 77b864ad40649e817dd068587353e1eb04b92966
+                var uri = new Uri(@"pack://siteoforigin:,,,/Resources/windows_xp.mp3", UriKind.RelativeOrAbsolute);
                 Model.Model.Instance.mediaPlayer = new MediaPlayer();
                 Model.Model.Instance.mediaPlayer.Open(uri);
-                //Model.Model.Instance.mediaPlayer.Play();
+                Model.Model.Instance.mediaPlayer.Play();
 
                 Model.Model.Instance.StartServer();
 
