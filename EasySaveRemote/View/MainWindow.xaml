@@ -1,0 +1,49 @@
+﻿<Window x:Class="EasySaveRemote.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySaveRemote"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Closing="Window_Closing"
+        Title="EasySave Remote" Height="450" Width="800">
+    <Window.Resources>
+        <Image x:Key="pause" Source="../Resources/pause.png"/>
+        <Image x:Key="stop" Source="../Resources/stop.png"/>
+        <Image x:Key="play" Source="../Resources/play.png"/>
+    </Window.Resources>
+    <StackPanel>
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <ListBox Margin="5,0,0,0" ItemsSource="{Binding BackupWorks}" SelectedItem="{Binding Selected}" Width="250" Height="356">
+                <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                        <ProgressBar Width="175" Height="25" Minimum="0" Maximum="100" Value="{Binding Progress}" Foreground="{Binding Color}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+            <StackPanel Margin="5,0,0,0">
+                <GroupBox Header="{Binding TSelectedBackupWork}" Padding="5" Margin="0,5,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="{StaticResource play}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding ExecuteBackupCommand}" Margin="5,0,0,0"/>
+                        <Button Content="{StaticResource pause}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding PauseBackupCommand}" Margin="5,0,0,0"/>
+                        <Button Content="{StaticResource stop}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Command="{Binding InterruptBackupCommand}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </StackPanel>
+        <Grid Height="35" Background="LightGray" Margin="0,10,0,0">
+            <Label xml:space="preserve" VerticalAlignment="Center" HorizontalAlignment="Center">© COUTEAUX Corentin     DEMBELE Romaric     RAMBIER Ewen</Label>
+            <ComboBox VerticalContentAlignment="Center" ItemsSource="{Binding Languages}" SelectedItem="{Binding SLanguage}" HorizontalAlignment="Right" Margin="0,0,5,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image Height="35" Source="{Binding Icon}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+    </StackPanel>
+</Window>
