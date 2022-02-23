@@ -63,7 +63,7 @@ namespace EasySave.ViewModel
             _backupWorkList = new List<MenuBackupWork>();
             foreach (BackupWork backupWork in Model.Model.Instance.backupWorks)
             {
-                _backupWorkList.Add(new MenuBackupWork() { BackupWork = backupWork, Name = backupWork.name, Progress = 0, Color = "#198754" });
+                _backupWorkList.Add(new MenuBackupWork() { BackupWork = backupWork, Name = backupWork.name, Progress = 0, Color = "#198754", Image = "../Resources/green_play.png" });
                 backupWork.Subscribe(this);
             }
         }
@@ -99,17 +99,29 @@ namespace EasySave.ViewModel
             }
 
             string color = "#198754";
-            if (value.State == "PAUSE")
+            string image = null;
+            if (value.State == "ACTIVE")
+            {
+                image = "../Resources/green_play.png";
+            }
+            else if (value.State == "PAUSE")
             {
                 color = "#ffc107";
+                image = "../Resources/orange_pause.png";
             }
             else if (value.State == "INTERRUPTED")
             {
                 color = "#dc3545";
+                image = "../Resources/red_stop.png";
+            }
+            else if (value.State == "END")
+            {
+                image = null;
             }
 
             backupWork.Progress = value.Progression;
             backupWork.Color = color;
+            backupWork.Image = image;
 
             OnPropertyChanged(nameof(BackupWorksList));
             ExecuteBackupCommand.RaiseCanExecuteChanged();
@@ -124,5 +136,6 @@ namespace EasySave.ViewModel
         public string Name { get; set; }
         public int Progress { get; set; }
         public string Color { get; set; }
+        public string Image { get; set; }
     }
 }

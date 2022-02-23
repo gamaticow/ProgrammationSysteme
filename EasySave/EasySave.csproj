@@ -30,6 +30,7 @@
     <None Remove="Resources\FlagSpanish.png" />
     <None Remove="Resources\florent_pagny_savoir_aimer.mp3" />
     <None Remove="Resources\folder.png" />
+    <None Remove="Resources\green_play.png" />
     <None Remove="Resources\home.png" />
     <None Remove="Resources\jack_uzi_ford_freestyle.mp3" />
     <None Remove="Resources\jul_alors_la_zone.mp3" />
@@ -37,16 +38,19 @@
     <None Remove="Resources\makassy-doucement.mp3" />
     <None Remove="Resources\makassy_doucement.mp3" />
     <None Remove="Resources\ninja_turtles.mp3" />
+    <None Remove="Resources\orange_pause.png" />
     <None Remove="Resources\parallel.png" />
     <None Remove="Resources\pause.png" />
     <None Remove="Resources\Petit son.mp3" />
     <None Remove="Resources\Petit_son.mp3" />
     <None Remove="Resources\play.png" />
+    <None Remove="Resources\red_stop.png" />
     <None Remove="Resources\russia.png" />
     <None Remove="Resources\setting.png" />
     <None Remove="Resources\Shifter_pro.mp3" />
     <None Remove="Resources\stop.png" />
     <None Remove="Resources\trash.png" />
+    <None Remove="Resources\windows_xp.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -93,6 +97,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Shifter_pro.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\windows_xp.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -165,10 +172,13 @@
 	  <Resource Include="Resources\FlagRussian.png" />
 	  <Resource Include="Resources\FlagSpanish.png" />
 	  <Resource Include="Resources\folder.png" />
+	  <Resource Include="Resources\green_play.png" />
 	  <Resource Include="Resources\home.png" />
+	  <Resource Include="Resources\orange_pause.png" />
 	  <Resource Include="Resources\parallel.png" />
 	  <Resource Include="Resources\pause.png" />
 	  <Resource Include="Resources\play.png" />
+	  <Resource Include="Resources\red_stop.png" />
 	  <Resource Include="Resources\setting.png" />
 	  <Resource Include="Resources\stop.png" />
 	  <Resource Include="Resources\trash.png" />

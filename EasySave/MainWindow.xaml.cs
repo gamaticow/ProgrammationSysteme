@@ -29,7 +29,7 @@ namespace EasySave
         {
             if (mutex.WaitOne(TimeSpan.Zero, true))
             {
-                var uri = new Uri(@"pack://siteoforigin:,,,/Resources/Shifter_pro.mp3", UriKind.RelativeOrAbsolute);
+                var uri = new Uri(@"pack://siteoforigin:,,,/Resources/windows_xp.mp3", UriKind.RelativeOrAbsolute);
                 Model.Model.Instance.mediaPlayer = new MediaPlayer();
                 Model.Model.Instance.mediaPlayer.Open(uri);
                 Model.Model.Instance.mediaPlayer.Play();

@@ -24,7 +24,8 @@
                     <StackPanel Margin="0,15" Orientation="Horizontal">
                         <TextBlock Margin="10,0,0,0" Name="BackupName" Text="{Binding Path=Name}" Foreground="Black" Width="130"/>
                         <ProgressBar Margin="0,0,30,0" Width="175" Height="25" Minimum="0" Maximum="100" Value="{Binding Progress}" Foreground="{Binding Color}" HorizontalAlignment="Right"/>
-                    </StackPanel>
+                            <Image Source="{Binding Image, TargetNullValue={x:Null}}" Margin="-15,0,0,0" Width="30"/>
+                        </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>

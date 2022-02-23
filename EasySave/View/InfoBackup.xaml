@@ -14,13 +14,29 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel>
-            <Label HorizontalAlignment="center" Content="{Binding TLabelBackupName}"/>
+            <Label HorizontalAlignment="center" Content="{Binding TLabelBackupName}">
+                <Label.Background>
+                    <SolidColorBrush Color="White" Opacity="0.6"/>
+                </Label.Background>
+            </Label>
             <TextBox VerticalContentAlignment="Center" Text="{Binding Path=name, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="200"/>
-            <Label HorizontalAlignment="center" Content="{Binding TLabelSourceDirectory}" Margin="0,15,0,0"/>
+            <Label HorizontalAlignment="center" Content="{Binding TLabelSourceDirectory}" Margin="0,15,0,0">
+                <Label.Background>
+                    <SolidColorBrush Color="White" Opacity="0.6"/>
+                </Label.Background>
+            </Label>
             <TextBox VerticalContentAlignment="Center" HorizontalAlignment="center" Text="{Binding sourceDirectory, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="200" />
-            <Label HorizontalAlignment="center" Content="{Binding TLabelTargetDirectory}" Margin="0,15,0,0"/>
+            <Label HorizontalAlignment="center" Content="{Binding TLabelTargetDirectory}" Margin="0,15,0,0">
+                <Label.Background>
+                    <SolidColorBrush Color="White" Opacity="0.6"/>
+                </Label.Background>
+            </Label>
             <TextBox VerticalContentAlignment="Center" HorizontalAlignment="center" Text="{Binding targetDirectory, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="200" />
-            <Label HorizontalAlignment="center" Content="{Binding TLabelBackupType}" Margin="0,15,0,0"/>
+            <Label HorizontalAlignment="center" Content="{Binding TLabelBackupType}" Margin="0,15,0,0">
+                <Label.Background>
+                    <SolidColorBrush Color="White" Opacity="0.6"/>
+                </Label.Background>
+            </Label>
             <ComboBox HorizontalAlignment="Center" Width="200" ItemsSource="{Binding backupTypeList}" SelectedItem="{Binding selectedType}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
