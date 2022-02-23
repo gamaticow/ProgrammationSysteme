@@ -52,7 +52,7 @@ namespace EasySaveRemote.Model
                     {
                         AddBackupPacket packet = (AddBackupPacket)obj;
                         if (packet.BackupWork.Id == 0)
-                            return;
+                            continue;
                         Model.Instance.BackupWorks[packet.BackupWork.Id] = packet.BackupWork;
                         Update("AddBackupWork");
                     }
@@ -60,7 +60,7 @@ namespace EasySaveRemote.Model
                     {
                         DeleteBackupPacket packet = (DeleteBackupPacket)obj;
                         if (packet.Id == 0)
-                            return;
+                            continue;
                         Model.Instance.BackupWorks.Remove(packet.Id);
                         Update("DeleteBackupWork");
                     }
@@ -68,7 +68,7 @@ namespace EasySaveRemote.Model
                     {
                         UpdateBackupPacket packet = (UpdateBackupPacket)obj;
                         if (packet.BackupWork.Id == 0)
-                            return;
+                            continue;
                         Model.Instance.BackupWorks[packet.BackupWork.Id] = packet.BackupWork;
                         Update("Update");
                     }
