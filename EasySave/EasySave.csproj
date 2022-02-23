@@ -103,6 +103,10 @@
     <PackageReference Include="Prism.Core" Version="8.1.97" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RemoteCommon\RemoteCommon.csproj" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<Compile Update="en_language.Designer.cs">
 			<DesignTime>True</DesignTime>
