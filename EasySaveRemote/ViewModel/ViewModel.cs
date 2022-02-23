@@ -102,7 +102,6 @@ namespace EasySaveRemote.ViewModel
             }
             else if (type == "AddBackupWork" || type == "DeleteBackupWork" || type == "Update")
             {
-                Trace.WriteLine("Update");
                 OnPropertyChanged(nameof(BackupWorks));
             }
         }

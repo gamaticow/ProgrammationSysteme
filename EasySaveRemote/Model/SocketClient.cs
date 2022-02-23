@@ -35,6 +35,8 @@ namespace EasySaveRemote.Model
                         Model.Instance.AvailableLanguages = packet.AvailableLanguages;
                         foreach (RemoteBackupWork rbw in packet.RemoteBackupWorks)
                         {
+                            if (rbw.Id == 0)
+                                continue;
                             Model.Instance.BackupWorks[rbw.Id] = rbw;
                         }
                         Model.Instance.Language = new Language(packet.LanguagePacket.Language, packet.LanguagePacket.Translations);
@@ -49,18 +51,24 @@ namespace EasySaveRemote.Model
                     else if (obj.GetType() == typeof(AddBackupPacket))
                     {
                         AddBackupPacket packet = (AddBackupPacket)obj;
+                        if (packet.BackupWork.Id == 0)
+                            return;
                         Model.Instance.BackupWorks[packet.BackupWork.Id] = packet.BackupWork;
                         Update("AddBackupWork");
                     }
                     else if (obj.GetType() == typeof(DeleteBackupPacket))
                     {
                         DeleteBackupPacket packet = (DeleteBackupPacket)obj;
+                        if (packet.Id == 0)
+                            return;
                         Model.Instance.BackupWorks.Remove(packet.Id);
                         Update("DeleteBackupWork");
                     }
                     else if (obj.GetType() == typeof(UpdateBackupPacket))
                     {
                         UpdateBackupPacket packet = (UpdateBackupPacket)obj;
+                        if (packet.BackupWork.Id == 0)
+                            return;
                         Model.Instance.BackupWorks[packet.BackupWork.Id] = packet.BackupWork;
                         Update("Update");
                     }
