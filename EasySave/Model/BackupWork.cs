@@ -10,11 +10,13 @@ using Priority_Queue;
 
 namespace EasySave.Model
 {
-    abstract class BackupWork : IObservable<BackupLog>, IObservable<BackupState>, IObservable<string>
+    class BackupWork : IObservable<BackupLog>, IObservable<BackupState>, IObservable<string>
     {
         private List<IObserver<BackupLog>> logObservers = new List<IObserver<BackupLog>>();
         private List<IObserver<BackupState>> stateObservers = new List<IObserver<BackupState>>();
         private List<IObserver<string>> saveObservers = new List<IObserver<string>>();
+
+        public int Id { get; private set; }
 
         private string _name;
         public string name
@@ -27,6 +29,8 @@ namespace EasySave.Model
             {
                 _name = value;
                 Save();
+                if(Model.Instance.SocketServer != null)
+                    Model.Instance.SocketServer.RenameBackupWork(this);
             }
         }
         private string _sourceDirectory;
@@ -85,11 +89,33 @@ namespace EasySave.Model
         private int nbFilesLeftToDo;
         private bool forceProgress;
 
-        public BackupWork(string name, string sourceDirectory, string targetDirectory)
+        public BackupWork(string name, string sourceDirectory, string targetDirectory, BackupType type)
         {
+            lock (Model.Instance.backupIdLock)
+            {
+                this.Id = Model.Instance.BackupId++;
+            }
             this.name = name;
             this.sourceDirectory = sourceDirectory;
             this.targetDirectory = targetDirectory;
+            this.backupType = type;
+
+            State = BackupStateEnum.END;
+            sourceFilePath = "";
+            targetFilePath = "";
+            totalFilesToCopy = 0;
+            totalFilesSize = 0;
+            nbFilesLeftToDo = 0;
+            forceProgress = false;
+        }
+
+        public BackupWork(int id, string name, string sourceDirectory, string targetDirectory, BackupType type)
+        {
+            this.Id = id;
+            this.name = name;
+            this.sourceDirectory = sourceDirectory;
+            this.targetDirectory = targetDirectory;
+            this.backupType = type;
 
             State = BackupStateEnum.END;
             sourceFilePath = "";
@@ -279,6 +305,7 @@ namespace EasySave.Model
                         {
                             file.source.CopyTo(file.target.FullName, true);
                         }
+                        Thread.Sleep(500);
 
                         // Edit the log JSON file
                         Log(file.source.FullName, file.target.FullName, file.source.Length, DateTimeOffset.Now.ToUnixTimeMilliseconds() - start, encryptTime);
@@ -429,7 +456,7 @@ namespace EasySave.Model
         // Method to update states via observer
         protected void UpdateState()
         {
-            BackupState state = new BackupState(name, sourceFilePath, targetFilePath, State, totalFilesToCopy, totalFilesSize, nbFilesLeftToDo, totalFilesToCopy > 0 ? Convert.ToInt32((totalFilesToCopy - nbFilesLeftToDo) * 100.0 / totalFilesToCopy) : (forceProgress ? 100 : 0));
+            BackupState state = new BackupState(Id, name, sourceFilePath, targetFilePath, State, totalFilesToCopy, totalFilesSize, nbFilesLeftToDo, totalFilesToCopy > 0 ? Convert.ToInt32((totalFilesToCopy - nbFilesLeftToDo) * 100.0 / totalFilesToCopy) : (forceProgress ? 100 : 0));
             foreach (IObserver<BackupState> observer in stateObservers)
             {
                 observer.OnNext(state);

@@ -10,6 +10,7 @@ namespace EasySave.Model
         public LanguageType language { get; set; }
         public List<string> encryptedExtensions { get; set; }
         public string businessApp { get; set; }
+        public int BackupId { get; set; }
         public List<Dictionary<string, string>> backupWorks { get; private set; }
         public LogType logType { get; set; }
         public object Music { get; set; }
@@ -26,6 +27,7 @@ namespace EasySave.Model
         public void AddBackup(BackupWork backupWork)
         {
             Dictionary<string, string> save = new Dictionary<string, string>();
+            save["id"] = backupWork.Id.ToString();
             save["name"] = backupWork.name;
             save["sourceDirectory"] = backupWork.sourceDirectory;
             save["targetDirectory"] = backupWork.targetDirectory;
@@ -43,18 +45,19 @@ namespace EasySave.Model
             {
                 if(!names.Contains(backupData.GetValueOrDefault("name")))
                 {
+                    BackupType? type = null;
                     if("FULL".Equals(backupData.GetValueOrDefault("type")))
                     {
-                        BackupWork backupWork = new FullBackupWork(backupData.GetValueOrDefault("name"), backupData.GetValueOrDefault("sourceDirectory"), backupData.GetValueOrDefault("targetDirectory"));
-                        backupWork.Subscribe(Model.Instance.logObserver);
-                        backupWork.Subscribe(Model.Instance.stateObserver);
-                        backupWork.Subscribe(Model.Instance.saveObserver);
-                        output.Add(backupWork);
-                        names.Add(backupData.GetValueOrDefault("name"));
+                        type = BackupType.FULL;
                     }
                     else if("DIFFERENTIAL".Equals(backupData.GetValueOrDefault("type")))
                     {
-                        BackupWork backupWork = new DifferentialBackupWork(backupData.GetValueOrDefault("name"), backupData.GetValueOrDefault("sourceDirectory"), backupData.GetValueOrDefault("targetDirectory"));
+                        type = BackupType.DIFFERENTIAL;
+                    }
+
+                    if(type != null)
+                    {
+                        BackupWork backupWork = new BackupWork(Int32.Parse(backupData.GetValueOrDefault("id")), backupData.GetValueOrDefault("name"), backupData.GetValueOrDefault("sourceDirectory"), backupData.GetValueOrDefault("targetDirectory"), type.Value);
                         backupWork.Subscribe(Model.Instance.logObserver);
                         backupWork.Subscribe(Model.Instance.stateObserver);
                         backupWork.Subscribe(Model.Instance.saveObserver);

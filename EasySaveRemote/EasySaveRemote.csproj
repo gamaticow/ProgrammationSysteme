@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\FlagEnglish.png" />
+    <None Remove="Resources\FlagFrench.png" />
+    <None Remove="Resources\FlagJapan.png" />
+    <None Remove="Resources\FlagRussian.png" />
+    <None Remove="Resources\FlagSpanish.png" />
+    <None Remove="Resources\pause.png" />
+    <None Remove="Resources\play.png" />
+    <None Remove="Resources\stop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\FlagRussian.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RemoteCommon\RemoteCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\FlagEnglish.png" />
+    <Resource Include="Resources\FlagFrench.png" />
+    <Resource Include="Resources\FlagJapan.png" />
+    <Resource Include="Resources\FlagSpanish.png" />
+    <Resource Include="Resources\pause.png" />
+    <Resource Include="Resources\play.png" />
+    <Resource Include="Resources\stop.png" />
+  </ItemGroup>
+
+</Project>

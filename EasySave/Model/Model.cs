@@ -25,7 +25,12 @@ namespace EasySave.Model
             }
         }
 
+        public SocketServer SocketServer { get; private set; }
+
         public Language language { get; private set; }
+
+        public object backupIdLock = new object();
+        public int BackupId { get; set; } = 1;
         public List<BackupWork> backupWorks { get; private set; }
         public LogObserver logObserver { get; private set; }
         public LogType logType { get; set; } = LogType.XML;
@@ -78,6 +83,7 @@ namespace EasySave.Model
                 languageType = save.language;
                 encryptedExtensions = save.encryptedExtensions;
                 businessApp = save.businessApp;
+                BackupId = save.BackupId;
                 backupWorks = save.GetBackupWorks();
                 logType = save.logType;
                 Music = save.Music;
@@ -114,6 +120,7 @@ namespace EasySave.Model
             {
                 save.AddBackup(backupWork);
             }
+            save.BackupId = BackupId;
             save.encryptedExtensions = encryptedExtensions;
             save.businessApp = businessApp;
             save.language = language.languageType;
@@ -140,7 +147,7 @@ namespace EasySave.Model
          * status = 2 => Name already used
          * status = 3 => Field(s) are empty
          */
-        public int CreateBackupWork(string name, string sourceDirectory, string targetDirectory, BackupType type)
+        public int CreateBackupWork(string name, string sourceDirectory, string targetDirectory, BackupType? type)
         {
             if (name == null || name.Length == 0 || sourceDirectory == null || sourceDirectory.Length == 0 || targetDirectory == null || targetDirectory.Length == 0)
             {
@@ -152,21 +159,15 @@ namespace EasySave.Model
                 return 2;
             }
 
-            if (type == BackupType.FULL)
+            if (type != null)
             {
-                BackupWork backupWork = new FullBackupWork(name, sourceDirectory, targetDirectory);
+                BackupWork backupWork = new BackupWork(name, sourceDirectory, targetDirectory, type.Value);
                 backupWork.Subscribe(logObserver);
                 backupWork.Subscribe(stateObserver);
                 backupWork.Subscribe(saveObserver);
                 backupWorks.Add(backupWork);
-            }
-            else if (type == BackupType.DIFFERENTIAL)
-            {
-                BackupWork backupWork = new DifferentialBackupWork(name, sourceDirectory, targetDirectory);
-                backupWork.Subscribe(logObserver);
-                backupWork.Subscribe(stateObserver);
-                backupWork.Subscribe(saveObserver);
-                backupWorks.Add(backupWork);
+
+                SocketServer.AddBackupWork(backupWork);
             }
             else
             {
@@ -190,8 +191,18 @@ namespace EasySave.Model
 
         public void DeleteBackup(BackupWork backupWork)
         {
+            SocketServer.DeleteBackupWork(backupWork);
             backupWorks.Remove(backupWork);
             WriteDataFile();
+        }
+
+        public void StartServer()
+        {
+            SocketServer = new SocketServer();
+            foreach (BackupWork bw in backupWorks)
+            {
+                bw.Subscribe(SocketServer);
+            }
         }
     }
 
