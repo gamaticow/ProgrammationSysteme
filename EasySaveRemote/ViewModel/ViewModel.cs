@@ -34,6 +34,20 @@ namespace EasySaveRemote.ViewModel
             }
         }
 
+        private string _tParallelExecution;
+        public string TParallelExecution
+        {
+            get
+            {
+                return _tParallelExecution;
+            }
+            set
+            {
+                _tParallelExecution = value;
+                OnPropertyChanged(nameof(TParallelExecution));
+            }
+        }
+
         // Properties
         private int SId;
         private RemoteBackupWork _sBackupWork;
@@ -90,12 +104,14 @@ namespace EasySaveRemote.ViewModel
         public PlayCommand PlayCommand { get; private set; }
         public PauseCommand PauseCommand { get; private set; }
         public StopCommand StopCommand { get; private set; }
+        public ParallelCommand ParallelCommand { get; private set; }
 
         public ViewModel(SocketClient client)
         {
             PlayCommand = new PlayCommand(this);
             PauseCommand = new PauseCommand(this);
             StopCommand = new StopCommand(this);
+            ParallelCommand = new ParallelCommand(this);
 
             this.Client = client;
             client.Update = new Update(Update);
@@ -104,6 +120,7 @@ namespace EasySaveRemote.ViewModel
         private void SetTranslations()
         {
             TSelectedBackupWork = Translate("selected_backup_work");
+            TParallelExecution = Translate("parallel_execution");
         }
 
         private string Translate(string key)

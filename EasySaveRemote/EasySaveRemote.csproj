@@ -16,6 +16,7 @@
     <None Remove="Resources\FlagSpanish.png" />
     <None Remove="Resources\green_play.png" />
     <None Remove="Resources\orange_pause.png" />
+    <None Remove="Resources\parallel.png" />
     <None Remove="Resources\pause.png" />
     <None Remove="Resources\play.png" />
     <None Remove="Resources\red_stop.png" />
@@ -43,6 +44,7 @@
     <Resource Include="Resources\FlagSpanish.png" />
     <Resource Include="Resources\green_play.png" />
     <Resource Include="Resources\orange_pause.png" />
+    <Resource Include="Resources\parallel.png" />
     <Resource Include="Resources\pause.png" />
     <Resource Include="Resources\play.png" />
     <Resource Include="Resources\red_stop.png" />

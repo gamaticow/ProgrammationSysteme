@@ -16,7 +16,8 @@ namespace EasySave.Model
     {
         private static string[] remoteTranslations =
         {
-            "selected_backup_work"
+            "selected_backup_work",
+            "parallel_execution"
         };
 
         private TcpListener server;
@@ -79,8 +80,15 @@ namespace EasySave.Model
                                     }
                                 }
                                 
-                                if(backupWork== null)
+                                if(backupWork == null)
                                 {
+                                    if(packet.Command == "Parallel")
+                                    {
+                                        foreach (BackupWork bw in Model.Instance.backupWorks)
+                                        {
+                                            bw.ExecuteBackup();
+                                        }
+                                    }
                                     continue;
                                 }
 
