@@ -14,7 +14,7 @@ namespace EasySave.Model
 
         public void OnNext(string value)
         {
-            //TODO Program.instance.WriteDataFile();
+            Model.Instance.WriteDataFile();
         }
     }
 }
